@@ -30,7 +30,7 @@ namespace Elixr2
             });
 
             //todo : retrieve settings from config file
-            services.AddDbContext<ElixrDbContext>(opt => opt.UseNpgsql("Server=127.0.0.1;Port=5432;Database=Elixr2;User Id=elixr_user;Password=elixr_password;"));
+            services.AddDbContext<ElixrDbContext>(opt => opt.UseInMemoryDatabase("InMemory"));// .UseNpgsql("Server=127.0.0.1;Port=5432;Database=Elixr2;User Id=elixr_user;Password=elixr_password;"));
             services.AddScoped<CampaignSettingsService>();
             services.AddScoped<CreaturesService>();
             services.AddScoped<CharacteristicsService>();
@@ -60,7 +60,7 @@ namespace Elixr2
 
             try
             {
-                seedService.SeedInitial(true).Wait();
+                seedService.SeedInitial(false).Wait();
             }
             catch (System.Exception ex)
             {
