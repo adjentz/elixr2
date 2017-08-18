@@ -1,0 +1,35 @@
+<table class="lxr-table padding-5 margin-bottom-15">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Weight
+    </th>
+    <th>
+      Cost
+    </th>
+  </tr>
+  <tr *ngFor="let item of items">
+    <td>
+      <a (click)="viewDetail(item)">
+        {{ item.name }}
+      </a>
+    </td>
+    <td>
+      {{ item.weightInPounds }} lbs.
+    </td>
+    <td>
+      {{ formatCost(item) }}
+    </td>
+  </tr>
+
+</table>
+
+<div class="slideout left" *ngIf="detailItem">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <p *ngIf="forSelection">
+    Tap the name to select Item.
+  </p>
+  <app-item-detail [forSelection]="forSelection" (itemSelected)="itemChosen(detailItem)" [item]="detailItem"></app-item-detail>
+</div>

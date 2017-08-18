@@ -1,0 +1,1 @@
+You vow to never use your own Energy to channel a Spell.

@@ -1,0 +1,12 @@
+<form (ngSubmit)="search()" style="margin-bottom:15px;">
+    <div class="input-group">
+        <strong>
+            Search {{ formatType }} Name
+        </strong>
+        <input name="filterName" type="text" [(ngModel)]="filterName">
+    </div>
+    <button class="lxr-button">
+        Search
+    </button>
+</form>
+<app-characteristic *ngFor="let characteristic of characteristics" [forSelection]="forSelection" (selected)="characteristicSelected(characteristic)" [characteristic]="characteristic"></app-characteristic>

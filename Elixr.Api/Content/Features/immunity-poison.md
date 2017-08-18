@@ -1,0 +1,1 @@
+Choose a specific form of poison/venom, such as "spider's venom". Any ability damage taken from being subjected to the poison is automatically negated.

@@ -1,0 +1,90 @@
+<div style="text-align:center;">
+  Spells
+</div>
+<div class="center-text" *ngIf="shouldShowPowerCostNote">
+  <i>
+    (1 Characteristic Point/Spell)
+  </i>
+</div>
+<div>
+  <table class="lxr-table">
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Energy Requirement
+      </th>
+      <th>
+        Is Concentration
+      </th>
+    </tr>
+    <tbody style="font-size:0.8em;" *ngFor="let selectedSpell of allSelectedSpells">
+      <tr>
+        <td>
+          <a (click)="viewDetail(selectedSpell)">
+        {{ selectedSpell.spell.name }}
+      </a>
+        </td>
+        <td>
+          {{ selectedSpell.spell.energyRequired }}
+        </td>
+        <td>
+          {{ selectedSpell.spell.isConcentration ? "Yes" : "No"}}
+        </td>
+      </tr>
+      <tr *ngIf="selectedSpell.selectedCharacteristics?.length > 0" class="spell-characteristics-row">
+        <td colspan="3">
+          (<span *ngFor="let selectedCharacteristic of selectedSpell.selectedCharacteristics"><a (click)="viewDetail(selectedSpell)">{{ selectedCharacteristic.characteristic.name }}</a></span>)
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <div style="text-align:center;">
+    <a (click)="learnSpell()">Learn Spell+</a>
+  </div>
+</div>
+
+<div class="slideout" *ngIf="learningSpell">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <app-spells [forSelection]="true" (spellSelected)="spellLearned($event)"></app-spells>
+</div>
+
+<div class="slideout left" *ngIf="selectedSpellDetail">
+  <a (click)="cancelSlideout()" class="close">x</a>
+
+  <button class="lxr-button margin-bottom-10" *ngIf="!isTemplateSpell(selectedSpellDetail)" (click)="removeSpell()">
+    Remove
+  </button>
+  <app-spell-detail [forSelection]="false" [spell]="selectedSpellDetail.spell"></app-spell-detail>
+
+  <div>
+    <div>
+      <strong>
+        Acquired on:
+      </strong> {{ selectedSpellDetail.selectedAtMS | date }}
+    </div>
+    <div>
+      <strong>
+        Notes:
+      </strong>
+      <input type="text" [(ngModel)]="selectedSpellDetail.notes">
+    </div>
+    <div>
+      <strong>
+        Characteristics:
+      </strong>
+      <span *ngIf="selectedSpellDetail.selectedCharacteristics?.length === 0">None</span>
+      <ul>
+        <li *ngFor="let selectedCharacteristic of selectedSpellDetail.selectedCharacteristics">
+          {{ selectedCharacteristic.characteristic.name }}
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus accusamus excepturi nobis illo fugit possimus
+            unde maxime, a nemo, quo repudiandae in ad harum assumenda necessitatibus explicabo sunt soluta doloremque.</p>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

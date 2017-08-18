@@ -1,0 +1,56 @@
+<table class="lxr-table" style="text-align:center;">
+  <tr>
+    <th>Item</th>
+    <th>Weight</th>
+  </tr>
+  <tr *ngFor="let selectedItem of selectedItems">
+    <td>
+      <a (click)="viewDetail(selectedItem)">
+        {{ selectedItem.item.name }}
+      </a>
+    </td>
+    <td>
+      {{ selectedItem.item.weightInPounds }} lbs
+    </td>
+  </tr>
+</table>
+<div class="message">
+  <a (click)="chooseItem()">Add Item+</a>
+</div>
+
+<div class="slideout" *ngIf="choosingItem">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <div *ngIf="!chosenItem.item">
+    <app-items [forSelection]="true" (itemSelected)="itemChosen($event)"></app-items>
+  </div>
+
+  <div *ngIf="chosenItem.item">
+    <strong>
+    Pay for Item? (Subtract cost from Wealth)
+  </strong>
+    <div>
+      <label>
+        <input type="radio" name="pay" [value]="true" [(ngModel)]="chosenItem.applyCost">
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="pay" [value]="false" [(ngModel)]="chosenItem.applyCost">
+        No
+      </label>
+    </div>
+    <button class="lxr-button" (click)="confirmItem()">
+      Accept
+    </button>
+  </div>
+</div>
+
+<div class="slideout left" *ngIf="selectedItemDetail">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <button class="lxr-button margin-bottom-10" (click)="removeItem()">
+    Remove
+  </button>
+  <app-item-detail [forSelection]="false" [item]="selectedItemDetail.item"></app-item-detail>
+  <p>
+    Other detail stuff
+  </p>
+</div>

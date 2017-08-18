@@ -1,0 +1,54 @@
+<table class="lxr-table padding-5 margin-bottom-15">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Defense Bonus
+    </th>
+    <th>
+      Speed Penalty
+    </th>
+    <th>
+      Agility Penalty
+    </th>
+    <th>
+      Cost
+    </th>
+  </tr>
+  <tbody *ngFor="let group of armorGroupKeys">
+    <tr>
+      <th colspan="5">
+        {{ group }}
+      </th>
+    </tr>
+    <tr *ngFor="let armor of armorGroups[group]">
+      <td>
+        <a (click)="viewDetail(armor)">
+        {{ armor.name }}
+      </a>
+      </td>
+      <td>
+        {{ armor.defenseBonus }}
+      </td>
+      <td>
+        {{ armor.speedPenalty }}
+      </td>
+      <td>
+        {{ armor.agilityPenalty }}
+      </td>
+      <td>
+        {{ formatCost(armor) }}
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+
+<div class="slideout left" *ngIf="detailArmor">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <p *ngIf="forSelection">
+    Tap the name to select Armor.
+  </p>
+  <app-armor-detail [forSelection]="forSelection" (armorSelected)="armorChosen(detailArmor)" [armor]="detailArmor"></app-armor-detail>
+</div>

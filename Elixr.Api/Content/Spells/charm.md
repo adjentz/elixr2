@@ -1,0 +1,7 @@
+Roll 1d8/Energy Channeled. If the result of this roll, called the Penetration Result, is greater than the target's Concentration Defense, they move one step in the positive direction on the attitude track. If the Penetration Result is greater than their Concentration Defense + 5, they move an additional step in the postive direction.
+
+If the target is being attacked or threatened by you or your allies, the target's Effective Concentration Defense is increased by 5.
+
+The spell does not enable you to control the charmed creature as if it were an automaton, but it perceives your words and actions in the most favorable way. You can try to give the subject orders, but you must make a Diplomacy check to convince it to do anything it wouldn’t ordinarily do. (Retries are not allowed.) An affected creature never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. Any act by you or your apparent allies that threatens the charmed creature breaks the spell. You must speak the creature language to communicate your commands, or else be good at pantomiming.
+
+The target retains it's new position on the Attitude Track for a number of hours equal to the Penetration Result. 

@@ -1,0 +1,1 @@
+You are immune to mind-affecting abilities.

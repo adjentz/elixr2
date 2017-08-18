@@ -1,0 +1,1 @@
+An acrid substance that burns what it comes into contact with, causing {0} damage.

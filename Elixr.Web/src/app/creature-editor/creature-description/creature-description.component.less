@@ -1,0 +1,60 @@
+ @import "../../../styles/variables.less";
+
+.portrait-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+
+    .portrait-box {
+        background-color: @brand_white;
+        flex: 1;
+        width:100%;
+        border: 1px solid cyan;
+        cursor:pointer;
+
+        &.has-image {
+            background-color: black;
+        }
+
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+}
+
+.left-col {
+    margin-right: 5px;
+}
+.center-col {
+    margin: 0 5px;
+}
+
+.creature-stats {
+    .creature-stat {
+        display: inline-block;
+        margin-right: 5px;
+    }
+}
+.templates-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    
+    a {
+        cursor: pointer;
+        display: inline-block;
+        &:after {
+            content: ',';
+            position: relative;
+            left: -0.25em;
+        }
+    }
+    &:last-child {
+        &:after {
+            margin-right: 0;
+            content: '';
+        }
+    }
+    
+}

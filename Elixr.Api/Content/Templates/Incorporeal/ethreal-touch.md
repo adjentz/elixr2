@@ -1,0 +1,1 @@
+Your attacks ignores armor, with the exception of armor granted by deflection and/or force effects.

@@ -1,0 +1,1 @@
+ Slashing and piercing weapons deal no damage to a black pudding. Instead the creature splits into two identical puddings, each with half of the original’s current hit points (round down). A pudding with 10 Energy or less cannot be further split and dies if reduced to 0 Energy.

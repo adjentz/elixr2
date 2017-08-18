@@ -1,0 +1,1 @@
+These herd animals can be aggressive when protecting young and during the mating season, but they generally prefer flight to fighting.

@@ -1,0 +1,1 @@
+On a successful attack, the target loses 1d4 Focus Score. Additionally, the Allip's Energy Buffer increases by 5.

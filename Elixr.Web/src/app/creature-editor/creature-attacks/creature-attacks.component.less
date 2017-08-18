@@ -1,0 +1,24 @@
+.total-wrapper {
+    padding: 10px 5px!important;
+    .total {
+        background-image: url('../../../assets/images/sword.png');
+    }
+}
+
+
+.weapon-characteristics-row {
+    font-size: 0.8em;
+    td {
+        span {
+            :after {
+                content: ',';
+            }
+
+            &:last-child {
+                :after {
+                    content: '';
+                }
+            }
+        }
+    }
+}

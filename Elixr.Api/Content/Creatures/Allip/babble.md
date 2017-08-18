@@ -1,0 +1,1 @@
+An allip constantly mutters and whines to itself, creating a hypnotic effect. All sane creatures within 60 feet of the allip with a Concentration Defense lower than 16 become affected as though by a hypnotism spell for 2d4 rounds. This is a sonic mind-affecting compulsion effect.

@@ -1,0 +1,188 @@
+<div class="creature-abilities">
+    <div *ngIf="shouldShowRemainingStats">
+        <div>
+            <i>
+                Ability Points Remaining {{ remainingAbilityPoints }}
+            </i>
+        </div>
+        <div>
+            <i>
+                Skill Points Remaining {{ remainingSkillPoints }}
+            </i>
+        </div>
+    </div>
+    <div>
+        Skill <i class="fa fa-shield"></i> = 10 + Skill Bonus.
+    </div>
+    <div *ngFor="let ability of primaryAbilities">
+        <div class="flex-cols no-collapse stat-row">
+            <div class="flex-col row-heading">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col-header">
+                Score
+            </div>
+            <div class="flex-col">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col-header">
+                Mod
+            </div>
+            <div class="flex-col math-op">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col-header">
+                Misc.
+            </div>
+            <div class="flex-col math-op">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col-header">
+                Bonus
+            </div>
+        </div>
+        <div class="flex-cols no-collapse stat-row">
+            <div class="flex-col row-heading">
+                <h3>
+                    {{ ability.displayName }}
+                </h3>
+            </div>
+            <div class="flex-col stat-col">
+                <i class="clickable fa fa-arrow-up" (click)="changeStat(ability, 1)"></i>
+                <div class="box">
+                    {{ getAbilityScore(ability) }}
+                </div>
+                <i class="clickable fa fa-arrow-down" (click)="changeStat(ability, -1)"></i>
+            </div>
+            <div class="flex-col">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col">
+                <div class="hex">
+                    {{ getAbilityModifier(ability) }}
+                </div>
+            </div>
+            <div class="flex-col math-op">
+                +
+            </div>
+            <div class="flex-col stat-col">
+                <div class="hex">
+                    {{ getAbilityMisc(ability) }}
+                </div>
+            </div>
+            <div class="flex-col math-op">
+                =
+            </div>
+            <div class="flex-col stat-col">
+                <div class="hex">
+                    {{ getAbilityBonus(ability) }}
+                </div>
+            </div>
+        </div>
+        <div class="flex-cols no-collapse stat-row">
+            <div class="flex-col row-heading">
+                <i>
+                    {{ ability.displayName }} Skills
+                </i>
+            </div>
+            <div class="flex-col stat-col-header">
+                Ranks
+            </div>
+            <div class="flex-col math-op">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col-header">
+                <i class="fa fa-angle-double-down"></i>
+            </div>
+            <div class="flex-col math-op">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col-header">
+                Misc. + <i class="fa fa-angle-double-down"></i>
+            </div>
+            <div class="flex-col math-op">
+                &nbsp;
+            </div>
+            <div class="flex-col stat-col-header">
+                Bonus
+            </div>
+        </div>
+        <div *ngFor="let skill of skillDefensesByPrimaryStatId[ability.statId]">
+            <div class="flex-cols no-collapse stat-row">
+                <div class="flex-col row-heading">
+                    {{ skill.name }}
+                    <i class="fa fa-shield"></i> {{ 10 + getSkillBonus(skill, ability) }}
+                </div>
+                <div class="flex-col stat-col">
+                    <i class="clickable fa fa-arrow-up" (click)="changeStat(skill, 1)"></i>
+                    <span class="stat-value">
+                        {{ sumStat(skill) }}
+                    </span>
+                    <i class="clickable fa fa-arrow-down" (click)="changeStat(skill, -1)"></i>
+                </div>
+                <div class="flex-col math-op">
+                    +
+                </div>
+                <div class="flex-col stat-col">
+                    <span class="stat-value">
+                        {{ getAbilityModifier(ability) }}
+                    </span>
+                </div>
+                <div class="flex-col math-op">
+                    +
+                </div>
+                <div class="flex-col stat-col">
+                    <span class="stat-value">
+                        {{ getSkillMisc(skill, ability) }}
+                    </span>
+                </div>
+                <div class="flex-col math-op">
+                    =
+                </div>
+                <div class="flex-col stat-col">
+                    <span class="stat-value">
+                        {{ getSkillBonus(skill, ability) }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let skill of skillsByPrimaryStatId[ability.statId]">
+            <div class="flex-cols no-collapse stat-row">
+                <div class="flex-col row-heading">
+                    {{ skill.name }}
+                </div>
+                <div class="flex-col stat-col">
+                    <i class="clickable fa fa-arrow-up" (click)="changeStat(skill, 1)"></i>
+                    <span class="stat-value">
+                        {{ sumStat(skill) }}
+                    </span>
+                    <i class="clickable fa fa-arrow-down" (click)="changeStat(skill, -1)"></i>
+                </div>
+                <div class="flex-col math-op">
+                    +
+                </div>
+                <div class="flex-col stat-col">
+                    <span class="stat-value">
+                        {{ getAbilityModifier(ability) }}
+                    </span>
+                </div>
+                <div class="flex-col math-op">
+                    +
+                </div>
+                <div class="flex-col stat-col">
+                    <span class="stat-value">
+                        {{ getSkillMisc(skill, ability) }}
+                    </span>
+                </div>
+                <div class="flex-col math-op">
+                    =
+                </div>
+                <div class="flex-col stat-col">
+                    <span class="stat-value">
+                        {{ getSkillBonus(skill, ability) }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

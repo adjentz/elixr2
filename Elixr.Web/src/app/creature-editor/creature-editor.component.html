@@ -1,0 +1,55 @@
+<div class="toolbar">
+  <button class="lxr-button" (click)="save()">
+    Save {{ creature?.level || 'blarg' }}
+  </button>
+</div>
+<div *ngIf="!loading">
+  <app-creature-description [selectedArmor]="creature.selectedArmor" [creature]="creature" [setting]="campaignSetting" [allAppliedStatMods]="allAppliedStatMods"
+    (leveledUp)="levelUp($event)" (leveledDown)="levelDown($event)" (portraitChanged)="portraitChanged($event)" (templateSelected)="templateSelected($event)"
+    (templateRemoved)="templateRemoved($event)">
+  </app-creature-description>
+  <div class="flex-cols primary-abilities">
+    <div class="flex-col creature-abilities-wrapper">
+      <app-creature-abilities [creature]="creature" [allAppliedStatMods]="allAppliedStatMods" [setting]="campaignSetting" (removeAppliedStatMods)="removeAppliedStatMods($event)"
+        (applyStatMod)="applyStatMod($event)"></app-creature-abilities>
+    </div>
+    <div class="flex-col flex-rows other-stats-wrapper">
+      <div class="flex-row other-stat-row">
+        <app-creature-energy [allAppliedStatMods]="allAppliedStatMods"></app-creature-energy>
+      </div>
+      <!--<div class="flex-row other-stat-row">
+      <app-creature-spell-slots></app-creature-spell-slots>
+    </div>-->
+      <div class="flex-row other-stat-row">
+        <app-creature-defense [allAppliedStatMods]="allAppliedStatMods" (armorSelected)="armorSelected($event)" (armorRemoved)="armorRemoved($event)"
+          [selectedArmor]="creature.selectedArmor" [baseDefense]="campaignSetting.baseDefense"></app-creature-defense>
+      </div>
+      <div class="flex-row other-stat-row last">
+        <app-creature-attacks [allAppliedStatMods]="allAppliedStatMods" [selectedWeapons]="creature.selectedWeapons" (weaponRemoved)="weaponRemoved($event)"
+          (weaponSelected)="weaponSelected($event)"></app-creature-attacks>
+      </div>
+    </div>
+  </div>
+  <div class="flex-cols equipment-wealth">
+    <div class="flex-col">
+      <div class="wealth">
+        <app-creature-wealth (wealthChanged)="wealthChanged($event)" [wealthAdjustments]="creature.wealthAdjustments"></app-creature-wealth>
+      </div>
+    </div>
+    <div class="flex-col">
+      <div class="equipment">
+        <app-creature-equipment [selectedItems]="creature.selectedItems" (itemRemoved)="itemRemoved($event)" (itemSelected)="itemSelected($event)"></app-creature-equipment>
+      </div>
+    </div>
+  </div>
+  <div class="flex-cols">
+    <div class="flex-col characteristics">
+      <app-creature-characteristics [level]="creature.level" [setting]="campaignSetting" [isCharacter]="creature.isCharacter" [selectedTemplates]="creature.selectedTemplates" [allAppliedStatMods]="allAppliedStatMods"
+        (characteristicSelected)="takeCharacteristic($event)" (characteristicRemoved)="characteristicRemoved($event)" [selectedCharacteristics]="creature.selectedCharacteristics"></app-creature-characteristics>
+    </div>
+    <div class="flex-col spells">
+      <app-creature-spells [isCharacter]="creature.isCharacter" [selectedTemplates]="creature.selectedTemplates" [selectedSpells]="creature.selectedSpells" (spellSelected)="spellSelected($event)"
+        (spellRemoved)="spellRemoved($event)"></app-creature-spells>
+    </div>
+  </div>
+</div>

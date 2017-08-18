@@ -1,0 +1,5 @@
+An aranea’s natural form is that of a Medium monstrous spider. It can assume two other forms. The first is a unique Small or Medium humanoid; an aranea in its humanoid form always assumes the same appearance and traits, much as a lycanthrope would. In humanoid form, an aranea cannot use its bite attack, webs, or poison.
+
+The second form is a Medium spider–humanoid hybrid. In hybrid form, an aranea looks like a Medium humanoid at first glance, but a Perception check with a Difficulty of reveals the creature’s fangs and spinnerets. The aranea retains its bite attack, webs, and poison in this form, and can also wield weapons or wear armor. When in hybrid form, an aranea’s speed is 60ft.
+
+An aranea remains in one form until it chooses to assume a new one. A change in form cannot be dispelled, nor does an aranea revert to its natural form when killed. A Reveal spell, however, reveals its natural form if it is in humanoid or hybrid form. The Effective Concentration Defense is the same as the aranea's Concentration Defense. 

@@ -1,0 +1,1 @@
+Baboons are powerful and aggressive primates adapted to life on the ground. They prefer open spaces but climb trees to find safe places to rest overnight. A typical baboon is the size of a big dog.

@@ -1,0 +1,1 @@
+A frightened herd of bison flees as a group in a random direction (but always away from the perceived source of danger). They literally run over anything than 18 that gets in their way, dealing 1d12 points of damage for each five bison in the herd. Creature's with an Agility Defense of 18 or greater only take half-damage.

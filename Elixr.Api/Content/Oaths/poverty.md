@@ -1,0 +1,1 @@
+You keep only enough wealth for the essentials.

@@ -1,0 +1,1 @@
+An Outsider cannot be resurrected on their native plane of exist. The sould & body (which is one entity) must be transported to their native plane before Resurrection cannot work correctly.

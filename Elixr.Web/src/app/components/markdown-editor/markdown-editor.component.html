@@ -1,0 +1,2 @@
+<textarea #editTextarea  [(ngModel)]="model" (blur)="editing = false" [hidden]="!editing"></textarea>
+<div class="markdown" [class.block]="!canEdit" (click)="renderedMarkdownClicked()" [hidden]="editing" [innerHTML]="renderedModel"></div>

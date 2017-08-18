@@ -1,0 +1,3 @@
+Aasimars are usually tall, good-looking, and generally pleasant. Some have a minor physical trait suggesting their heritage, such as silver hair, golden eyes, or an unnaturally intense stare.
+
+Most aasimars are decidedly good. They fight against evil causes and attempt to sway others to do the right thing. Occasionally they take on the vengeful, judgmental aspect of their celestial ancestor, but this is rare.

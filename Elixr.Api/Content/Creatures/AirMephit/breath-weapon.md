@@ -1,0 +1,1 @@
+An Air Mephit can make an Agility Attack to create 15-foot cone of dust and grit. Creatures within the cone with an Acrobotics Defense less than the result of the attack take 1d8 points of damage.

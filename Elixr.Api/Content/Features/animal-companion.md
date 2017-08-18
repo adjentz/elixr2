@@ -1,0 +1,1 @@
+You gain an animal companion. This companion must have a power lower or equal to your level * 10.

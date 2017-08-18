@@ -1,0 +1,1 @@
+The weapon is awkward or hard to use, causing a penalty of {0} on attack rolls.

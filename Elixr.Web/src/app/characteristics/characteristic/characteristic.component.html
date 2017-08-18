@@ -1,0 +1,40 @@
+<div class="game-element">
+  <div class="title">
+    <span class="name" (click)="nameClicked()" [style.cursor]="forSelection ? 'pointer' : 'initial'">
+      {{ characteristic.name }}
+    </span>
+
+    <div class="right">
+      <i class="fa fa-line-chart"></i>
+      {{ power }}
+    </div>
+  </div>
+  <div class="body">
+    <strong>Description</strong>
+    <app-markdown-editor [canEdit]="false" [(model)]="characteristic.description"></app-markdown-editor>
+
+    <div class="table-container" *ngIf="hasMods">
+      <strong>
+        Stat Modifications
+      </strong>
+      <table class="lxr-table">
+        <tr>
+          <th>
+            Stat
+          </th>
+          <th>
+            Modifier
+          </th>
+        </tr>
+        <tr *ngFor="let mod of characteristic.mods">
+          <td>
+            {{ mod.stat.name }}
+          </td>
+          <td>
+            {{ mod.modifier }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+ A bebilith can throw a web up to four times per day. This is similar to an attack with a net but has a maximum range of 30 feet. This attack is effective against targets of up to Gargantuan size. The web anchors the target in place, allowing no movement.
+
+ An entangled creature can escape with a Difficulty 24 Escape Artist check or burst the web with a Difficulty 24 Strength check. The web has 14 hit points. There is a 75% chance that the webbing will not burn if any sort of fire is applied to it (check each round).

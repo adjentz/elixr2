@@ -1,0 +1,50 @@
+@import "../../styles/variables.less";
+
+.creature-sources {
+    text-align: center;
+    height: 100%;
+    .total-col {
+        border-right:1px solid black;
+        display: flex;
+        flex-direction: column;
+        h3 {
+            margin: 0;
+        }
+        .total-wrapper {
+            flex: 1;
+            padding: 0 5px;
+            .total {
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center center;
+                display: flex;
+                min-height: 100px;
+
+                span {
+                    align-self: center;
+                    margin: 0 auto;
+                    font-size: 4em;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .message {
+        text-align:center;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width:@collapse_width) {
+    .total {
+        span {
+            font-size: 3em!important;
+        }
+    }
+
+    .total-col {
+        border-right: none!important;
+    }
+}

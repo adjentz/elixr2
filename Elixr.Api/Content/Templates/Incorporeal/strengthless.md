@@ -1,0 +1,1 @@
+You are unable to physically move objects, grapple, trip, or shove. Your Strength Score is always considered to be 0, even if other effects would cause it to be different. 

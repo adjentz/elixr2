@@ -1,0 +1,38 @@
+<div class="flex-cols creature-sources">
+
+  <div class="flex-col total-col">
+    <h3>
+      Energy
+    </h3>
+    <div class="total-wrapper">
+      <div class="total">
+        <span>
+          {{ totalEnergy }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="flex-col weight-2">
+    <table class="lxr-table">
+      <tr>
+        <th>
+          Source
+        </th>
+        <th>
+          Modifier
+        </th>
+      </tr>
+      <tr *ngFor="let sm of energySources">
+        <td>
+          {{ sm.reason }}
+        </td>
+        <td>
+          {{ sm.modifier }}
+        </td>
+      </tr>
+    </table>
+    <div class="message">
+        Level Up or select specific Features to increase Energy.
+    </div>
+  </div>
+</div>

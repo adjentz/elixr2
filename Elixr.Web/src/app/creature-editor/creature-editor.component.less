@@ -1,0 +1,79 @@
+ @import "../../styles/variables.less";
+@import "../../styles/mixins.less";
+
+ .primary-abilities {
+     margin-top: 15px;
+    .creature-abilities-wrapper {
+        background-color: @brand_white;
+        .border-mixin;
+        margin-right: 5px;
+    }
+    .other-stats-wrapper {
+        margin-left: 5px;
+
+        .other-stat-row {
+            .border-mixin;
+            margin-bottom: 10px;
+            background-color: @brand_white;
+            
+            &.last {
+                margin-bottom: 0;
+            }
+        }
+    }
+ }
+
+ .equipment-wealth {
+     margin: 10px 0;
+     .wealth {
+         margin-right: 5px;
+         .border-mixin;
+         height: 100%;
+         background-color: @brand_white;
+     }
+     .equipment {
+         margin-left: 5px;
+         .border-mixin;
+         height: 100%;
+         background-color: @brand_white;
+     }
+ }
+
+ .characteristics,.spells {
+     background-color: @brand_white;
+     padding: 5px;
+     .border-mixin;
+ }
+ .characteristics {
+     margin-right: 5px;
+ }
+ .spells {
+     margin-left: 5px;
+ }
+
+@media (max-width:@collapse_width) {
+    .primary-abilities {
+        .other-stats-wrapper {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+    }
+
+    .equipment-wealth {
+     .wealth {
+         margin-right: 0;
+     }
+     .equipment {
+         margin-left: 0;
+         margin-top: 20px;
+     }
+    }
+
+    .characteristics {
+        margin-right: 0;
+    }
+    .spells {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+}

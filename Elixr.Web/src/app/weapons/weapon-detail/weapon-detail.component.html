@@ -1,0 +1,50 @@
+<div class="game-element">
+  <div class="title" (click)="nameClicked()" [style.cursor]="forSelection ? 'pointer' : 'initial'">
+    {{ weapon.name }}
+  </div>
+  <div class="body">
+    <app-markdown-editor [canEdit]="false" [(model)]="weapon.description"></app-markdown-editor>
+    <div>
+      <div>
+        <strong>
+          Attack Ability: 
+        </strong> {{ attackAbility }}. The ability bonus to add to attack rolls when using this weapon.
+      </div>
+      <div>
+        <strong>
+          Damage Ability: 
+        </strong> {{ damageAbility }}. The ability bonus to add to damage rolls when using this weapon.
+      </div>
+      <div *ngIf="weapon.isTwoHanded">
+        <strong>
+          Two Handed <i class="fa fa-check"></i>
+        </strong>
+      </div>
+      <div *ngIf="weapon.range >0">
+        <strong>
+          Range:
+        </strong> {{ weapon.range }} ft.
+      </div>
+      <div *ngIf="weapon.hasReach">
+        <strong>
+          [R]each.
+        </strong> A weapon with Reach can attack foes 10ft away. However, they cannot attack enemies that are adjacent.
+      </div>
+      <div *ngIf="weapon.canSlash">
+        <strong>
+          [S]lashing.
+        </strong> Relevant for overcoming certain immunities/resistances.
+      </div>
+      <div *ngIf="weapon.canBludgeon">
+        <strong>
+          [B]ludgeoning.
+        </strong> Relevant for overcoming certain immunities/resistances.
+      </div>
+      <div *ngIf="weapon.canPierce">
+        <strong>
+          [P]iercing.
+        </strong> Relevant for overcoming certain immunities/resistances.
+      </div>
+    </div>
+  </div>
+</div>

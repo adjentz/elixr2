@@ -1,0 +1,17 @@
+<p>
+  creatures works!
+</p>
+
+<div class="game-element" *ngFor="let creature of creatures">
+  <div class="title">
+    <a [routerLink]="['/creature-editor', creature.creatureId]">
+      {{ creature.name }}
+    </a>
+    <span class="right">
+      {{ creature.power }}
+    </span>
+  </div>
+  <div class="body">
+    <app-markdown-editor [canEdit]="false" [(model)]="creature.description"></app-markdown-editor>
+  </div>
+</div>

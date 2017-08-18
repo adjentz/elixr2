@@ -1,0 +1,105 @@
+@import "./font-awesome/font-awesome.less";
+@import "./styles/tables.less";
+@import "./styles/variables.less";
+@import "./styles/inputs.less";
+@import "./styles/slideout.less";
+@import "./styles/buttons.less";
+@import "./styles/lists.less";
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    background: url('/assets/images/parchment.jpg') fixed;
+    background-size: contain;
+
+    a {
+        color: #00b2b3;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+.flex-cols, .flex-rows {
+    display: flex;
+
+    .flex-col, .flex-row {
+        flex: 1;
+
+        &.weight-2 {
+            flex:2;
+        }
+        &.weight-3 {
+            flex:3;
+        }
+        &.weight-4 {
+            flex:4;
+        }
+        &.weight-5 {
+            flex:5;
+        }
+        &.weight-6 {
+            flex:6;
+        }
+    }
+}
+.flex-rows {
+    flex-direction: column;
+}
+
+span,i,a {
+    &.clickable {
+        user-select: none;
+        cursor: pointer;
+    }
+}
+
+.input-group {
+    input {
+        width:100%;
+        box-sizing: border-box;
+    }
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+.margin-top-10 {
+    margin-top: 10px;
+}
+.margin-top-15 {
+    margin-top: 15px;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
+.right {
+    float: right;
+}
+
+.center-text {
+    text-align: center;
+}
+@media (max-width:@collapse_width) {
+    .flex-cols, .flex-rows {
+        &:not(.no-collapse) {
+            display: block;
+        }
+    }
+}

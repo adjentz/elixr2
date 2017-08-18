@@ -1,0 +1,1 @@
+Twice per day, a bearded devil can work itself into a battle frenzy, gaining +4 Strength, +2 Energy Buffer, +2 morale bonus on Concentration checks saves, –2 Defense penalty. The frenzy lasts for 6 rounds, and the bearded devil suffers no ill effects afterward.

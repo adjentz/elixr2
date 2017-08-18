@@ -1,0 +1,1 @@
+Barbed devils eagerly fight with their claws, trying to impale their opponents. They use Compel to immobilize those who avoid their hug attacks.

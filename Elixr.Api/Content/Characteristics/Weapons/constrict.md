@@ -1,0 +1,1 @@
+If a creature begins its turn in control of a grapple, it automatically deals the damage of the weapon that this Characteristic is applied to. This is considered an Attack with a Speed cost of 0ft. The damage dealt is generally considered bludgeoning.

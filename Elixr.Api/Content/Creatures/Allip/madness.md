@@ -1,0 +1,1 @@
+Anyone targeting an allip with a thought detection, mind control, or telepathic ability makes direct contact with its tortured mind and takes 1d4 points of Focus damage.

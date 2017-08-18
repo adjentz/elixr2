@@ -1,0 +1,1 @@
+An Annis that successfully hits a creature with both claws in a single turn latches onto the opponent’s body and tears the flesh. This attack automatically deals an extra 2d6+10 points of damage.

@@ -1,0 +1,65 @@
+<table class="lxr-table padding-5 hover">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Attack
+    </th>
+    <th>
+      Damage
+    </th>
+    <th>
+      Range
+    </th>
+    <th>
+      Cost
+    </th>
+    <th>
+      Weight
+    </th>
+    <th>
+      Attributes
+    </th>
+  </tr>
+  <tbody *ngFor="let group of weaponGroupKeys">
+    <tr>
+      <th colspan="7">
+        {{ group }}
+      </th>
+    </tr>
+    <tr *ngFor="let weapon of weaponGroups[group]">
+      <td>
+        <a (click)="viewDetail(weapon)">
+          {{ weapon.name }}
+        </a>
+      </td>
+      <td>
+        {{ formatAttack(weapon) }}
+      </td>
+      <td>
+        {{ formatDamage(weapon) }}
+      </td>
+      <td>
+        {{ formatRange(weapon) }}
+      </td>
+      <td>
+        {{ formatCost(weapon) }}
+      </td>
+      <td>
+        {{ weapon.weightInPounds }} lbs.
+      </td>
+      <td>
+        {{ getWeaponAttributes(weapon) }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="slideout left" *ngIf="detailWeapon">
+  <a (click)="cancelDetail()" class="close">x</a>
+  <p *ngIf="forSelection">
+    Tap the name to select Weapon.
+  </p>
+  <app-weapon-detail [forSelection]="forSelection" [weapon]="detailWeapon" (selected)="weaponChosen(detailWeapon)"></app-weapon-detail>
+</div>

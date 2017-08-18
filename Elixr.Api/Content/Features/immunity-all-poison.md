@@ -1,0 +1,1 @@
+Any ability damage taken from being subjected to poison is automatically negated.

@@ -1,0 +1,1 @@
+A bulette can jump into the air during combat. During this action it can make 2 claw attacks with no Movement Speed Cost. The jump itself costs has the same Movement Speed Cost as making an Athletics check for jumping, and such a check is used to determine how high and far the leap takes the bullete.

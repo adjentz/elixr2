@@ -1,0 +1,1 @@
+Any melee hit or constrict attack deals acid damage, and the opponent’s armor and clothing dissolve and become useless immediately.

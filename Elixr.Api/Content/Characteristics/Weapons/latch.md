@@ -1,0 +1,1 @@
+If a Creature connects with a weapon with this characteristic, it deals damage as normal, then may make a Grapple check with no Speed Cost. 

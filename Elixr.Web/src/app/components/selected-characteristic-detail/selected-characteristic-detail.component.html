@@ -1,0 +1,28 @@
+<strong>
+  {{ characteristicType }}:
+</strong>
+<app-characteristic [characteristic]="selectedCharacteristic.characteristic"></app-characteristic>
+<div *ngIf="selectedCharacteristic.isTemplateCharacteristic">
+  <div *ngIf="selectedCharacteristic.notes?.length > 0">
+    <strong>
+      Notes:
+    </strong> {{ selectedCharacteristic.notes }}
+  </div>
+</div>
+<div *ngIf="!selectedCharacteristic.isTemplateCharacteristic">
+  <div *ngIf="selectedCharacteristic.notes?.length > 0">
+    <strong>
+      Notes:
+    </strong> {{ selectedCharacteristic.notes }}
+  </div>
+  <div>
+    <strong>
+      Taken at level {{ selectedCharacteristic.takenAtLevel }}
+    </strong>
+  </div>
+  <div>
+    <strong>
+      Taken on {{ selectedCharacteristic.takenAtMS | date }}
+    </strong>
+  </div>
+</div>

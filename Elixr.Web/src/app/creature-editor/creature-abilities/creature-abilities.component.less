@@ -1,0 +1,65 @@
+ .creature-abilities {
+     font-size: 0.9em;
+     padding: 5px;
+ }
+
+ .stat-col, .stat-col-header {
+     text-align: center;
+     white-space: nowrap;
+     flex:3;
+
+     .box,.hex {
+         width:1em;
+         height: 1em;
+         display: inline-block;
+         padding: 5px;
+     }
+     .box {
+         border: 1px solid black;
+     }
+     .hex {
+         background-image:url('../../../assets/images/hexagon.png');
+         background-size: contain;
+         background-repeat: no-repeat;
+         background-position: center center;
+     }
+
+     .stat-value {
+         border-bottom: 1px solid black;
+         padding: 0 10px;
+     }
+ }
+.math-op {
+    text-align: center;
+}
+.skill-defense {
+    background-image:url('../../../assets/images/shield.png');
+         background-size: contain;
+         background-repeat: no-repeat;
+         background-position: center center;
+         width:1em;
+         height: 1em;
+         display: inline-block;
+         padding: 5px;
+         text-align: center;
+}
+ .stat-col-header {
+     font-weight: bold;
+ }
+ .stat-row {
+     margin-bottom: 0.25em;
+     &:hover {
+         background-color: whitesmoke;
+     }
+ }
+ .row-heading {
+     flex:7;
+ }
+ h3 {
+     margin: 0;
+ }
+ i {
+     &.clickable {
+         font-size: 0.8em;
+     }
+ }

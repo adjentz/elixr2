@@ -1,0 +1,85 @@
+<div class="flex-cols creature-sources">
+
+  <div class="flex-col total-col">
+    <h3>
+      Wealth
+    </h3>
+    <div class="total-wrapper">
+      <div>GP: {{ gold }}</div>
+      <div>SP: {{ silver }}</div>
+      <div>CP: {{ copper }}</div>
+    </div>
+  </div>
+  <div class="flex-col weight-2">
+    <table class="lxr-table">
+      <tr>
+        <th>
+          Source
+        </th>
+        <th>
+          Amount
+        </th>
+      </tr>
+      <tr *ngFor="let source of sources">
+        <td>
+          {{ source.reason }}
+        </td>
+        <td>
+          <i [class]="getSourceClass(source)"></i>
+          {{ source.amount.toFixed(2) }}
+        </td>
+      </tr>
+    </table>
+    <div class="message">
+      <a (click)="showSlideout()">Edit Wealth</a>
+    </div>
+  </div>
+</div>
+
+<div class="slideout" *ngIf="editingWealth">
+  <a (click)="cancelSlideout()" class="close">
+    x
+  </a>
+  <h2>
+    Edit Wealth
+  </h2>
+
+  <form (ngSubmit)="editWealth()">
+
+    <label>
+    <input type="radio" name="increaseWealth" [(ngModel)]="increasingWealth" [value]="true">
+    Increase
+  </label>
+    <label>
+    <input type="radio" name="increaseWealth" [(ngModel)]="increasingWealth" [value]="false">
+    Decrease
+  </label>
+    <div class="input-group">
+      <strong>
+          Gold
+      </strong>
+      <input name="gold" type="number" [(ngModel)]="newGold">
+    </div>
+    <div class="input-group">
+      <strong>
+          Silver
+      </strong>
+      <input name="silver" type="number" [(ngModel)]="newSilver">
+    </div>
+    <div class="input-group">
+      <strong>
+          Copper
+      </strong>
+      <input name="copper" type="number" [(ngModel)]="newCopper">
+    </div>
+    <div class="input-group">
+      <strong>
+          Memo
+      </strong>
+      <input name="memo" type="text" [(ngModel)]="memo">
+    </div>
+    <button class="lxr-button" type="button" (click)="editWealth()">
+      Update
+    </button>
+  </form>
+</div>

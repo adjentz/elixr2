@@ -1,0 +1,1 @@
+These sphinxes are always male. Androsphinxes are clever and generally good-natured, but they can be savage opponents.

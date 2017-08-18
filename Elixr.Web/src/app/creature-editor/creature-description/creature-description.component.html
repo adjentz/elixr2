@@ -1,0 +1,148 @@
+<div class="slideout left" *ngIf="explainingRaceTemplates">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <p>
+    A Race or Template is a collection of stat modifiers and characteristics (such as Features and Flaws) that a creature has
+    intrisically.
+  </p>
+  <p>
+    A creature is born/spawned as a Race, which determines what they look like. A template might be something they acquire during
+    their lifespan.
+  </p>
+  <p>
+    For example, a creature may have been born an Elf, but later is subjected to lycanthropy, and takes on the Werewolf template.
+    They're still an Elf, but they're a Werewolf as well.
+  </p>
+</div>
+<div class="slideout left" *ngIf="detailTemplate">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <div>
+    <button class="lxr-button" (click)="removeTemplate(detailTemplate)">Remove</button>
+  </div>
+  <app-template [template]="detailTemplate.template"></app-template>
+</div>
+<div class="slideout" *ngIf="selectingTemplate">
+  <a (click)="cancelSlideout()" class="close">x</a>
+  <app-templates [forSelection]="true" (selected)="templateChosen($event)" [onlyRaces]="false"></app-templates>
+</div>
+<div class="flex-cols">
+  <div class="flex-col left-col">
+    <div class="flex-rows">
+      <div class="flex-row input-group">
+        <strong>
+        Character Name
+      </strong>
+        <input type="text" [(ngModel)]="name">
+      </div>
+      <div class="flex-row input-group">
+        <strong>
+        Age
+      </strong>
+        <input type="text" [(ngModel)]="age">
+      </div>
+      <div class="flex-row input-group">
+        <strong>
+        Gender
+      </strong>
+        <input type="text" [(ngModel)]="gender">
+      </div>
+      <div class="flex-row">
+        <strong>
+        Race/Templates <i style="cursor:pointer" (click)="explainRaceTemplates()" class="fa fa-info-circle" title="Test!"></i>
+      </strong>
+        <div>
+          <ul class="templates-list">
+            <a *ngFor="let selectedTemplate of creature?.selectedTemplates" (click)="viewTemplateDetail(selectedTemplate)">
+              {{ selectedTemplate.template.name }}
+            </a>
+            
+          </ul>
+          <span (click)="chooseTemplate()">
+              <a>{{ defaultRaceTemplateText }}</a>
+              <i class="fa fa-plus-square-o"></i>
+            </span>
+
+
+        </div>
+      </div>
+      <div class="flex-row creature-stats">
+        <div class="creature-stat" *ngIf="creature.isCharacter">
+          <i class="fa fa-level-up"></i>
+          <strong>
+          Level
+        </strong>
+          <div>
+            <i class="clickable fa fa-arrow-up" (click)="levelUp()"></i> {{ creature.level }}
+            <i class="clickable fa fa-arrow-down" (click)="levelDown()"></i>
+          </div>
+        </div>
+        <div class="creature-stat" *ngIf="!creature.isCharacter">
+          <i class="fa fa-line-chart"></i>
+          <strong>
+          Power
+        </strong>
+          <div>
+            {{ power }}
+          </div>
+        </div>
+        <div class="creature-stat">
+          <i class="fa fa-bolt"></i>
+          <strong>
+          Speed
+        </strong>
+          <div>
+            {{ speed }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex-col center-col">
+    <div class="flex-rows">
+      <div class="flex-row input-group">
+        <strong>
+        Weight
+      </strong>
+        <input type="text" [(ngModel)]="weight">
+      </div>
+      <div class="flex-row input-group">
+        <strong>
+        Height
+      </strong>
+        <input type="text" [(ngModel)]="height">
+      </div>
+      <div class="flex-row input-group">
+        <strong>
+        Hair
+      </strong>
+        <input type="text" [(ngModel)]="hair">
+      </div>
+      <div class="flex-row input-group">
+        <strong>
+        Skin
+      </strong>
+        <input type="text" [(ngModel)]="skin">
+      </div>
+      <div class="flex-row input-group">
+        <strong>
+          Eyes
+        </strong>
+        <input type="text" [(ngModel)]="eyes">
+      </div>
+    </div>
+  </div>
+  <div class="flex-col" class="flex-col portrait-container" (click)="changePortrait()">
+    <strong>
+      Portrait (tap to change) <i *ngIf="settingImage" class="fa fa-spinner fa-spin"></i>
+    </strong>
+    <div class="portrait-box" [style.backgroundImage]="portraitSrc" [class.has-image]="hasPortrait">
+      <input type="file" #fileInput hidden (change)="portraitChange()">
+    </div>
+  </div>
+</div>
+
+<div>
+  <strong>
+    Description (Editing uses markdown syntax)
+  </strong>
+  <app-markdown-editor [(model)]="description"></app-markdown-editor>
+</div>

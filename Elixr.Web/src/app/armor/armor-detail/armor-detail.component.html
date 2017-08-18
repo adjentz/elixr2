@@ -1,0 +1,36 @@
+<div class="game-element">
+  <div class="title"  (click)="nameClicked()" [style.cursor]="forSelection ? 'pointer' : 'initial'">
+    {{ armor.name }}
+  </div>
+  <div class="body">
+    <app-markdown-editor [canEdit]="false" [(model)]="armor.description"></app-markdown-editor>
+
+    <div class="margin-top-10">
+      <div>
+        <strong>
+          Defense Bonus:
+        </strong> {{ armor.defenseBonus }}
+      </div>
+      <div>
+        <strong>
+          Speed Penalty:
+        </strong> {{ armor.speedPenalty }}
+      </div>
+      <div>
+        <strong>
+          Agility Penalty:
+        </strong> {{ armor.agilityPenalty }}
+      </div>
+      <div>
+        <strong>
+          Weight
+        </strong> {{ armor.weightInPounds }}
+      </div>
+      <div>
+        <strong>
+          Cost:
+        </strong> {{ formatCost(armor) }}
+      </div>
+    </div>
+  </div>
+</div>

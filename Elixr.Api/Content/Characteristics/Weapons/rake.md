@@ -1,0 +1,1 @@
+When beginning a turn in control of a grapple, a creature that chooses to may make attacks with the weapon this characteristic is applied to, which automatically succeeds. The attack costs Speed as normal. The creature can make as many attacks as it's Movement Speed allows.

@@ -1,0 +1,1 @@
+A humanoid being composed entirely of swirling air. Air Elementals exist naturally on the Elemental Plane of Air.

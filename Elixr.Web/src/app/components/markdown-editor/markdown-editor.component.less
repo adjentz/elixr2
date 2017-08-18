@@ -1,0 +1,32 @@
+@import (reference) "../../../styles/tables.less";
+@import (reference) "../../../styles/variables.less";
+@import (reference) "../../../styles/mixins.less";
+
+.textarea-mixin {
+    .border-mixin;
+    padding:2px;
+    width: 100%;
+    min-height: 6em;
+    resize: none;
+    cursor: text;
+    box-sizing: border-box;
+    background-color: @brand_white;
+}
+textarea {
+    .textarea-mixin;
+}
+
+.markdown {
+    
+    .textarea-mixin();
+    table {
+        .lxr-table();
+    }
+
+     p {
+        margin: 0;
+    }
+    &.block {
+        cursor: default;
+    }
+}

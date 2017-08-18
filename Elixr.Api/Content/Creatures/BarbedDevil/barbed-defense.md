@@ -1,0 +1,1 @@
+Any creature striking a barbed devil with handheld weapons or natural weapons takes 1d8+6 points of piercing and slashing damage from the devil’s barbs. Note that weapons with exceptional reach, such as longspears, do not endanger their users in this way.

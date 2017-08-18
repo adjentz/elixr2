@@ -1,0 +1,1 @@
+You are now immmune to {0} attacks, meaning damage of that type made against you is automatically negated.

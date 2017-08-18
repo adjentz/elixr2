@@ -1,0 +1,22 @@
+ul.selection {
+    padding: 0;
+    list-style: none;
+    background-color: #fff;
+    border-radius: 5px;
+    
+    li {
+        cursor: pointer;
+        padding: 10px;
+        border-top:1px solid #ddd;
+        &:first-child {
+            border-top: none;
+            
+        }
+        &.selected {
+            background-color: darken(lightblue, 10%);
+        }
+        &:hover:not(.selected) {
+            background-color: lightblue;
+        }
+    }
+}

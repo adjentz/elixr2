@@ -1,0 +1,1 @@
+Perhaps the weapon wasn't made well, or is otherwise not as effective as it should be. The result of the damage result is reduced by {0}.

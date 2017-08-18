@@ -1,0 +1,31 @@
+.lxr-table {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr {
+        th, td {
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+            text-align: center;
+            &:last-child {
+                border-right: none;
+            } 
+        }
+    }
+
+    &.padding-5 {
+        tr {
+            td, th {
+                padding: 5px;
+            }
+        }
+    }
+
+    &.padding-10 {
+        tr {
+            td, th {
+                padding: 10px;
+            }
+        }
+    }
+}

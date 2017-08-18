@@ -1,0 +1,1 @@
+When exposed to bright light, such as the sun, for the following 1d4 rounds every check you make is done at disadvantage.
