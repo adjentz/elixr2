@@ -47,7 +47,11 @@ namespace Elixr2.Api.Services.Seeding
             // {
             //     yield return creature;
             // }
-
+            creatures = AddCreaturesStartingWithY(context);
+            foreach (var creature in creatures)
+            {
+                yield return creature;
+            }
         }
 
         private IEnumerable<Creature> AddCreaturesStartingWithA(CreatureBuilderContext ctx)
@@ -1171,6 +1175,45 @@ namespace Elixr2.Api.Services.Seeding
         private IEnumerable<Creature> AddCreaturesStartingWithG(CreatureBuilderContext ctx)
         {
             var builder = new CreatureBuilder(ctx);
+            
+/*
+GOBLIN
+-- Size/Type:	Small Humanoid (Goblinoid)
+-- Initiative:	+1
+Speed:	30 ft. (6 squares)
+Armor Class:	15 (+1 size, +1 Dex, +2 leather armor, +1 light shield), touch 12, flat-footed 14
+Base Attack/Grapple:	+1/–3
+Attack:	Morningstar +2 melee (1d6) or javelin +3 ranged (1d4)
+Full Attack:	Morningstar +2 melee (1d6) or javelin +3 ranged (1d4)
+Space/Reach:	5 ft./5 ft.
+-- Special Attacks:	—
+-- Special Qualities:	Darkvision 60 ft.
+Saves:	Fort +3, Ref +1, Will –1
+Abilities:	Str 11, Dex 13, Con 12, Int 10, Wis 9, Cha 6
+Skills:	Hide +5, Listen +2, Move Silently +5, Ride +4, Spot +2
+Feats:	Alertness
+Environment:	Temperate plains
+Organization:	Gang (4–9), band (10–100 plus 100% noncombatants plus 1 3rd-level sergeant per 20 adults and 1 leader of 4th–6th level), warband (10–24 with worg mounts), or tribe (40–400 plus 100% noncombatants plus 1 3rd-level sergeant per 20 adults, 1 or 2 lieutenants of 4th or 5th level, 1 leader of 6th–8th level, 10–24 worgs, and 2–4 dire wolves)
+Challenge Rating:	1/3
+Treasure:	Standard
+Alignment:	Usually neutral evil
+Advancement:	By character class
+Level Adjustment:	+0
+*/
+            yield return builder.HasName("Goblin")
+                                .HasDescriptionFile(@"Content\Creatures\Goblin\description.md")
+                                .WithCharacteristic("Small")
+                                .WithCharacteristic("Humanoid")
+                                .HasAverageHeight("3ft")
+                                .HasRacialAbilityScores(strength: 11, agility: 13, focus: 10, charm: 6)
+                                .HasSkills(initiative: 1, stealth: 5, perception: 2, animalHandling: 4)
+                                .WithCharacteristic("Darkvision")
+                                .WithMod("Energy", 80) // todo: what is this?
+                                .WithMod("Defense", 12) // todo: what is this?
+                                .WithMod("Speed", 80) // todo: what is this?
+                                .BuildAndReset();
+
+                            
             yield return builder.HasName("Golem, Clay")
                                 .HasDescriptionFile(@"Content\Creatures\NightmareCauchemar\description.md")
                                 .WithCharacteristic("Huge")
@@ -1284,6 +1327,22 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithSpecialCharacteristic("Ink Cloud", @"Creatures\Tojanida\ink-cloud-md", 3)
                                 .WithSpecialCharacteristic("All-Around Vision", " The multiple apertures in a tojanida’s shell allow it to look in any direction. Opponents gain no flanking bonuses when attacking a tojanida.", 3)
                                 .BuildAndReset();
+            yield return creature;
+        }
+                        
+        private IEnumerable<Creature> AddCreaturesStartingWithY(CreatureBuilderContext ctx)
+        {
+            // TODO: Finish this creature. Only partly done as an example.
+            var builder = new CreatureBuilder(ctx);
+            var creature = builder.HasName("Yrthak")
+                .HasDescriptionFile(@"Content\Creatures\Yrthak\description.md")
+                .HasAverageHeight("20ft long, wing span 40ft")
+                .HasAverageWeight("5000lbs.")
+                .HasSkin("yellowish green")
+                .WithCharacteristic("Huge")
+                .HasRacialAbilityScores(strength: 16, agility: 18, focus: 10, charm: 11)
+                .HasSkills(perception: 12, stealth: 12)
+                .BuildAndReset();
             yield return creature;
         }
 

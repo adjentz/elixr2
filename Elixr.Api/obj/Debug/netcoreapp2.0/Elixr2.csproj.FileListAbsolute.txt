@@ -1,0 +1,10 @@
+/home/ryan/Fork/elixr2/Elixr.Api/bin/Debug/netcoreapp2.0/Elixr2.deps.json
+/home/ryan/Fork/elixr2/Elixr.Api/bin/Debug/netcoreapp2.0/Elixr2.runtimeconfig.json
+/home/ryan/Fork/elixr2/Elixr.Api/bin/Debug/netcoreapp2.0/Elixr2.runtimeconfig.dev.json
+/home/ryan/Fork/elixr2/Elixr.Api/bin/Debug/netcoreapp2.0/Elixr2.dll
+/home/ryan/Fork/elixr2/Elixr.Api/bin/Debug/netcoreapp2.0/Elixr2.pdb
+/home/ryan/Fork/elixr2/Elixr.Api/obj/Debug/netcoreapp2.0/Elixr2.csproj.CoreCompileInputs.cache
+/home/ryan/Fork/elixr2/Elixr.Api/obj/Debug/netcoreapp2.0/Elixr2.AssemblyInfoInputs.cache
+/home/ryan/Fork/elixr2/Elixr.Api/obj/Debug/netcoreapp2.0/Elixr2.AssemblyInfo.cs
+/home/ryan/Fork/elixr2/Elixr.Api/obj/Debug/netcoreapp2.0/Elixr2.dll
+/home/ryan/Fork/elixr2/Elixr.Api/obj/Debug/netcoreapp2.0/Elixr2.pdb
