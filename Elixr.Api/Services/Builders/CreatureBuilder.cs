@@ -41,6 +41,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         }
         public CreatureBuilder HasDescriptionFile(string descFilePath)
         {
+            descFilePath = descFilePath.Replace("\\", "/");
             string desc = System.IO.File.Exists(descFilePath) ? System.IO.File.ReadAllText(descFilePath) : descFilePath;
             return HasDescription(desc);
         }
@@ -89,7 +90,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         }
         public CreatureBuilder WithSpecialWeaponCharacteristic(string weaponName, string name, string descriptionOrPath, int powerAdjustment, CharacteristicType type = CharacteristicType.Feature)
         {
-
+            descriptionOrPath = descriptionOrPath.Replace("\\", "/");
             WeaponCharacteristic weaponCharacteristic = new WeaponCharacteristic
             {
                 CampaignSettingId = creature.CampaignSettingId,
@@ -104,6 +105,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
 
         public CreatureBuilder WithSpecialCharacteristic(string name, string descriptionPath, int powerAdjustment, CharacteristicType type = CharacteristicType.Feature, params string[] formatParameters)
         {
+            descriptionPath = descriptionPath.Replace("\\", "/");
             string description = System.IO.File.Exists(descriptionPath) ? System.IO.File.ReadAllText(descriptionPath) : descriptionPath;
             description = string.Format(description, formatParameters);
 

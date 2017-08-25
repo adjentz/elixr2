@@ -38,6 +38,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         }
         public WeaponCharacteristicBuilder HasDescriptionFile(string descFilePath, params string[] formatStrParams)
         {
+            descFilePath = descFilePath.Replace("\\", "/");
             string desc = System.IO.File.ReadAllText(descFilePath);
             desc = string.Format(desc, formatStrParams);
             return HasDescription(desc);

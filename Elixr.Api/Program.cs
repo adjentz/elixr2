@@ -14,7 +14,7 @@ namespace Elixr2
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("http://localhost:5000")
+                .UseUrls("http://127.0.0.1:5000")
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();

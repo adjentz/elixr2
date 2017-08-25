@@ -1,0 +1,3 @@
+A goblin eyes are usually dull and glazed, varying in color from red to yellow. A goblin’s skin color ranges from yellow through any shade of orange to a deep red; usually all members of a single tribe are about the same color. Goblins wear clothing of dark leather, tending toward drab, soiled-looking colors. Goblins speak Goblin; those with Intelligence scores of 12 or higher also speak Common.
+
+Most goblins encountered outside their homes are warriors.
