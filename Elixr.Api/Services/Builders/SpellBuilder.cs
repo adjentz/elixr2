@@ -23,6 +23,7 @@ namespace Elixr2.Api.Services.Seeding
         }
         public SpellBuilder HasDescriptionFile(string path)
         {
+            path = path.Replace("\\", "/");
             string desc = System.IO.File.ReadAllText(path);
             return this.HasDescription(desc);
         }

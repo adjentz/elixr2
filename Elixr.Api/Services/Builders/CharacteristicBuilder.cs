@@ -49,6 +49,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         }
         public CharacteristicBuilder HasDescriptionFile(string descFilePath, params object[] formatParams)
         {
+            descFilePath = descFilePath.Replace("\\", "/");
             string desc = System.IO.File.ReadAllText(descFilePath);
             if(formatParams.Length > 0)
             {
