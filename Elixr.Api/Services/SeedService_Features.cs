@@ -79,13 +79,14 @@ namespace Elixr2.Api.Services.Seeding
             dbContext.Characteristics.Add(feature);
 
             string[] energyTypes = new string[] { "Fire", "Cold", "Light", "Shadow", "Electric", "Acid" };
+            int energyResistancePower = 9;
             foreach (var type in energyTypes)
             {
                 builder = new CharacteristicBuilder(standardCampaignSetting);
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Resistance, {type}")
                         .HasDescriptionFile("Content\\Features\\resistance-attack.md", type)
-                        .HasSpecificPowerAdjustment(9)
+                        .HasSpecificPowerAdjustment(energyResistancePower)
                         .Build();
                 dbContext.Characteristics.Add(feature);
 
@@ -93,10 +94,18 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Immunity, {type}")
                         .HasDescriptionFile("Content\\Features\\immunity-attack.md", type)
-                        .HasSpecificPowerAdjustment(18)
+                        .HasSpecificPowerAdjustment(energyResistancePower * 2)
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            feature = builder.OfType(CharacteristicType.Feature)
+                    .HasName($"Resistance, Energy")
+                    .HasDescriptionFile("Content\\Features\\resistance-attack.md", string.Join(", ", energyTypes))
+                    .HasSpecificPowerAdjustment(energyTypes.Length * energyResistancePower)
+                    .Build();
+            dbContext.Characteristics.Add(feature);
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
@@ -122,6 +131,15 @@ namespace Elixr2.Api.Services.Seeding
                     .Build();
             dbContext.Characteristics.Add(feature);
 
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            feature = builder.OfType(CharacteristicType.Feature)
+                    .HasName($"Resistance, Mind-Affecting")
+                    .HasDescriptionFile("Content\\Features\\resistance-mind-affecting.md")
+                    .HasSpecificPowerAdjustment(8)
+                    .Build();
+            dbContext.Characteristics.Add(feature);
+
+
             string[] physicalTypes = new string[] { "Piercing", "Bludgeoning", "Slashing" };
             foreach (var type in physicalTypes)
             {
@@ -141,6 +159,14 @@ namespace Elixr2.Api.Services.Seeding
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            feature = builder.OfType(CharacteristicType.Feature)
+                    .HasName($"Resistance, Physical")
+                    .HasDescriptionFile("Content\\Features\\resistance-attack.md", "Bludgeoning, Piercing, or Slashing")
+                    .HasSpecificPowerAdjustment(30)
+                    .Build();
+            dbContext.Characteristics.Add(feature);
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
@@ -206,9 +232,16 @@ namespace Elixr2.Api.Services.Seeding
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Tremorsense, 30ft")
+                    .HasDescriptionFile(@"Content\Features\tremorsense.md", 30)
+                    .HasSpecificPowerAdjustment(3)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Tremorsense, 60ft")
                     .HasDescriptionFile(@"Content\Features\tremorsense.md", 60)
-                    .HasSpecificPowerAdjustment(5)
+                    .HasSpecificPowerAdjustment(6)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
@@ -253,6 +286,13 @@ namespace Elixr2.Api.Services.Seeding
                     .HasName("Can't Be Flanked")
                     .HasDescription("Being surrounded by opponents does not grant them Advantage when making attacks.")
                     .HasSpecificPowerAdjustment(5)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Smite Foe")
+                    .HasDescriptionFile(@"Content\Features\smite-foe.md")
+                    .HasSpecificPowerAdjustment(4)
                     .Build());
 
             for (int i = 0; i < 6; i++)

@@ -34,6 +34,28 @@ namespace Elixr2.Api.Services.Seeding
                                   .Build());
 
             builder = new TemplateBuilder(standardCampaignSetting, characteristics, spells, spellCharacteristics);
+            dbContext.Templates.Add(builder.HasName("Centaur")
+                                  .HasDescriptionFile("Content\\Templates\\centaur.md")
+                                  .AsRace(true)
+                                  .WithCharacteristic("Large")
+                                  .WithMod("Racial Strength Score", 6)
+                                  .WithMod("Racial Agility Score", 6)
+                                  .WithMod("Energy", 2)
+                                  .WithMod("Speed", 10)
+                                  .WithMod("Defense", 3)
+                                  .WithMod("Insight Misc.", 1)
+                                  .WithMod("Perception Misc.", 1)
+                                  .WithMod("Recall Misc.", 1)
+                                  .WithMod("Survival Misc.", 1)
+                                  .WithMod("Concentration Misc.", -1)
+                                  .WithMod("Engineer Misc.", -1)
+                                  .WithMod("Medicine Misc.", -1)
+                                  .WithCharacteristic("Speak Language", "Sylvan")
+                                  .WithCharacteristic("Speak Language", "Elven")
+                                  .WithCharacteristic("Darkvision")
+                                  .Build());
+
+            builder = new TemplateBuilder(standardCampaignSetting, characteristics, spells, spellCharacteristics);
             dbContext.Templates.Add(builder.HasName("Gnome")
                                   .HasDescriptionFile("Content\\Templates\\gnome.md")
                                   .AsRace(true)

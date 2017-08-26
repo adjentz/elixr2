@@ -42,6 +42,12 @@ namespace Elixr2.Api.Services.Seeding
             {
                 yield return creature;
             }
+
+            creatures = AddCreaturesStartingWithU(context);
+            foreach (var creature in creatures)
+            {
+                yield return creature;
+            }
             // creatures = AddCreaturesStartingWithT(context);
             // foreach (var creature in creatures)
             // {
@@ -872,7 +878,8 @@ namespace Elixr2.Api.Services.Seeding
         {
             var builder = new CreatureBuilder(ctx);
             yield return builder.HasName("Camel")
-                                .HasDescriptionFile(@"Content\Creatures\Camel\description.md")
+                                .HasDescription("Camels are known for their ability to travel long distances without food or water.")
+                                .HasAverageHeight("7ft at the shoulder, with its hump rising 1 ft higher")
                                 .WithCharacteristic("Large")
                                 .WithTemplate("Animal")
                                 .HasRacialAbilityScores(strength: 16, agility: 18, focus: 0, charm: 4)
@@ -885,76 +892,70 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithSpecialCharacteristic("Carrying Capacity", "A light load for a camel is up to 300lbs; a medium load, 301–600lbs; and a heavy load, 601–900lbs. A camel can drag 4,500lbs.", 2)
                                 .BuildAndReset();
 
-            yield break;
-
             yield return builder.HasName("Cat")
-                                .HasDescriptionFile(@"Content\Creatures\Cat\description.md")
-                                .WithCharacteristic("Huge")
-                                .HasRacialAbilityScores(strength: 23, agility: 19, focus: 2, charm: 6)
-                                .HasSkills(initiative: 0)
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d8", pierce: true, bludgeon: true)
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 8")
-                                .WithCharacteristic("Darkvision")
-                                .WithMod("Energy", 94)
-                                .WithMod("Defense", 12)
-                                .WithMod("Speed", 80)
-                                .WithSpecialCharacteristic("Leap", @"Content\Creatures\Bulette\leap.md", 10)
+                                .HasDescription("A common housecat.")
+                                .WithTemplate("Animal")
+                                .WithCharacteristic("Tiny")
+                                .HasRacialAbilityScores(strength: 7, agility: 11, focus: 0, charm: 7)
+                                .HasSkills(acrobatics: 8, climb: 10, stealth: 10, athletics: 14, perception: 3)
+                                .WithNaturalWeapon("Claw", WeaponUseAbility.Agility, WeaponUseAbility.Strength, "1d2", slash: true)
+                                .WithWeaponCharacteristic("Claw", "Weapon Training, 2")
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Agility, WeaponUseAbility.Strength, "1d3", pierce: true)
+                                .WithWeaponCharacteristic("Bite", "Clumsy Weapon, 3")
+                                .WithMod("Energy", 2)
+                                .WithMod("Defense", 0)
+                                .WithMod("Speed", 60)
                                 .BuildAndReset();
 
-            yield return builder.HasName("Celestial Charger")
-                                .HasDescriptionFile(@"Content\Creatures\CelestialCharger\description.md")
-                                .WithCharacteristic("Huge")
-                                .HasRacialAbilityScores(strength: 23, agility: 19, focus: 2, charm: 6)
-                                .HasSkills(initiative: 0)
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d8", pierce: true, bludgeon: true)
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 8")
-                                .WithCharacteristic("Darkvision")
-                                .WithMod("Energy", 94)
-                                .WithMod("Defense", 12)
-                                .WithMod("Speed", 80)
-                                .WithSpecialCharacteristic("Leap", @"Content\Creatures\Bulette\leap.md", 10)
-                                .BuildAndReset();
+
 
             yield return builder.HasName("Centaur")
-                                .HasDescriptionFile(@"Content\Creatures\Centaur\description.md")
-                                .WithCharacteristic("Huge")
-                                .HasRacialAbilityScores(strength: 23, agility: 19, focus: 2, charm: 6)
-                                .HasSkills(initiative: 0)
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d8", pierce: true, bludgeon: true)
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 8")
-                                .WithCharacteristic("Darkvision")
-                                .WithMod("Energy", 94)
-                                .WithMod("Defense", 12)
+                                .HasDescriptionFile(@"Content\Templates\centaur.md")
+                                .WithTemplate("Centaur")
+                                .HasAverageHeight("7ft tall")
+                                .HasAverageWeight("2,100lbs")
+                                .HasRacialAbilityScores(strength: 10, agility: 10, focus: 12, charm: 11)
+                                .HasSkills(perception: 1, stealth: 4, survival: 0)
+                                .WithMod("Energy", 24)
+                                .WithMod("Defense", 0)
                                 .WithMod("Speed", 80)
-                                .WithSpecialCharacteristic("Leap", @"Content\Creatures\Bulette\leap.md", 10)
+                                .WithWeapon("Sword, long")
+                                .WithWeaponCharacteristic("Sword, long", "Weapon Training, 3")
+                                .WithWeaponCharacteristic("Sword, long", "Weapon Specialization, 2")
+                                .WithWeapon("Bow, long (composite)")
+                                .WithNaturalWeapon("Hooves", WeaponUseAbility.Agility, WeaponUseAbility.Agility, "1d6")
+                                .WithWeaponCharacteristic("Hooves", "Weapon Training, 1")
+                                .WithCharacteristic("Dodge")
                                 .BuildAndReset();
 
             yield return builder.HasName("Centipede Swarm")
-                                .HasDescriptionFile(@"Content\Creatures\CentipedeSwarm\description.md")
-                                .WithCharacteristic("Huge")
-                                .HasRacialAbilityScores(strength: 23, agility: 19, focus: 2, charm: 6)
-                                .HasSkills(initiative: 0)
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d8", pierce: true, bludgeon: true)
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 8")
-                                .WithCharacteristic("Darkvision")
-                                .WithMod("Energy", 94)
-                                .WithMod("Defense", 12)
-                                .WithMod("Speed", 80)
-                                .WithSpecialCharacteristic("Leap", @"Content\Creatures\Bulette\leap.md", 10)
+                                .HasDescription("A 10ft by 10ft swarm of centipedes.")
+                                .WithTemplate("Swarm")
+                                .WithCharacteristic("Minute")
+                                .HasRacialAbilityScores(strength: 1, agility: 11, focus: 1, charm: 2)
+                                .HasSkills(climb: 16, perception: 8)
+                                .WithMod("Energy", 31)
+                                .WithMod("Defense", 0)
+                                .WithMod("Speed", 40)
+                                .WithNaturalWeapon("Swarm", WeaponUseAbility.None, WeaponUseAbility.None, "2d6", pierce: true)
+                                .WithSpecialWeaponCharacteristic("Swarm", "Automatic", "At the end of its turn, any creatures that the swarm is sharing a space with automatically takes 2d6 of damage. The swarm does not ever make an attack roll to use this weapon.", 2)
+                                .WithWeaponCharacteristic("Swarm", "Poison, 1d4 Agility")
+                                .WithCharacteristic("Tremorsense, 30ft")
                                 .BuildAndReset();
 
             yield return builder.HasName("Chain Devil")
                                 .HasDescriptionFile(@"Content\Creatures\ChainDevil\description.md")
-                                .WithCharacteristic("Huge")
-                                .HasRacialAbilityScores(strength: 23, agility: 19, focus: 2, charm: 6)
-                                .HasSkills(initiative: 0)
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d8", pierce: true, bludgeon: true)
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 8")
-                                .WithCharacteristic("Darkvision")
-                                .WithMod("Energy", 94)
-                                .WithMod("Defense", 12)
-                                .WithMod("Speed", 80)
-                                .WithSpecialCharacteristic("Leap", @"Content\Creatures\Bulette\leap.md", 10)
+                                .WithTemplate("Devil")
+                                .HasRacialAbilityScores(strength: 15, agility: 15, focus: 8, charm: 12)
+                                .HasSkills(initiative: 4, climb: 11, engineer: 18, escapeArtist: 11, intimidate: 10, perception: 14, survival: 3)
+                                .WithMod("Energy", 52)
+                                .WithMod("Defense", 8)
+                                .WithMod("Speed", 60)
+                                .WithNaturalWeapon("Chain", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d4", bludgeon: true)
+                                .WithWeaponCharacteristic("Chain", "Weapon Training, 8")
+                                .WithCharacteristic("Vulnerability, Material", "Silver")
+                                .WithCharacteristic("Resistance, Physical")
+                                .WithCharacteristic("Immunity, Cold")
                                 .BuildAndReset();
 
             yield return builder.HasName("Chaos Beast")
@@ -1287,8 +1288,45 @@ namespace Elixr2.Api.Services.Seeding
             yield return creature;
         }
 
+        private IEnumerable<Creature> AddCreaturesStartingWithU(CreatureBuilderContext ctx)
+        {
+            var builder = new CreatureBuilder(ctx);
+            yield return builder.HasName("Unicorn, Elder")
+                                .HasDescriptionFile(@"Content\Creatures\Unicorn\description.md")
+                                .WithCharacteristic("Large")
+                                .HasEyes("Deep sea-blue, violet, brown, or fiery gold")
+                                .HasHair("Males sport a white beard")
+                                .HasAverageHeight("8ft long, 5ft tall at the shoulders")
+                                .HasAverageWeight("1200lbs")
+                                .HasRacialAbilityScores(strength: 22, agility: 20, focus: 20, charm: 22)
+                                .HasSkills(concentration: 6, recall: 4, perception: 10, stealth: 10, survival: 10, animalHandling: 6)
+                                .WithMod("Energy", 155)
+                                .WithMod("Defense", 6)
+                                .WithMod("Speed", 110)
+                                .WithCharacteristic("Smite Foe")
+                                .WithNaturalWeapon("Horn", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8", pierce: true)
+                                .WithWeaponCharacteristic("Horn", "Weapon Training, 15")
+                                .WithWeaponCharacteristic("Horn", "Weapon Specialization, 3")
+                                .WithNaturalWeapon("Hooves", WeaponUseAbility.Strength, WeaponUseAbility.Agility, "1d4")
+                                .WithWeaponCharacteristic("Hooves", "Weapon Training, 7")
+                                .WithWeaponCharacteristic("Hooves", "Weak Weapon, 1")
+                                //.WithArmor("Bracers, 5") TODO
+                                .WithCharacteristic("Resistance, Slashing")
+                                .WithCharacteristic("Resistance, Bludgeoning")
+                                .WithCharacteristic("Resistance, Piercing")
+                                .WithCharacteristic("Resistance, Acid")
+                                .WithCharacteristic("Resistance, Cold")
+                                .WithCharacteristic("Resistance, Electric")
+                                .WithCharacteristic("Resistance, Mind-Affecting")
+                                .WithCharacteristic("Immunity, All Poison")
+                                .WithCharacteristic("Cat Like Vision")
+                                .WithCharacteristic("Speak Language", "Sylvan")
+                                .BuildAndReset();
+        }
+
         private IEnumerable<Creature> AddDragons(CreatureBuilderContext ctx)
         {
+
             throw new System.NotImplementedException();
         }
     }

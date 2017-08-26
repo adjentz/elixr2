@@ -1,0 +1,1 @@
+A creature with the upper body of a human and the lower body of a horse. A centaur is usually about 7 feet tall and weighs about 2,100 pounds.

@@ -1,0 +1,10 @@
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\bin\Debug\netcoreapp2.0\Elixr2.deps.json
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\bin\Debug\netcoreapp2.0\Elixr2.runtimeconfig.json
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\bin\Debug\netcoreapp2.0\Elixr2.runtimeconfig.dev.json
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\bin\Debug\netcoreapp2.0\Elixr2.dll
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\bin\Debug\netcoreapp2.0\Elixr2.pdb
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\obj\Debug\netcoreapp2.0\Elixr2.csproj.CoreCompileInputs.cache
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\obj\Debug\netcoreapp2.0\Elixr2.AssemblyInfoInputs.cache
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\obj\Debug\netcoreapp2.0\Elixr2.AssemblyInfo.cs
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\obj\Debug\netcoreapp2.0\Elixr2.dll
+C:\Users\Adam\Documents\Projects\Elixr2\Elixr.Api\obj\Debug\netcoreapp2.0\Elixr2.pdb

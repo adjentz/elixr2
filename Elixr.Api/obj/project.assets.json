@@ -9730,11 +9730,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Adam\\Documents\\Projects\\Elixr2\\Elixr.Api\\Elixr2.csproj",
+      "projectUniqueName": "c:\\Users\\Adam\\Documents\\Projects\\Elixr2\\Elixr.Api\\Elixr2.csproj",
       "projectName": "Elixr2",
-      "projectPath": "C:\\Users\\Adam\\Documents\\Projects\\Elixr2\\Elixr.Api\\Elixr2.csproj",
+      "projectPath": "c:\\Users\\Adam\\Documents\\Projects\\Elixr2\\Elixr.Api\\Elixr2.csproj",
       "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Adam\\Documents\\Projects\\Elixr2\\Elixr.Api\\obj\\",
+      "outputPath": "c:\\Users\\Adam\\Documents\\Projects\\Elixr2\\Elixr.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

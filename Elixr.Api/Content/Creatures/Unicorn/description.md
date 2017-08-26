@@ -1,0 +1,1 @@
+A horse-like creature with a single large, pointed, spiraling horn projecting from its forehead. Considered to be very pure. 

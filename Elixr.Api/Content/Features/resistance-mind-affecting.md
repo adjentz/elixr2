@@ -1,0 +1,1 @@
+Your Concentration Defense is effectively doubled when made the target of a mind affecting Spell or Feature, such as Compel.

@@ -883,6 +883,12 @@ namespace Elixr2.Api.Services.Seeding
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 1d4 Agility")
+                                                       .HasSpecificPower(4)
+                                                       .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "1d4", "Agility Score")
+                                                       .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 2d6 Str")
                                                        .HasSpecificPower(12)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "2d6", "Strength Score")
