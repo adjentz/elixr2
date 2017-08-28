@@ -123,6 +123,17 @@ namespace Elixr2.Api.Services.Seeding.Builders
             });
             return this;
         }
+
+        public CreatureBuilder WithSpecialCharacteristic(Characteristic characteristic)
+        {
+            this.creature.SelectedCharacteristics.Add(new SelectedCharacteristic
+            {
+                Characteristic = characteristic,
+                IsTemplateCharacteristic = true
+            });
+            return this;
+        }
+
         public CreatureBuilder HasSkin(string skin)
         {
             this.creature.Skin = skin;

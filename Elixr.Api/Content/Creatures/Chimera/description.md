@@ -1,0 +1,1 @@
+A  large creature with three heads: one of lion, a goat, and a dragon. The color in the name indicates the color of the dragon head.

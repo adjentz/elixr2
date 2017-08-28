@@ -1,0 +1,1 @@
+A weapon with this Feature that makes a successful attack roll deals {0} of {1} damage.

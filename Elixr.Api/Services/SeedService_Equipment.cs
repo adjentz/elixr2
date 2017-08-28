@@ -865,10 +865,59 @@ namespace Elixr2.Api.Services.Seeding
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
-            dbContext.WeaponCharacteristics.Add(builder.HasName("Acid, 1d4")
-                                                       .HasExtraDamage("1d4")
-                                                       .HasDescriptionFile(@"Content\Characteristics\Weapons\acid.md", "1d4")
-                                                       .Build());
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Tripping")
+                                                        .HasSpecificPower(5)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\tripping.md")
+                                                        .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Cooldown, 1d4")
+                                                        .HasSpecificPower(-4)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\cooldown.md", "1d4")
+                                                        .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Conic, 15ft")
+                                                        .HasSpecificPower(11)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\conic.md", "15ft")
+                                                        .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Conic, 20ft")
+                                                        .HasSpecificPower(14)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\conic.md", "20ft")
+                                                        .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Splashing")
+                                                        .HasSpecificPower(5)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\splashing.md")
+                                                        .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Targets Acrobatics Defense")
+                                                        .HasSpecificPower(1)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\targets-acrobatics-defense.md")
+                                                        .Build());
+
+            string[] energyTypes = new string[] { "Acid", "Electric", "Fire", "Cold", "Light", "Shadow" };
+            string[] dieTypes = new string[] { "d4", "d6", "d8", "d12" };
+
+            foreach (var energyType in energyTypes)
+            {
+                foreach (var die in dieTypes)
+                {
+                    for (int sides = 1; sides <= 3; sides++)
+                    {
+                        string damage = sides + die;
+                        builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+                        dbContext.WeaponCharacteristics.Add(builder.HasName($"{energyType}, {damage}")
+                                                                   .HasExtraDamage(damage)
+                                                                   .HasDescriptionFile(@"Content\Characteristics\Weapons\energy-attack.md", damage, "Electric")
+                                                                   .Build());
+                    }
+                }
+            }
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Latch") // e.g. "Improved Grab"
@@ -892,6 +941,12 @@ namespace Elixr2.Api.Services.Seeding
             dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 2d6 Str")
                                                        .HasSpecificPower(12)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "2d6", "Strength Score")
+                                                       .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 2d6 Agility")
+                                                       .HasSpecificPower(12)
+                                                       .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "2d6", "Agility Score")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);

@@ -1,0 +1,1 @@
+When resting or lying in wait, these creatures are almost impossible to distinguish from common black cloaks (the cloaker’s ivory claws look very much like bone clasps). Only when it unfurls does the horrific nature of the creature become apparent.

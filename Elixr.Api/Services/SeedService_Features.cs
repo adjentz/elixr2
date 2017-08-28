@@ -295,6 +295,20 @@ namespace Elixr2.Api.Services.Seeding
                     .HasSpecificPowerAdjustment(4)
                     .Build());
 
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Blind Fight")
+                    .HasDescriptionFile(@"Content\Features\blind-fight.md")
+                    .HasSpecificPowerAdjustment(4)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Amphibious")
+                    .HasDescription(@"A creature with this Feature can survive indefinitely both in land and water.")
+                    .HasSpecificPowerAdjustment(1)
+                    .Build());
+
             for (int i = 0; i < 6; i++)
             {
                 builder = new CharacteristicBuilder(standardCampaignSetting);
@@ -304,6 +318,16 @@ namespace Elixr2.Api.Services.Seeding
                         .HasSpecificPowerAdjustment(8 + i)
                         .Build());
             }
+            for (int i = 0; i < 5; i++)
+            {
+                builder = new CharacteristicBuilder(standardCampaignSetting);
+                dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                        .HasName($"Regeneration, {i + 1}")
+                        .HasDescriptionFile("Content\\Features\\regeneration.md", i + 1)
+                        .HasSpecificPowerAdjustment(8 + i)
+                        .Build());
+            }
+
         }
     }
 }

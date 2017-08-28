@@ -1,0 +1,1 @@
+In melee, every time you miss because of concealment, you can reroll your miss chance percentile roll one time to see if you actually hit.

@@ -84,13 +84,25 @@ namespace Elixr2.Api.Services.Seeding
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             flaw = builder.OfType(CharacteristicType.Flaw)
-                    .HasName("Massive")
-                    .HasDescriptionFile("Content\\Flaws\\massive.md")
+                    .HasName("Gargantuan")
+                    .HasDescriptionFile("Content\\Flaws\\gargantuan.md")
                     .WithMod("Racial Strength Score", 8)
-                    .WithMod("Racial Agility Score", -4)
+                    .WithMod("Racial Agility Score", -8)
                     .WithMod("Speed", 40)
-                    .WithMod("Stealth Misc.", -8)
                     .WithMod("Defense", -4)
+                    .WithMod("Stealth Misc.", -8)
+                    .Build();
+            dbContext.Characteristics.Add(flaw);
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            flaw = builder.OfType(CharacteristicType.Flaw)
+                    .HasName("Colossal")
+                    .HasDescriptionFile("Content\\Flaws\\colossal.md")
+                    .WithMod("Racial Strength Score", 16)
+                    .WithMod("Racial Agility Score", -16)
+                    .WithMod("Speed", 80)
+                    .WithMod("Defense", -8)
+                    .WithMod("Stealth Misc.", -16)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 

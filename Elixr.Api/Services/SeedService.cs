@@ -312,9 +312,18 @@ namespace Elixr2.Api.Services.Seeding
             var weapons = await dbContext.Weapons.ToListAsync();
             var templates = await dbContext.Templates.ToListAsync();
             var weaponCharacteristics = await dbContext.WeaponCharacteristics.ToListAsync();
+
             var creatures = AddCreatures(characteristics, armors, weapons, spells, templates, spellCharacteristics, weaponCharacteristics);
             //need to save the natural weapons and special features first
-            creatures = creatures.ToList();
+
+            try
+            {
+                creatures = creatures.ToList();
+            }
+            catch(System.Exception ex)
+            {
+                throw ex;
+            }
             var naturalWeapons = creatures.SelectMany(c => c.SelectedWeapons).Where(sw => sw.Weapon?.Id == 0).Select(sw => sw.Weapon).ToList();
             naturalWeapons.ForEach(nw => dbContext.Weapons.Add(nw));
             var specialCharacteristics = creatures.SelectMany(c => c.SelectedCharacteristics).Where(sc => sc.Characteristic?.Id == 0).Select(sc => sc.Characteristic).ToList();

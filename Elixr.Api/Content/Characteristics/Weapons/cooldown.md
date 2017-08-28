@@ -1,0 +1,1 @@
+After using this attack, this weapon cannot be used again for another {0} rounds.

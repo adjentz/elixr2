@@ -1,0 +1,1 @@
+A weapon with this Characteristic effects an area within a cone shape, with the point starting at the weapon and extending out to {0}

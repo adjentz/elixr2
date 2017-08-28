@@ -1,0 +1,4 @@
+A horrible mix of crustacean, insect, and serpent, the chuul is an abomination that lurks submerged or partially submerged, awaiting intelligent prey to devour. Although amphibious, chuuls are not good swimmers and actually prefer to be on land or in very shallow water when they attack.
+
+### Combat
+A chuul prefers to wait by the shore, submerged in murky water, until it hears nearby prey (in or out of the water) that it can attack with surprise. A chuul grabs with its claws and constricts its foe, then passes the opponent to its paralytic tentacles. It tries to always have one claw free, so if it faces a large number of opponents, it drops a paralyzed or dead victim and continues attempting to grab, constrict, and paralyze the rest.

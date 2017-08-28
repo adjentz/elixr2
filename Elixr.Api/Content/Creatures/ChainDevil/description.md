@@ -1,0 +1,1 @@
+A humanlike devil, wrapped in chains instead of clothing.
