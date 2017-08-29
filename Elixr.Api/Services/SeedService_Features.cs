@@ -47,6 +47,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Dodge")
                     .HasDescriptionFile("Content\\Features\\dodge.md")
+                    .HasSpecificPowerAdjustment(3)
                     .WithMod("Defense", 1)
                     .Build();
             dbContext.Characteristics.Add(feature);
@@ -307,6 +308,27 @@ namespace Elixr2.Api.Services.Seeding
                     .HasName("Amphibious")
                     .HasDescription(@"A creature with this Feature can survive indefinitely both in land and water.")
                     .HasSpecificPowerAdjustment(1)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Combat Casting")
+                    .HasDescriptionFile(@"Content\Features\combat-casting.md")
+                    .HasSpecificPowerAdjustment(3)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Spell Defense")
+                    .HasDescriptionFile(@"Content\Features\spell-defense.md")
+                    .HasSpecificPowerAdjustment(6)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Spell Resistance")
+                    .HasDescriptionFile(@"Content\Features\spell-resistance.md")
+                    .HasSpecificPowerAdjustment(3)
                     .Build());
 
             for (int i = 0; i < 6; i++)

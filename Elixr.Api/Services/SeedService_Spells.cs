@@ -380,6 +380,24 @@ namespace Elixr2.Api.Services.Seeding
                                 .MarkConcentration(false)
                                 .MarkDoesDamage(false)
                                 .Build());
+
+            builder = new SpellBuilder(standardCampaignSetting);
+            dbContext.Spells.Add(builder.HasName("Detect Thoughts")
+                                .HasDescriptionFile(@"Content\Spells\detect-thoughts.md")
+                                .HasEnergyRequirement("1/1d8 to overcome target's Concentration Defense")
+                                .MarkConcentration(true)
+                                .MarkDoesDamage(false)
+                                .Build());
+
+            builder = new SpellBuilder(standardCampaignSetting);
+            dbContext.Spells.Add(builder.HasName("Buff")
+                                .HasDescriptionFile(@"Content\Spells\buff.md")
+                                .HasEnergyRequirement("3/+1 to Ability Score")
+                                .MarkConcentration(true)
+                                .MarkDoesDamage(false)
+                                .Build());
+
+                                //TODO: Debuff, maybe?
         }
 
         private void AddSpellCharacteristics()

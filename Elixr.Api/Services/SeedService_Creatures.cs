@@ -44,6 +44,12 @@ namespace Elixr2.Api.Services.Seeding
                 yield return creature;
             }
 
+            creatures = AddCreaturesStartingWithD(context);
+            foreach (var creature in creatures)
+            {
+                yield return creature;
+            }
+
             creatures = AddCreaturesStartingWithU(context);
             foreach (var creature in creatures)
             {
@@ -1289,19 +1295,42 @@ namespace Elixr2.Api.Services.Seeding
         {
             var builder = new CreatureBuilder(ctx);
 
+            // Attack: Sting + 7 melee(2d4 + 2 plus poison)
+            // Full Attack:	Sting + 7 melee(2d4 + 2 plus poison) and bite +2 melee(1d4 + 1) 
+            // Special Attacks:	Poison, spells
+            // Special Qualities:  guarded thoughts, resistance to charm
+
             yield return builder.HasName("Dark Naga")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .WithCharacteristic("Large")
+                                .HasRacialAbilityScores(strength: 12, agility: 16, focus: 16, charm: 17)
+                                .HasSkills(deception: 6, concentration: 10, diplomacy: 4, perform: 4, intimidate: 3, perception: 8, insight: 5, recall: 3)
+                                .WithMod("Energy", 58)
+                                .WithMod("Defense", 3)
+                                .WithMod("Speed", 70)
+                                .WithCharacteristic("Combat Casting")
+                                .WithCharacteristic("Darkvision")
+                                .WithSpell("Detect Thoughts")
+                                .WithSpellCharacteristic("Detect Thoughts", atWillSpell)
+                                .WithCharacteristic("Immunity, All Poison")
+                                .WithCharacteristic("Speak Language", "Infernal")
+                                .WithCharacteristic("Spell Defense", "Detect Thoughts")
+                                .WithCharacteristic("Spell Resistance", "Charm")
+                                .WithCharacteristic("Spell Resistance", "Compel")
+                                .WithNaturalWeapon("Sting", WeaponUseAbility.Agility, WeaponUseAbility.Strength, "2d4", pierce: true)
+                                .WithSpecialWeaponCharacteristic("Sting", "Nightmare Poison", "Those struck by a Dark Naga's sting have 30% chance of lapsing into a nightmare-haunted sleep for 2d4 rounds.", 6)
+                                .WithWeaponCharacteristic("Sting", "Weapon Training, 5")
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4", pierce: true)
+                                .WithWeaponCharacteristic("Bite", "Weak Weapon, 1")
+                                .WithSpell("Detect Energy")
+                                .WithSpell("Telekinesis")
+                                .WithSpell("Illusion")
+                                .WithSpell("Invisibility")
+                                .WithSpell("Energy Blast, Light")
+                                .WithSpell("Energy Blast, Cold")
+                                .WithSpell("Energy Blast, Electric")
+                                .WithSpell("Energy Blast, Fire")
+                                .WithSpell("Buff")
                                 .BuildAndReset();
 
             yield return builder.HasName("Darkmantle")

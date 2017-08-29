@@ -1,0 +1,1 @@
+Choose one spell that requires a roll to overcome Concentration Defense. Your Effective Concentration Defense against that spell is double your normal Concentration Defense.

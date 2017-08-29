@@ -1,0 +1,1 @@
+While maintaining a Concentration spell, if a distraction causes you to make a Concentration check or lose the spell, you gain Advantage for the roll.

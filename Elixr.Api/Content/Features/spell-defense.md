@@ -1,0 +1,1 @@
+Choose one spell that requires a roll to overcome Concentration Defense. You are now immune to that particular spell.
