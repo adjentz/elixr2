@@ -267,12 +267,32 @@ namespace Elixr2.Api.Services.Seeding
                     .HasSpecificPowerAdjustment(3)
                     .Build());
 
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Blindsight, 20ft")
+                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "20ft")
+                    .HasSpecificPowerAdjustment(4)
+                    .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Blindsight")
-                    .HasDescriptionFile(@"Content\Features\blind-sight.md")
-                    .HasSpecificPowerAdjustment(14)
+                    .HasName("Blindsight, 60ft")
+                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "60ft")
+                    .HasSpecificPowerAdjustment(20)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Blindsight, 90ft")
+                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "60ft")
+                    .HasSpecificPowerAdjustment(26)
+                    .Build());
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Blindsight, 120ft")
+                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "60ft")
+                    .HasSpecificPowerAdjustment(40)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);

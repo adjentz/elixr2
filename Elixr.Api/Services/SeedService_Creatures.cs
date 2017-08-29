@@ -344,7 +344,7 @@ namespace Elixr2.Api.Services.Seeding
                             .WithWeaponCharacteristic("Slam", "Weapon Specialization, 2")
                             .WithWeaponCharacteristic("Slam", "Constrict")
                             .WithCharacteristic("Camoflage")
-                            .WithCharacteristic("Blindsight")
+                            .WithCharacteristic("Blindsight, 60ft")
                             .WithCharacteristic("Immunity, Electric")
                             .WithCharacteristic("Resistance, Cold")
                             .WithCharacteristic("Resistance, Fire")
@@ -455,7 +455,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithNaturalWeapon("Tail Slap", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
                                 .WithWeaponCharacteristic("Tail Slap", "Weapon Training, 5")
                                 .WithWeaponCharacteristic("Tail Slap", "Weapon Specialization, 6")
-                                .WithCharacteristic("Blindsight", "120ft; Echolocation.")
+                                .WithCharacteristic("Blindsight, 120ft", "Echolocation")
                                 .BuildAndReset();
 
             var fearInducing = (new WeaponCharacteristicBuilder(standardCampaignSetting)).HasName("Fear Inducing")
@@ -546,7 +546,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithMod("Energy", 1)
                                 .WithMod("Speed", 80)
                                 .WithMod("Defense", 2)
-                                .WithCharacteristic("Blindsight", "Echolocation. Up to 20 ft.")
+                                .WithCharacteristic("Blindsight, 20ft", "Echolocation")
                                 .WithCharacteristic("Natural Flyer")
                                 .BuildAndReset();
 
@@ -564,7 +564,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithSpecialCharacteristic("Swarm Attack", "At the end of its turn, any creatures that the swarm is sharing a space with automatically takes 1d6 of damage.", 4)
                                 .WithSpecialCharacteristic("Wounding", @"Content\Creatures\BatSwarm\wounding.md", 2)
                                 .WithSpecialCharacteristic("Distraction", "If a creature begins their sharing a space with the swarm, they must make a Difficulty 11 Concentration check or have their Speed Halved for that turn.", 2)
-                                .WithCharacteristic("Blindsight", "Echolocation. Up to 20 ft.")
+                                .WithCharacteristic("Blindsight, 20ft", "Echolocation")
                                 .WithCharacteristic("Natural Flyer")
                                 .BuildAndReset();
 
@@ -1301,7 +1301,7 @@ namespace Elixr2.Api.Services.Seeding
             // Special Qualities:  guarded thoughts, resistance to charm
 
             yield return builder.HasName("Dark Naga")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
+                                .HasDescription("A snake like creature with the torso of a humanoid")
                                 .WithCharacteristic("Large")
                                 .HasRacialAbilityScores(strength: 12, agility: 16, focus: 16, charm: 17)
                                 .HasSkills(deception: 6, concentration: 10, diplomacy: 4, perform: 4, intimidate: 3, perception: 8, insight: 5, recall: 3)
@@ -1333,19 +1333,26 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithSpell("Buff")
                                 .BuildAndReset();
 
+
             yield return builder.HasName("Darkmantle")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .HasDescriptionFile(@"Content\Creatures\Darkmantle\description.md")
+                                .WithCharacteristic("Small")
+                                .HasAverageHeight("4ft tall from the top of its head to its tentacles")
+                                .HasAverageWeight("30lbs")
+                                .HasRacialAbilityScores(strength: 18, agility: 8, focus: 2, charm: 10)
+                                .HasSkills(insight: 4, perception: 9, survival: 4, stealth: 8, initiative:4)
+                                .WithMod("Energy", 6)
+                                .WithMod("Defense", 6)
+                                .WithMod("Speed", 40)
+                                .WithCharacteristic("Fly")
+                                .WithCharacteristic("Blindsight, 90ft", "Echolocation")
+                                .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4", bludgeon: true)
+                                .WithWeaponCharacteristic("Slam", "Weapon Training, 2")
+                                .WithWeaponCharacteristic("Slam", "Weapon Specialization, 1")
+                                .WithWeaponCharacteristic("Slam", "Latch")
+                                .WithWeaponCharacteristic("Slam", "Constrict")
+                                .WithSpell("Darkness")
+                                .WithSpellCharacteristic("Darkness", atWillSpell)
                                 .BuildAndReset();
 
             yield return builder.HasName("Delver")

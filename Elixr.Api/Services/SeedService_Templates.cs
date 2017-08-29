@@ -215,7 +215,7 @@ namespace Elixr2.Api.Services.Seeding
                                   .WithCharacteristic("Immunity, Mind-Affecting", "Mindless")
                                   .WithCharacteristic("Immunity, All Poison")
                                   .WithCharacteristic("Blind")
-                                  .WithCharacteristic("Blindsight")
+                                  .WithCharacteristic("Blindsight, 60ft")
                                   .WithSpecialCharacteristic("Incapacitated Differences", "When brought below 0 Energy, rather than becoming Incapacitated, an Ooze trickles away into a liquid that is washed away in time.", 0)
                                   .WithSpecialCharacteristic("No Focus", "Any Focus Score given in a creature with this template should be ignored.", -5, CharacteristicType.Flaw)
                                   .WithSpecialCharacteristic("Metabolism Differences", "An ooze does not need to sleep, but must eat and breath", 1)
