@@ -1340,7 +1340,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .HasAverageHeight("4ft tall from the top of its head to its tentacles")
                                 .HasAverageWeight("30lbs")
                                 .HasRacialAbilityScores(strength: 18, agility: 8, focus: 2, charm: 10)
-                                .HasSkills(insight: 4, perception: 9, survival: 4, stealth: 8, initiative:4)
+                                .HasSkills(insight: 4, perception: 9, survival: 4, stealth: 8, initiative: 4)
                                 .WithMod("Energy", 6)
                                 .WithMod("Defense", 6)
                                 .WithMod("Speed", 40)
@@ -1355,10 +1355,25 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithSpellCharacteristic("Darkness", atWillSpell)
                                 .BuildAndReset();
 
+
+            // Size/Type:	Huge Aberration
+            // Hit Dice:	15d8+78 (145 hp)
+            // Initiative:	+5
+            // Speed:	30 ft. (6 squares), burrow 10 ft.
+            // Armor Class:	24 (–2 size, +1 Dex, +15 natural), touch 9, flat-footed 23
+            // Base Attack/Grapple:	+11/+27
+            // Attack:	Slam +17 melee (1d6+8 plus 2d6 acid)
+            // Full Attack:	2 slams +17 melee (1d6+8 plus 2d6 acid)
+            // Space/Reach:	15 ft./10 ft.
+            // Special Attacks:	Corrosive slime
+            // Special Qualities:	Darkvision 60 ft., immunity to acid, stone shape, tremorsense 60 ft.
+            // Saves:	Fort +12, Ref +6, Will +11
+            // Abilities:	Str 27, Dex 13, Con 21, Int 14, Wis 14, Cha 12
+            // Skills:	Knowledge (dungeoneering) +14, Knowledge (nature) +4, Listen +20, Move Silently +17, Spot +20, Survival +14 (+16 underground)
+            // Feats:	Alertness, Blind Fight, Great Fortitude, Improved Initiative, Power Attack, Toughness
             yield return builder.HasName("Delver")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
+                                .WithCharacteristic("Huge")
                                 .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
                                 .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
                                 .WithMod("Energy", 22)
