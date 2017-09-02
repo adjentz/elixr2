@@ -889,6 +889,20 @@ namespace Elixr2.Api.Services.Seeding
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Conic, 80ft")
+                                                        .HasSpecificPower(56)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\conic.md", "20ft")
+                                                        .Build());
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Non-Lethal")
+                                                        .HasSpecificPower(-1)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\non-lethal.md", "15ft")
+                                                        .Build());
+
+
+
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Splashing")
                                                         .HasSpecificPower(5)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\splashing.md")

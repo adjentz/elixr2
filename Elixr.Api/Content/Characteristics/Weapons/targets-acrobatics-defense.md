@@ -1,1 +1,3 @@
-A weapon with this Characteristic must roll an attack roll greater than the target's Acrobatics Defense in order to roll damage. The target's normal Defense is irrelevant to the attack.
+Attacks with this weapon must be greater than the target's Acrobatics Defense to roll full damage.
+
+Attacks equal to, or less than, the target's Acrobatics Defense still apply damage, but only half the result of the damage roll.

@@ -9,7 +9,17 @@ namespace Elixr2.Api.Services.Seeding
 {
     public partial class SeedService
     {
-
+        /*
+         yield return builder.HasName("Baseref")
+                            .HasDescriptionFile(@"Content\Creatures\Baseref\description.md")
+                            .WithCharacteristic("Large")
+                            .HasRacialAbilityScores(strength: 1, agility: 3, focus: 3, charm: 7)
+                            .HasSkills(initiative: 0)
+                            .WithMod("Energy", 60)
+                            .WithMod("Defense", 8)
+                            .WithMod("Speed", 50)
+                            .BuildAndReset();
+                                        */
         const string atWillSpell = "At Will Spell";
         private IEnumerable<Creature> AddCreatures(List<Characteristic> characteristics, List<Armor> armors, List<Weapon> weapons,
         List<Spell> spells, List<Template> templates, List<SpellCharacteristic> spellCharacteristics, List<WeaponCharacteristic> weaponCharacteristics)
@@ -1356,48 +1366,54 @@ namespace Elixr2.Api.Services.Seeding
                                 .BuildAndReset();
 
 
-            // Size/Type:	Huge Aberration
-            // Hit Dice:	15d8+78 (145 hp)
-            // Initiative:	+5
-            // Speed:	30 ft. (6 squares), burrow 10 ft.
-            // Armor Class:	24 (–2 size, +1 Dex, +15 natural), touch 9, flat-footed 23
-            // Base Attack/Grapple:	+11/+27
-            // Attack:	Slam +17 melee (1d6+8 plus 2d6 acid)
-            // Full Attack:	2 slams +17 melee (1d6+8 plus 2d6 acid)
-            // Space/Reach:	15 ft./10 ft.
-            // Special Attacks:	Corrosive slime
-            // Special Qualities:	Darkvision 60 ft., immunity to acid, stone shape, tremorsense 60 ft.
-            // Saves:	Fort +12, Ref +6, Will +11
-            // Abilities:	Str 27, Dex 13, Con 21, Int 14, Wis 14, Cha 12
-            // Skills:	Knowledge (dungeoneering) +14, Knowledge (nature) +4, Listen +20, Move Silently +17, Spot +20, Survival +14 (+16 underground)
-            // Feats:	Alertness, Blind Fight, Great Fortitude, Improved Initiative, Power Attack, Toughness
             yield return builder.HasName("Delver")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
+                                .HasDescriptionFile(@"Content\Creatures\Delver\description.md")
                                 .WithCharacteristic("Huge")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .HasAverageHeight("15ft long and 10ft wide")
+                                .HasAverageWeight("6,000lbs")
+                                .HasRacialAbilityScores(strength: 23, agility: 17, focus: 14, charm: 12)
+                                .HasSkills(recall: 12, perception: 18, stealth: 20, survival: 13, initiative: 4)
+                                .WithMod("Energy", 145)
+                                .WithMod("Defense", 15)
+                                .WithMod("Speed", 40)
+                                .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d6")
+                                .WithWeaponCharacteristic("Slam", "Weapon Training, 9")
+                                .WithSpecialWeaponCharacteristic("Slam", "See: Corrosive Slime", "This creature's Corrosive Slime Feature details additional effects on attacks from this creature", 0)
+                                .WithCharacteristic("Darkvision")
+                                .WithCharacteristic("Blind Fight")
+                                .WithCharacteristic("Immunity, Acid")
+                                .WithCharacteristic("Tremorsense, 60ft")
+                                .WithSpecialCharacteristic("Stone Shape", @"Content\Creatures\Delver\stone-shape.md", 5)
+                                .WithSpecialCharacteristic("Corrosive Slime", @"Content\Creatures\Delver\corrosive-slime.md", 30)
+                                .WithSpecialCharacteristic("Burrow", "This creature can burrow through ground at a 3:1 cost to Movement Speed. Meaning, for every 30ft of Speed applied, the delver burrows 10 ft.", 2)
                                 .BuildAndReset();
 
+
             yield return builder.HasName("Destrachan")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .HasDescriptionFile(@"Content\Creatures\Destrachan\description.md")
+                                .WithCharacteristic("Large")
+                                .HasAverageHeight("10ft long from mouth to tip of the tail")
+                                .HasAverageWeight("4,000lbs")
+                                .HasRacialAbilityScores(strength: 16, agility: 14, focus: 12, charm: 12)
+                                .HasSkills(insight: 3, perception: 24, survival: 8, stealth: 11, initiative: 4)
+                                .WithMod("Energy", 60)
+                                .WithMod("Defense", 8)
+                                .WithMod("Speed", 50)
+                                .WithCharacteristic("Blindsight, 100ft", "Excellent hearing")
+                                .WithCharacteristic("Resistance, Sonic")
+                                .WithCharacteristic("Blind")
+                                .WithNaturalWeapon("Claw", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d6")
+                                .WithWeaponCharacteristic("Claw", "Weapon Training, 5")
+                                .WithNaturalWeapon("Destructive Harmonics: Flesh", WeaponUseAbility.Focus, WeaponUseAbility.None, "4d6")
+                                .WithWeaponCharacteristic("Destructive Harmonics: Flesh", "Weapon Training, 4")
+                                .WithWeaponCharacteristic("Destructive Harmonics: Flesh", "Targets Acrobatics Defense")
+                                .WithWeaponCharacteristic("Destructive Harmonics: Flesh", "Conic, 80ft")
+                                .WithNaturalWeapon("Destructive Harmonics: Nerves", WeaponUseAbility.Focus, WeaponUseAbility.None, "4d6")
+                                .WithWeaponCharacteristic("Destructive Harmonics: Nerves", "Weapon Training, 4")
+                                .WithWeaponCharacteristic("Destructive Harmonics: Nerves", "Targets Acrobatics Defense")
+                                .WithWeaponCharacteristic("Destructive Harmonics: Nerves", "Non-Lethal")
+                                .WithWeaponCharacteristic("Destructive Harmonics: Nerves", "Conic, 80ft")
+                                .WithSpecialCharacteristic("Shatter Objects", "Objects within a 30ft radius take 3d6 points of damage", 10)
                                 .BuildAndReset();
 
             yield return builder.HasName("Devourer")

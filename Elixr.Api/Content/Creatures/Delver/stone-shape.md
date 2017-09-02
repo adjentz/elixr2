@@ -1,0 +1,1 @@
+ A delver can alter its slime to temporarily soften stone instead of dissolving it. Once every 10 minutes, a delver can soften and shape up to 25 cubic feet of stone.

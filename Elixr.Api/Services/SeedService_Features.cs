@@ -79,7 +79,7 @@ namespace Elixr2.Api.Services.Seeding
                     .Build();
             dbContext.Characteristics.Add(feature);
 
-            string[] energyTypes = new string[] { "Fire", "Cold", "Light", "Shadow", "Electric", "Acid" };
+            string[] energyTypes = new string[] { "Fire", "Cold", "Light", "Shadow", "Electric", "Acid", "Sonic" };
             int energyResistancePower = 9;
             foreach (var type in energyTypes)
             {
@@ -99,6 +99,8 @@ namespace Elixr2.Api.Services.Seeding
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
+
+            
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
@@ -267,33 +269,16 @@ namespace Elixr2.Api.Services.Seeding
                     .HasSpecificPowerAdjustment(3)
                     .Build());
 
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Blindsight, 20ft")
-                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "20ft")
-                    .HasSpecificPowerAdjustment(4)
-                    .Build());
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Blindsight, 60ft")
-                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "60ft")
-                    .HasSpecificPowerAdjustment(20)
-                    .Build());
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Blindsight, 90ft")
-                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "60ft")
-                    .HasSpecificPowerAdjustment(26)
-                    .Build());
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Blindsight, 120ft")
-                    .HasDescriptionFile(@"Content\Features\blind-sight.md", "60ft")
-                    .HasSpecificPowerAdjustment(40)
-                    .Build());
+            for (int i = 1; i <= 12; i++)
+            {
+                int feet = i * 10;
+                builder = new CharacteristicBuilder(standardCampaignSetting);
+                dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                        .HasName($"Blindsight, {feet}ft")
+                        .HasDescriptionFile(@"Content\Features\blind-sight.md", $"{feet}ft")
+                        .HasSpecificPowerAdjustment(feet / 5)
+                        .Build());
+            }
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
