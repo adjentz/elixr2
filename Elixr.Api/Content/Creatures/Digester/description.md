@@ -1,0 +1,1 @@
+A digester is a hunting and eating machine. When it is not hungry (which is rarely), it lies low and avoids most other creatures. When hunting, it looks about for a likely target, then charges forth and delivers a gout of acid. If the initial attack is insufficient to kill the prey, the digester attacks with its hind feet until it can spray acid again.a

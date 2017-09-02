@@ -914,6 +914,12 @@ namespace Elixr2.Api.Services.Seeding
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\targets-acrobatics-defense.md")
                                                         .Build());
 
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Causes Level Loss")
+                                                        .HasSpecificPower(12)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\causes-level-loss.md")
+                                                        .Build());
+
             string[] energyTypes = new string[] { "Acid", "Electric", "Fire", "Cold", "Light", "Shadow" };
             string[] dieTypes = new string[] { "d4", "d6", "d8", "d12" };
 
