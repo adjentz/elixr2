@@ -20,7 +20,7 @@ namespace Elixr2.Api.Services.Seeding
                             .WithMod("Speed", 50)
                             .BuildAndReset();
                                         */
-        const string atWillSpell = "At Will Spell";
+        const string atWillSpell = "At Will Spell"; // todo: there should be a spell characteristic for specifying how much Energy
         private IEnumerable<Creature> AddCreatures(List<Characteristic> characteristics, List<Armor> armors, List<Weapon> weapons,
         List<Spell> spells, List<Template> templates, List<SpellCharacteristic> spellCharacteristics, List<WeaponCharacteristic> weaponCharacteristics)
         {
@@ -1490,65 +1490,53 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithSpell("Telepathy")
                                 .BuildAndReset();
 
+
             yield return builder.HasName("Dog")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
+                                .HasDescription("A fairly small dog.")
                                 .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .WithCharacteristic("Small")
+                                .HasAverageWeight("20-50lbs")
+                                .HasRacialAbilityScores(strength: 15, agility: 15, focus: 0, charm: 6)
+                                .HasSkills(insight: 1, survival: 1, perception: 5, athletics: 6)
+                                .WithMod("Energy", 6)
+                                .WithMod("Defense", 1)
+                                .WithMod("Speed", 80)
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4")
+                                .WithWeaponCharacteristic("Bite", "Weapon Training, 1")
                                 .BuildAndReset();
+
 
             yield return builder.HasName("Donkey")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
+                                .HasDescription("These long-eared, horselike creatures are surefooted and sturdy.")
                                 .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
+                                .HasRacialAbilityScores(strength: 10, agility: 13, focus: 0, charm: 4)
+                                .HasSkills(acrobatics: 2, perception: 3)
+                                .WithMod("Energy", 11)
+                                .WithMod("Defense", 2)
                                 .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.None, "1d2")
+                                .WithWeaponCharacteristic("Bite", "Weapon Training, 1")
+                                .WithSpecialCharacteristic("Carrying Capacity", "A donkey can carry up to 100 pounds with no Speed Penalty. Loads between 101-150lbs (their maximum) cause the donkey's speed to be halved. A donkey can drag 750lbs", 1)
                                 .BuildAndReset();
 
-            yield return builder.HasName("Doppleganger")
-                        .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                        .WithTemplate("Animal")
-                        .HasAverageHeight("11-12ft")
-                        .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                        .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
+            yield return builder.HasName("Doppelganger")
+                        .HasDescriptionFile(@"Content\Creatures\Doppelganger\description.md")
+                        .HasSkin("Pale and hairless")
+                        .HasEyes("Large and bulging, with yellow slitted pupils")
+                        .HasAverageHeight("5-1/2ft in natural form")
+                        .HasAverageWeight("150lbs")
+                        .HasRacialAbilityScores(strength: 12, agility: 13, focus: 13, charm: 13)
+                        .HasSkills(deception: 9, diplomacy: 2, perform: 10, intimidate: 2, perception: 5, insight: 5, concentration: 2)
                         .WithMod("Energy", 22)
                         .WithMod("Defense", 4)
                         .WithMod("Speed", 60)
-                        .WithCharacteristic("Natural Swimmer")
-                        .WithCharacteristic("Camoflage", "When in water")
-                        .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                        .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                        .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d6", bludgeon: true)
+                        .WithWeaponCharacteristic("Slam", "Weapon Training, 4")
+                        .WithSpell("Detect Thoughts")
+                        .WithSpellCharacteristic("Detect Thoughts", atWillSpell)
+                        .WithSpecialCharacteristic("Change Shape", @"Content\Creatures\Doppelganger\change-shape.md", 4)
+                        .WithCharacteristic("Immunity, Mind-Affecting")
                         .BuildAndReset();
-
-            yield return builder.HasName("Dragon Turtle")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
-                                .BuildAndReset();
 
             yield return builder.HasName("Dragonne")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
@@ -1595,51 +1583,6 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
                                 .BuildAndReset();
 
-            yield return builder.HasName("Drider")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
-                                .BuildAndReset();
-
-            yield return builder.HasName("Dragon Turtle")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
-                                .BuildAndReset();
-
-            yield return builder.HasName("Drow")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
-                                .BuildAndReset();
-
             yield return builder.HasName("Dryad")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
                                 .WithTemplate("Animal")
@@ -1655,7 +1598,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
                                 .BuildAndReset();
 
-            yield return builder.HasName("Dwarf")
+            yield return builder.HasName("Dwarf Warrior")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
                                 .WithTemplate("Animal")
                                 .HasAverageHeight("11-12ft")
@@ -2049,6 +1992,20 @@ namespace Elixr2.Api.Services.Seeding
         {
 
             throw new System.NotImplementedException();
+            // yield return builder.HasName("Dragon Turtle")
+            //                    .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
+            //                    .WithTemplate("Animal")
+            //                    .HasAverageHeight("11-12ft")
+            //                    .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
+            //                    .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
+            //                    .WithMod("Energy", 22)
+            //                    .WithMod("Defense", 4)
+            //                    .WithMod("Speed", 60)
+            //                    .WithCharacteristic("Natural Swimmer")
+            //                    .WithCharacteristic("Camoflage", "When in water")
+            //                    .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
+            //                    .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+            //                    .BuildAndReset();
         }
     }
 }
