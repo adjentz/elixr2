@@ -170,7 +170,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithWeaponCharacteristic("Slam", "Weapon Training, 3")
                                 .WithCharacteristic("Speak Language", "Auran")
                                 .WithCharacteristic("Natural Flyer")
-                                .WithSpecialCharacteristic("Whirlwind", @"Content\Creatures\AirElemental\whirlwind.md", 22, CharacteristicType.Feature, "2", "30", "13", "1d6")
+                                .WithSpecialCharacteristic("WhirlwinWhirlwind", @"Content\Creatures\Shared\whirlwind.md", 22, CharacteristicType.Feature, "2", "30", "13", "1d6")
                                 .BuildAndReset();
 
 
@@ -1460,20 +1460,40 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithWeaponCharacteristic("Acid Spray (Concentrated)", "Cooldown, 1d4")
                                 .BuildAndReset();
 
+
+
+            // Special Attacks:	Air mastery, spell-like abilities, whirlwind
+            // Special Qualities:	plane shift, telepathy 100 ft.
+
+            // Feats:	Combat Casting, Combat Reflexes, Dodge, Improved InitiativeB
             yield return builder.HasName("Djinni")
-                                            .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                            .WithTemplate("Animal")
-                                            .HasAverageHeight("11-12ft")
-                                            .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                            .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                            .WithMod("Energy", 22)
-                                            .WithMod("Defense", 4)
-                                            .WithMod("Speed", 60)
-                                            .WithCharacteristic("Natural Swimmer")
-                                            .WithCharacteristic("Camoflage", "When in water")
-                                            .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                            .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
-                                            .BuildAndReset();
+                                .HasDescriptionFile(@"Content\Creatures\Djinni\description.md")
+                                .WithTemplate("Outsider")
+                                .WithCharacteristic("Large")
+                                .HasAverageHeight("10-1/2ft tall")
+                                .HasAverageWeight("1,000lbs")
+                                .HasRacialAbilityScores(strength: 16, agility: 21, focus: 14, charm: 15)
+                                .HasSkills(insight: 10, concentration: 10, engineer: 10, diplomacy: 2, escapeArtist: 10, recall: 10, perception: 10, stealth: 12, survival: 3, initiative: 4)
+                                .WithMod("Energy", 45)
+                                .WithMod("Defense", 3)
+                                .WithMod("Speed", 110)
+                                .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
+                                .WithWeaponCharacteristic("Slam", "Weapon Training, 6")
+                                .WithCharacteristic("Natural Flyer")
+                                .WithCharacteristic("Combat Casting")
+                                .WithCharacteristic("Immunity, Acid")
+                                .WithCharacteristic("Speak Language", "Auran")
+                                .WithCharacteristic("Speak Language", "Celestial")
+                                .WithCharacteristic("Speak Language", "Ignan")
+                                .WithSpecialCharacteristic("Air Mastery", "Airborne creatures take a -1 peanlty on attack and damage rolls against a djinni", 1)
+                                .WithSpecialCharacteristic("Whirlwind", @"Content\Creatures\Shared\whirlwind.md", 35, CharacteristicType.Feature, "7", "50", "20", "1d8")
+                                .WithSpell("Invisibility")
+                                .WithSpell("Conjure Object")
+                                .WithSpell("Illusion")
+                                .WithSpell("Gaseous Form")
+                                .WithSpell("Plane Shift")
+                                .WithSpell("Telepathy")
+                                .BuildAndReset();
 
             yield return builder.HasName("Dog")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
