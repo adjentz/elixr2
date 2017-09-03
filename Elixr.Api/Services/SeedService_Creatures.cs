@@ -1461,11 +1461,6 @@ namespace Elixr2.Api.Services.Seeding
                                 .BuildAndReset();
 
 
-
-            // Special Attacks:	Air mastery, spell-like abilities, whirlwind
-            // Special Qualities:	plane shift, telepathy 100 ft.
-
-            // Feats:	Combat Casting, Combat Reflexes, Dodge, Improved InitiativeB
             yield return builder.HasName("Djinni")
                                 .HasDescriptionFile(@"Content\Creatures\Djinni\description.md")
                                 .WithTemplate("Outsider")
