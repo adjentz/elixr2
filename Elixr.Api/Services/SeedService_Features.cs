@@ -100,7 +100,7 @@ namespace Elixr2.Api.Services.Seeding
                 dbContext.Characteristics.Add(feature);
             }
 
-            
+
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
@@ -143,6 +143,7 @@ namespace Elixr2.Api.Services.Seeding
             dbContext.Characteristics.Add(feature);
 
 
+            int physicalResistancePower = 10;
             string[] physicalTypes = new string[] { "Piercing", "Bludgeoning", "Slashing" };
             foreach (var type in physicalTypes)
             {
@@ -150,7 +151,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Resistance, {type}")
                         .HasDescriptionFile("Content\\Features\\resistance-attack.md", type)
-                        .HasSpecificPowerAdjustment(10)
+                        .HasSpecificPowerAdjustment(physicalResistancePower)
                         .Build();
                 dbContext.Characteristics.Add(feature);
 
@@ -158,7 +159,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Immunity, {type}")
                         .HasDescriptionFile("Content\\Features\\immunity-attack.md", type)
-                        .HasSpecificPowerAdjustment(20)
+                        .HasSpecificPowerAdjustment(physicalResistancePower * 2)
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
@@ -167,7 +168,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Physical")
                     .HasDescriptionFile("Content\\Features\\resistance-attack.md", "Bludgeoning, Piercing, or Slashing")
-                    .HasSpecificPowerAdjustment(30)
+                    .HasSpecificPowerAdjustment(physicalResistancePower * physicalTypes.Length)
                     .Build();
             dbContext.Characteristics.Add(feature);
 

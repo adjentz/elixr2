@@ -64,6 +64,7 @@ namespace Elixr2
             }
             catch (System.Exception ex)
             {
+                System.Console.WriteLine(ex.Message);
                 dbContext.Database.EnsureDeleted();
                 ;
             }

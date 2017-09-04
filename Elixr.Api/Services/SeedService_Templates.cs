@@ -192,6 +192,21 @@ namespace Elixr2.Api.Services.Seeding
                                   .Build());
 
             builder = new TemplateBuilder(standardCampaignSetting, characteristics, spells, spellCharacteristics);
+            dbContext.Templates.Add(builder.HasName("Demon")
+                                  .HasDescription("Fiends from the Infernal Plane of existence. Usually evil and unpredicatable.")
+                                  .WithCharacteristic("Resistance, Acid")
+                                  .WithCharacteristic("Resistance, Cold")
+                                  .WithCharacteristic("Resistance, Fire")                                  
+                                  .WithCharacteristic("Immunity, Electric")
+                                  .WithCharacteristic("Immunity, All Poison")
+                                  .WithCharacteristic("Speak Language", "Celestial")
+                                  .WithCharacteristic("Speak Language", "Infernal")
+                                  .WithSpell("Telepathy")
+                                  //.WithSpell("Summon", "Others of their kind.") TODO
+                                  .AsRace(false)
+                                  .Build());
+
+            builder = new TemplateBuilder(standardCampaignSetting, characteristics, spells, spellCharacteristics);
             dbContext.Templates.Add(builder.HasName("Swarm")
                                   .HasDescription("A swarm is a collection of Minute or Tiny creatures that acts as a single creature.")
                                   .WithCharacteristic("Ignores Critical Damage")

@@ -182,6 +182,14 @@ namespace Elixr2.Api.Services.Seeding
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            flaw = builder.OfType(CharacteristicType.Flaw)
+                    .HasName("Daylight Powerlessness")
+                    .HasDescriptionFile(@"Content\Flaws\daylight-powerlessness.md")
+                    .HasSpecificPowerAdjustment(-16)
+                    .Build();
+            dbContext.Characteristics.Add(flaw);
+
             string[] energyTypes = new string[] { "Fire", "Cold", "Light", "Shadow", "Electric", "Acid" };
             foreach (var type in energyTypes)
             {

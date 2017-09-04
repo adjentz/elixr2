@@ -140,6 +140,12 @@ namespace Elixr2.Api.Services.Seeding.Builders
             return this;
         }
 
+        public CreatureBuilder HasPrimaryStats(int energy = 0, int defense = 0, int speed = 0)
+        {
+            return this.WithMod("Speed", speed)
+                       .WithMod("Defense", defense)
+                       .WithMod("Energy", energy);
+        }
         public CreatureBuilder HasSkills(int athletics = 0, int climb = 0, int intimidate = 0, int swim = 0, // strength skills
         int acrobatics = 0, int escapeArtist = 0, int initiative = 0, int sleightOfHand = 0, int stealth = 0, // agility skills
         int concentration = 0, int engineer = 0, int insight = 0, int medicine = 0, int perception = 0, int recall = 0, int survival = 0, // focus skills

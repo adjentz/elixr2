@@ -4,6 +4,7 @@ using Elixr2.Api.Models;
 using System.Linq;
 using Elixr2.Api.Services.Seeding.Builders;
 using System.Collections.Generic;
+using System;
 
 namespace Elixr2.Api.Services.Seeding
 {
@@ -36,44 +37,20 @@ namespace Elixr2.Api.Services.Seeding
                 SpellCharacteristics = spellCharacteristics
             };
 
-            var creatures = AddCreaturesStartingWithA(context);
-            foreach (var creature in creatures)
+            var fuctions = new Func<CreatureBuilderContext, IEnumerable<Creature>>[]
             {
-                yield return creature;
-            }
+                AddCreaturesStartingWithA, AddCreaturesStartingWithB, AddCreaturesStartingWithC,
+                AddCreaturesStartingWithD,
+                AddCreaturesStartingWithU
+            };
 
-            creatures = AddCreaturesStartingWithB(context);
-            foreach (var creature in creatures)
+            foreach (var func in fuctions)
             {
-                yield return creature;
-            }
-
-            creatures = AddCreaturesStartingWithC(context);
-            foreach (var creature in creatures)
-            {
-                yield return creature;
-            }
-
-            creatures = AddCreaturesStartingWithD(context);
-            foreach (var creature in creatures)
-            {
-                yield return creature;
-            }
-
-            creatures = AddCreaturesStartingWithU(context);
-            foreach (var creature in creatures)
-            {
-                yield return creature;
-            }
-            // creatures = AddCreaturesStartingWithT(context);
-            // foreach (var creature in creatures)
-            // {
-            //     yield return creature;
-            // }
-            creatures = AddCreaturesStartingWithY(context);
-            foreach (var creature in creatures)
-            {
-                yield return creature;
+                var creatures = func(context);
+                foreach (var creature in creatures)
+                {
+                    yield return creature;
+                }
             }
         }
 
@@ -1305,38 +1282,38 @@ namespace Elixr2.Api.Services.Seeding
         {
             var builder = new CreatureBuilder(ctx);
 
-            yield return builder.HasName("Dark Naga")
-                                .HasDescription("A snake like creature with the torso of a humanoid")
-                                .WithCharacteristic("Large")
-                                .HasRacialAbilityScores(strength: 12, agility: 16, focus: 16, charm: 17)
-                                .HasSkills(deception: 6, concentration: 10, diplomacy: 4, perform: 4, intimidate: 3, perception: 8, insight: 5, recall: 3)
-                                .WithMod("Energy", 58)
-                                .WithMod("Defense", 3)
-                                .WithMod("Speed", 70)
-                                .WithCharacteristic("Combat Casting")
-                                .WithCharacteristic("Darkvision")
-                                .WithSpell("Detect Thoughts")
-                                .WithSpellCharacteristic("Detect Thoughts", atWillSpell)
-                                .WithCharacteristic("Immunity, All Poison")
-                                .WithCharacteristic("Speak Language", "Infernal")
-                                .WithCharacteristic("Spell Defense", "Detect Thoughts")
-                                .WithCharacteristic("Spell Resistance", "Charm")
-                                .WithCharacteristic("Spell Resistance", "Compel")
-                                .WithNaturalWeapon("Sting", WeaponUseAbility.Agility, WeaponUseAbility.Strength, "2d4", pierce: true)
-                                .WithSpecialWeaponCharacteristic("Sting", "Nightmare Poison", "Those struck by a Dark Naga's sting have 30% chance of lapsing into a nightmare-haunted sleep for 2d4 rounds.", 6)
-                                .WithWeaponCharacteristic("Sting", "Weapon Training, 5")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4", pierce: true)
-                                .WithWeaponCharacteristic("Bite", "Weak Weapon, 1")
-                                .WithSpell("Detect Energy")
-                                .WithSpell("Telekinesis")
-                                .WithSpell("Illusion")
-                                .WithSpell("Invisibility")
-                                .WithSpell("Energy Blast, Light")
-                                .WithSpell("Energy Blast, Cold")
-                                .WithSpell("Energy Blast, Electric")
-                                .WithSpell("Energy Blast, Fire")
-                                .WithSpell("Buff")
-                                .BuildAndReset();
+            // yield return builder.HasName("Dark Naga")
+            //                     .HasDescription("A snake like creature with the torso of a humanoid")
+            //                     .WithCharacteristic("Large")
+            //                     .HasRacialAbilityScores(strength: 12, agility: 16, focus: 16, charm: 17)
+            //                     .HasSkills(deception: 6, concentration: 10, diplomacy: 4, perform: 4, intimidate: 3, perception: 8, insight: 5, recall: 3)
+            //                     .WithMod("Energy", 58)
+            //                     .WithMod("Defense", 3)
+            //                     .WithMod("Speed", 70)
+            //                     .WithCharacteristic("Combat Casting")
+            //                     .WithCharacteristic("Darkvision")
+            //                     .WithSpell("Detect Thoughts")
+            //                     .WithSpellCharacteristic("Detect Thoughts", atWillSpell)
+            //                     .WithCharacteristic("Immunity, All Poison")
+            //                     .WithCharacteristic("Speak Language", "Infernal")
+            //                     .WithCharacteristic("Spell Defense", "Detect Thoughts")
+            //                     .WithCharacteristic("Spell Resistance", "Charm")
+            //                     .WithCharacteristic("Spell Resistance", "Compel")
+            //                     .WithNaturalWeapon("Sting", WeaponUseAbility.Agility, WeaponUseAbility.Strength, "2d4", pierce: true)
+            //                     .WithSpecialWeaponCharacteristic("Sting", "Nightmare Poison", "Those struck by a Dark Naga's sting have 30% chance of lapsing into a nightmare-haunted sleep for 2d4 rounds.", 6)
+            //                     .WithWeaponCharacteristic("Sting", "Weapon Training, 5")
+            //                     .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4", pierce: true)
+            //                     .WithWeaponCharacteristic("Bite", "Weak Weapon, 1")
+            //                     .WithSpell("Detect Energy")
+            //                     .WithSpell("Telekinesis")
+            //                     .WithSpell("Illusion")
+            //                     .WithSpell("Invisibility")
+            //                     .WithSpell("Energy Blast, Light")
+            //                     .WithSpell("Energy Blast, Cold")
+            //                     .WithSpell("Energy Blast, Electric")
+            //                     .WithSpell("Energy Blast, Fire")
+            //                     .WithSpell("Buff")
+            //                     .BuildAndReset();
 
 
             yield return builder.HasName("Darkmantle")
@@ -1549,7 +1526,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithMod("Energy", 104)
                                 .WithMod("Defense", 7, "Deflection")
                                 .WithMod("Speed", 110)
-                                .WithCharacteristics("Large", "Lifesense, 60ft", "Blind Fight", "Natural Flyer")
+                                .WithCharacteristics("Large", "Lifesense, 60ft", "Blind Fight", "Natural Flyer", "Daylight Powerlessness")
                                 .WithCharacteristic("Speak Language", "Infernal")
                                 .WithNaturalWeapon("Incorporeal Touch", WeaponUseAbility.Agility, WeaponUseAbility.None, "2d6")
                                 .WithWeaponCharacteristic("Incorporeal Touch", "Ignores Armor")
@@ -1557,52 +1534,58 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithWeaponCharacteristic("Incorporeal Touch", "Leech, 1d8")
                                 .WithSpecialCharacteristic("Create Spawn", @"Content\Creatures\DreadWraith\create-spawn.md", 10)
                                 .WithSpecialCharacteristic("Unnatural Aura", @"Content\Creatures\DreadWraith\unnatural-aura.md", 1)
-                                .WithSpecialCharacteristic("Daylight Powerlessness", @"Content\Creatures\DreadWraith\daylight-powerlessness.md", -15, CharacteristicType.Flaw)                                
                                 .BuildAndReset();
 
+            // Special Attacks:	Spell-like abilities
             yield return builder.HasName("Dretch")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .HasDescriptionFile(@"Content\Creatures\Dretch\description.md")
+                                .WithTemplate("Demon")
+                                .HasAverageHeight("4ft")
+                                .HasAverageWeight("60lbs")
+                                .WithCharacteristics("Small", "Resistance, Physical", "Darkvision")
+                                .WithCharacteristic("Vulnerability, Material", "Iron")
+                                .HasRacialAbilityScores(strength: 14, agility: 8, focus: 5, charm: 11)
+                                .HasSkills(survival: 4, insight: 4, perception: 8, stealth: 7)
+                                .HasPrimaryStats(energy: 13, defense: 5, speed: 50)
+                                .WithNaturalWeapon("Claw", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d6", slash: true)
+                                .WithWeaponCharacteristic("Claw", "Weapon Training, 3")
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.None, "1d4", pierce: true)
+                                .WithWeaponCharacteristic("Bite", "Weapon Training, 1")
                                 .BuildAndReset();
 
             yield return builder.HasName("Dryad")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .HasDescriptionFile(@"Content\Creatures\Dryad\description.md")
+                                .HasSkin("Treelike bark")
+                                .HasHair("A canopy of leaves that change colors with the seasons")
+                                .HasPrimaryStats(energy: 14, defense: 3, speed: 60)
+                                .HasRacialAbilityScores(strength: 10, agility: 19, focus: 14, charm: 18)
+                                .HasSkills(escapeArtist: 7, animalHandling: 7, stealth: 7, recall: 9, perception: 7, acrobatics: 2, survival: 7, insight: 1)
+                                .WithWeapons("Dagger", "Bow, long")
+                                .WithWeaponCharacteristic("Dagger", "Weapon Training, 6")
+                                .WithWeaponCharacteristic("Bow, long", "Weapon Training, 3")
+                                .WithCharacteristics("Resistance, Physical", "Cat Like Vision")
+                                .WithCharacteristic("Vulnerability, Material", "Iron")
+                                .WithCharacteristic("Speak Language", "Elven")
+                                .WithCharacteristic("Speak Language", "Sylvan")
+                                .WithSpecialCharacteristic("Tree Dependent", @"Content\Creatures\Dryad\tree-dependent.md", -17, CharacteristicType.Flaw)
+                                .WithSpells("Charm", "Compel", "Entangle", "Speak With Entity, Animals")
+                                .WithSpellCharacteristic("Entangle", atWillSpell)
                                 .BuildAndReset();
 
+           
+            // Attack:	Dwarven waraxe +3 melee (1d10+1/x3) or shortbow +1 ranged (1d6/x3)
+            // Full Attack:	Dwarven waraxe +3 melee (1d10+1/x3) or shortbow +1 ranged (1d6/x3)
             yield return builder.HasName("Dwarf Warrior")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .HasDescriptionFile(@"Content\Templates\dwarf.md")
+                                .HasRacialAbilityScores(11, 11, 10, 8)
+                                .HasSkills(insight: 2, engineer: 2, perception: 2)
+                                .HasPrimaryStats(energy: 6, speed: 60)
+                                .WithTemplate("Dwarf")
+                                .WithArmors("Scale Mail", "Shield")
+                                .WithWeapons("Bow, short", "Axe, battle")
+                                .WithWeaponCharacteristic("Bow, short", "Weapon Training, 1")
+                                .WithWeaponCharacteristic("Axe, battle", "Weapon Training, 2")
+                                .WithWeaponCharacteristic("Axe, battle", "Weapon Specialization, 1")                                
                                 .BuildAndReset();
 
             yield return builder.HasName("Dire Ape")
@@ -1621,21 +1604,6 @@ namespace Elixr2.Api.Services.Seeding
                                 .BuildAndReset();
 
             yield return builder.HasName("Dire Badger")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
-                                .BuildAndReset();
-
-            yield return builder.HasName("Dire Bat")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
                                 .WithTemplate("Animal")
                                 .HasAverageHeight("11-12ft")
@@ -1740,21 +1708,6 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
                                 .BuildAndReset();
 
-            yield return builder.HasName("Dire Weasel")
-                                .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
-                                .WithTemplate("Animal")
-                                .HasAverageHeight("11-12ft")
-                                .HasRacialAbilityScores(strength: 19, agility: 12, focus: -1, charm: 2)
-                                .HasSkills(stealth: 6, perception: 5, swim: 8, insight: 2, survival: 2)
-                                .WithMod("Energy", 22)
-                                .WithMod("Defense", 4)
-                                .WithMod("Speed", 60)
-                                .WithCharacteristic("Natural Swimmer")
-                                .WithCharacteristic("Camoflage", "When in water")
-                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8")
-                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
-                                .BuildAndReset();
-
             yield return builder.HasName("Dire Wolf")
                                 .HasDescriptionFile(@"Content\Creatures\Crocodile\description.md")
                                 .WithTemplate("Animal")
@@ -1770,6 +1723,161 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
                                 .BuildAndReset();
         }
+
+        /* E Creatures (Checked) 12
+        Eagle
+        Earth Elemental
+        Earth Mephit
+        Efreeti
+        Elf Warrior
+        Erinyes (Devil based on greek mythology)
+        Equestrian Animals: (war) pony, (heavy/light) Horse, (heavy/light) Warhorse
+
+        F Creatures (Checked) 6
+        Fire Elemental
+        Fire Giant
+        Fire Mephit
+        Formians...
+        Frost Worm
+        Frost Giant
+
+        G Creatures (Check) 14
+        Gargoyle
+        Ghoul
+        Giant Constrictor Snake
+        Giant Eagle
+        Giant Owl
+        Glabrezu
+        Gnoll
+        Gnome Warrior
+        Goblin Warrior
+        Gray Ooze
+        Green Hag
+        Griffin
+        Grig
+        Gynosphinx
+
+        H Creatures (Check) 13
+        Halfling warrior
+        Harpy (+ Archer?)
+        Hawk
+        Hell Hound
+        Hezrou
+        Hieracosphinx
+        Hill Giant
+        Hippogriff
+        Horned Devil
+        Hound Archon Warrior
+        Human Warrior,
+        Human Warrior Skeleton
+        Hyena
+
+        I Creatures (Check) 3
+        Ice Devil
+        Ice Mephit
+        Imp
+
+        J Creatures (Check) 1
+        Janni
+
+        K Creatures  (Check) 2
+        Kobold Warrior,
+        Kraken
+
+        L Creatures (Check) 4
+        Leopard
+        Lion
+        Lizard
+        Locust Swarm
+
+        M creatures (Check) 11
+        Magma Mephit
+        Manticore
+        Magmin (Plane of Fire creature)
+        Medusa
+        Mimic
+        Minotaur
+        Monkey
+        Merfolk
+        Merrow
+        Mummy
+
+        N Creatures (Check) 4
+        Nalfeshnee
+        Nightmare
+        Nixie
+        Nymph
+
+        O Creatures (Check) 7
+        Octopus
+        Ogre Warrior
+        Ogre Zombie
+        Ooze Mephit
+        Orc Warrior
+        Orca
+        Owl
+
+        P Creatures  (Check) 4
+        Pegasus
+        Pixie
+        Polar Bear
+        Porpoise
+
+        R Creatures  (Check) 6
+        Rat 
+        Rat Swarm
+        Raven
+        Rhino
+        Riding Dog
+        Roc
+
+        S Creatures  (Check) 13
+        Salamander (elemental plane of fire)
+        Salt Mephit
+        Satyr
+        Sea Hag
+        Shadow
+        Shambling Mound
+        Spider Swarm
+        Spectre
+        Sprite
+        Squid
+        Steam Mephit
+        Stone Giant
+        Succubus
+
+        T Creatures (Check) 5
+        Tiger
+        Toad
+        Treant
+        Troll
+        Troll Skeleton
+
+        U Creatures (Check) 1
+        Unicorn
+
+        V Creatures (Check) 1
+        Vampire, Human
+
+        W Creatures (Check) 12
+        Water Elemental
+        Water Mephit
+        Weasel
+        Werewolf (Other were(s)?)
+        Wight
+        Will-O'-Wisp
+        Wolf
+        Wolverine
+        Worg
+        Wraith
+        Wyvern
+
+        V Creatures: (Checked) 6
+        Vermin: spiders, snakes, scorpions, centipedes, vipers, sharks, all sizes
+
+        Z Creatures (Check) 1
+        Human Zombie
+         */
         private IEnumerable<Creature> AddCreaturesStartingWithG(CreatureBuilderContext ctx)
         {
             var builder = new CreatureBuilder(ctx);
@@ -1811,7 +1919,7 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithMod("Speed", 80) // todo: what is this?
                                 .BuildAndReset();
 
-
+            //todo: golem, flesh
             yield return builder.HasName("Golem, Clay")
                                 .HasDescriptionFile(@"Content\Creatures\NightmareCauchemar\description.md")
                                 .WithCharacteristic("Huge")
@@ -1925,22 +2033,6 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithSpecialCharacteristic("Ink Cloud", @"Creatures\Tojanida\ink-cloud-md", 3)
                                 .WithSpecialCharacteristic("All-Around Vision", " The multiple apertures in a tojanida’s shell allow it to look in any direction. Opponents gain no flanking bonuses when attacking a tojanida.", 3)
                                 .BuildAndReset();
-            yield return creature;
-        }
-
-        private IEnumerable<Creature> AddCreaturesStartingWithY(CreatureBuilderContext ctx)
-        {
-            // TODO: Finish this creature. Only partly done as an example.
-            var builder = new CreatureBuilder(ctx);
-            var creature = builder.HasName("Yrthak")
-                .HasDescriptionFile(@"Content\Creatures\Yrthak\description.md")
-                .HasAverageHeight("20ft long, wing span 40ft")
-                .HasAverageWeight("5000lbs.")
-                .HasSkin("yellowish green")
-                .WithCharacteristic("Huge")
-                .HasRacialAbilityScores(strength: 16, agility: 18, focus: 10, charm: 11)
-                .HasSkills(perception: 12, stealth: 12)
-                .BuildAndReset();
             yield return creature;
         }
 

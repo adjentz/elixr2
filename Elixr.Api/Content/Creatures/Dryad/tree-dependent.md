@@ -1,0 +1,1 @@
+Each dryad is mystically bound to a single, enormous oak tree and must never stray more than 300 yards from it. Any who do become ill and die within 4d6 hours. A dryad’s oak does not radiate magic.
