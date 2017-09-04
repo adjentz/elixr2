@@ -336,7 +336,7 @@ namespace Elixr2.Api.Services.Seeding
                     .HasSpecificPowerAdjustment(3)
                     .Build());
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 12; i++)
             {
                 builder = new CharacteristicBuilder(standardCampaignSetting);
                 dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)

@@ -900,6 +900,13 @@ namespace Elixr2.Api.Services.Seeding
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\non-lethal.md", "15ft")
                                                         .Build());
 
+            builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            dbContext.WeaponCharacteristics.Add(builder.HasName("Leech, 1d8")
+                                                        .HasSpecificPower(12)
+                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\leech.md", "1d8")
+                                                        .Build());
+
+
 
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);

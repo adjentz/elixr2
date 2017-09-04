@@ -1,0 +1,1 @@
+Any humanoid slain by a dread wraith becomes a wraith in 1d4 rounds. Its body remains intact and inanimate, but its spirit is torn free from its corpse and transformed. Spawn are under the command of the wraith that created them and remain enslaved until its death. They do not possess any of the abilities they had in life.

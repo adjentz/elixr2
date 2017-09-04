@@ -228,6 +228,11 @@ namespace Elixr2.Api.Services.Seeding
             perform.ParentStat = charmScore;
             perform.Order = 3;
             standardCampaignSetting.Stats.Add(perform);
+
+            Stat threaten = new Stat("Threaten", StatGroup.Skill, 1);
+            threaten.ParentStat = charmScore;
+            threaten.Order = 2;
+            standardCampaignSetting.Stats.Add(threaten);
         }
         private void AddChildStats()
         {

@@ -1,0 +1,1 @@
+Wraiths are utterly powerless in natural sunlight (not merely a daylight spell) and flee from it.

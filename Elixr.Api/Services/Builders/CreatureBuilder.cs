@@ -140,10 +140,10 @@ namespace Elixr2.Api.Services.Seeding.Builders
             return this;
         }
 
-        public CreatureBuilder HasSkills(int athletics = 0, int climb = 0, int intimidate = 0, int swim = 0,
-        int acrobatics = 0, int escapeArtist = 0, int initiative = 0, int sleightOfHand = 0, int stealth = 0,
-        int concentration = 0, int engineer = 0, int insight = 0, int medicine = 0, int perception = 0, int recall = 0, int survival = 0,
-        int animalHandling = 0, int deception = 0, int diplomacy = 0, int perform = 0)
+        public CreatureBuilder HasSkills(int athletics = 0, int climb = 0, int intimidate = 0, int swim = 0, // strength skills
+        int acrobatics = 0, int escapeArtist = 0, int initiative = 0, int sleightOfHand = 0, int stealth = 0, // agility skills
+        int concentration = 0, int engineer = 0, int insight = 0, int medicine = 0, int perception = 0, int recall = 0, int survival = 0, // focus skills
+        int animalHandling = 0, int deception = 0, int diplomacy = 0, int perform = 0, int threaten = 0) // charm skills
         {
             return this.WithMod("Athletics", athletics)
                         .WithMod("Climb", climb)
@@ -164,7 +164,8 @@ namespace Elixr2.Api.Services.Seeding.Builders
                         .WithMod("Animal Handling", animalHandling)
                         .WithMod("Deception", deception)
                         .WithMod("Diplomacy", diplomacy)
-                        .WithMod("Perform", perform);
+                        .WithMod("Perform", perform)
+                        .WithMod("Threaten", threaten);
         }
         public CreatureBuilder WithMod(string stat, int mod, string reason = null)
         {
@@ -189,6 +190,14 @@ namespace Elixr2.Api.Services.Seeding.Builders
 
             return this;
         }
+        public CreatureBuilder WithTemplates(params string[] templateNames)
+        {
+            foreach (var name in templateNames)
+            {
+                WithTemplate(name);
+            }
+            return this;
+        }
         public CreatureBuilder WithTemplate(string templateName, string notes = null)
         {
             var template = context.Templates.First(t => t.Name.ToLower() == templateName.ToLower());
@@ -198,6 +207,14 @@ namespace Elixr2.Api.Services.Seeding.Builders
                 TemplateId = template.Id,
                 Notes = notes
             });
+            return this;
+        }
+        public CreatureBuilder WithCharacteristics(params string[] names)
+        {
+            foreach (var name in names)
+            {
+                WithCharacteristic(name);
+            }
             return this;
         }
         public CreatureBuilder WithCharacteristic(string name, string notes = null)
@@ -214,6 +231,14 @@ namespace Elixr2.Api.Services.Seeding.Builders
             return this;
         }
 
+        public CreatureBuilder WithArmors(params string[] armorNames)
+        {
+            foreach (var name in armorNames)
+            {
+                WithArmor(name);
+            }
+            return this;
+        }
         public CreatureBuilder WithArmor(string armorName, string notes = null)
         {
             var armor = context.Armors.First(a => a.Name.ToLower() == armorName.ToLower());
@@ -246,6 +271,15 @@ namespace Elixr2.Api.Services.Seeding.Builders
             {
                 CharacteristicId = characteristic.Id,
             });
+            return this;
+        }
+
+        public CreatureBuilder WithWeapons(params string[] weaponNames)
+        {
+            foreach (var name in weaponNames)
+            {
+                WithWeapon(name);
+            }
             return this;
         }
         public CreatureBuilder WithWeapon(string spellName, string notes = null)
@@ -285,6 +319,15 @@ namespace Elixr2.Api.Services.Seeding.Builders
                 Notes = notes ?? "Natural Weapon",
                 Weapon = weapon
             });
+            return this;
+        }
+
+        public CreatureBuilder WithSpells(params string[] spellNames)
+        {
+            foreach (var name in spellNames)
+            {
+                WithSpell(name);
+            }
             return this;
         }
         public CreatureBuilder WithSpell(string spellName, string notes = null)

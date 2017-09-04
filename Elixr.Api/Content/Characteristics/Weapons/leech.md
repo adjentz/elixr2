@@ -1,0 +1,1 @@
+When an attack with this weapon succeeds, an additional damage of {0} is dealt to the target. Half of this damage roll is then added to the Energy Buffer of the creature wielding this weapon.

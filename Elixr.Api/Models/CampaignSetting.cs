@@ -19,6 +19,7 @@ namespace Elixr2.Api.Models
         public List<StatMod> InitialMods { get; set; } = new List<StatMod>();
         public List<StatMod> ModsEachLevel { get; set; } = new List<StatMod>();
         public List<Stat> Stats { get; set; } = new List<Stat>();
+
     }
 
 }
