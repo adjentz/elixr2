@@ -1539,7 +1539,6 @@ namespace Elixr2.Api.Services.Seeding
                         .BuildAndReset();
 
 
-// Special Attacks:	Constitution drain
             yield return builder.HasName("Dread Wraith")
                                 .HasDescriptionFile(@"Content\Creatures\DreadWraith\description.md")
                                 .WithTemplates("Undead", "Incorporeal")
