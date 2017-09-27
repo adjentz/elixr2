@@ -323,7 +323,7 @@ namespace Elixr2.Api.Services.Seeding
 
             try
             {
-                creatures = creatures.ToList();
+                creatures = creatures.Where(c => c != null).ToList();
             }
             catch(System.Exception ex)
             {

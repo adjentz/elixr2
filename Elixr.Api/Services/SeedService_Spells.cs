@@ -382,6 +382,14 @@ namespace Elixr2.Api.Services.Seeding
                                 .Build());
 
             builder = new SpellBuilder(standardCampaignSetting);
+            dbContext.Spells.Add(builder.HasName("Wall, Fire")
+                                .HasDescriptionFile(@"Content\Spells\fire-wall.md")
+                                .HasEnergyRequirement("1/5ft² of wall created")
+                                .MarkConcentration(false)
+                                .MarkDoesDamage(false)
+                                .Build());
+
+            builder = new SpellBuilder(standardCampaignSetting);
             dbContext.Spells.Add(builder.HasName("Detect Thoughts")
                                 .HasDescriptionFile(@"Content\Spells\detect-thoughts.md")
                                 .HasEnergyRequirement("1/1d8 to overcome target's Concentration Defense")
@@ -397,7 +405,24 @@ namespace Elixr2.Api.Services.Seeding
                                 .MarkDoesDamage(false)
                                 .Build());
 
-                                //TODO: Debuff, maybe?
+            builder = new SpellBuilder(standardCampaignSetting);
+            dbContext.Spells.Add(builder.HasName("Alter Size")
+                                .HasDescriptionFile(@"Content\Spells\alter-size.md")
+                                .HasEnergyRequirement("4/Size Category Change")
+                                .MarkConcentration(true)
+                                .MarkDoesDamage(false)
+                                .Build());
+
+            //TODO: Debuff, maybe?
+
+
+            builder = new SpellBuilder(standardCampaignSetting);
+            dbContext.Spells.Add(builder.HasName("Alter Reality")
+                                .HasDescriptionFile(@"Content\Spells\alter-reality.md")
+                                .HasEnergyRequirement("Varies by GM")
+                                .MarkConcentration(false)
+                                .MarkDoesDamage(false)
+                                .Build());
         }
 
         private void AddSpellCharacteristics()

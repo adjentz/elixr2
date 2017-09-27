@@ -207,6 +207,16 @@ namespace Elixr2.Api.Services.Seeding
                                   .Build());
 
             builder = new TemplateBuilder(standardCampaignSetting, characteristics, spells, spellCharacteristics);
+            dbContext.Templates.Add(builder.HasName("Elemental")
+                                  .HasDescription("An elemental is a being composed of one of the four classical elements: air, earth, fire, or water.")
+                                  .WithCharacteristic("Darkvision")
+                                  .WithCharacteristic("Ignores Critical Damage") 
+                                  .WithSpecialCharacteristic("No Metabolism", "Immunity to poision, sleep effects, stunning, and disease.\n\nAn Elemental does not need to sleep, breathe, or eat.", 13)                                   
+                                  .WithSpecialCharacteristic("Resurrection Differences", "The spell Resurrection can be used to bring an undead Creature back to life.\n\nThe time the undead creature spent reanimated counts against the rule regarding how long concentration is needed for the Resurrection spell.", -1, CharacteristicType.Flaw)                                
+                                  .AsRace(false)
+                                  .Build());
+
+            builder = new TemplateBuilder(standardCampaignSetting, characteristics, spells, spellCharacteristics);
             dbContext.Templates.Add(builder.HasName("Swarm")
                                   .HasDescription("A swarm is a collection of Minute or Tiny creatures that acts as a single creature.")
                                   .WithCharacteristic("Ignores Critical Damage")

@@ -47,8 +47,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Dodge")
                     .HasDescriptionFile("Content\\Features\\dodge.md")
-                    .HasSpecificPowerAdjustment(3)
-                    .WithMod("Defense", 1)
+                    .HasSpecificPowerAdjustment(2)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
