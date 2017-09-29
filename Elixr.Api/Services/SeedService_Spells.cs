@@ -136,13 +136,13 @@ namespace Elixr2.Api.Services.Seeding
                                 .MarkDoesDamage(false)
                                 .Build());
 
-            builder = new SpellBuilder(standardCampaignSetting);
-            dbContext.Spells.Add(builder.HasName("Reveal")
-                                .HasDescriptionFile("Content\\Spells\\reveal.md")
-                                .HasEnergyRequirement("1d6/Channeled to overcome a creature's Concentration Defense.")
-                                .MarkConcentration(true)
-                                .MarkDoesDamage(false)
-                                .Build());
+            // builder = new SpellBuilder(standardCampaignSetting);
+            // dbContext.Spells.Add(builder.HasName("Conceal")
+            //                     .HasDescriptionFile("Content\\Spells\\conceal.md")
+            //                     .HasEnergyRequirement("1d4/Channeled to increase Effective Concentration Defense")
+            //                     .MarkConcentration(true)
+            //                     .MarkDoesDamage(false)
+            //                     .Build());
 
             string[] entities = new string[] { "Animals", "Plants", "Dead" };
             foreach (var entity in entities)
@@ -423,6 +423,24 @@ namespace Elixr2.Api.Services.Seeding
                                 .MarkConcentration(false)
                                 .MarkDoesDamage(false)
                                 .Build());
+
+            builder = new SpellBuilder(standardCampaignSetting);
+            dbContext.Spells.Add(builder.HasName("Mend")
+                                .HasDescriptionFile("Content\\Spells\\mend.md")
+                                .HasEnergyRequirement("1/2 points of object damage to repair")
+                                .MarkConcentration(true)
+                                .MarkDoesDamage(false)
+                                .Build());
+
+            builder = new SpellBuilder(standardCampaignSetting);
+            dbContext.Spells.Add(builder.HasName("Anti-Magic")
+                                .HasDescriptionFile("Content\\Spells\\anti-magic.md")
+                                .HasEnergyRequirement("1:1 to reduce Effective Channeled Energy")
+                                .MarkConcentration(true)
+                                .MarkDoesDamage(false)
+                                .Build());
+
+            //summon/banish
         }
 
         private void AddSpellCharacteristics()

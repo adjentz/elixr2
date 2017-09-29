@@ -1,0 +1,1 @@
+This spell allows the caster to fix an inanimate, non-magical object. For every point of Energy Channeled, the object regains two Hit Points. If the object is in multiple pieces, it reassembles itself.

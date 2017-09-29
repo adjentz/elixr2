@@ -333,7 +333,7 @@ namespace Elixr2.Api.Services.Seeding
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Spell Resistance")
                     .HasDescriptionFile(@"Content\Features\spell-resistance.md")
-                    .HasSpecificPowerAdjustment(3)
+                    .HasSpecificPowerAdjustment(15)
                     .Build());
 
             for (int i = 0; i < 12; i++)

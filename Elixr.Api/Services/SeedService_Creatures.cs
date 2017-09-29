@@ -147,37 +147,6 @@ namespace Elixr2.Api.Services.Seeding
 
             yield return creature;
 
-            /*
-                        builder = new CreatureBuilder(ctx);
-                        creature = builder.HasName("Air Mephit")
-                                        .HasDescriptionFile(@"Content\Creatures\AirMephit\description.md")
-                                        .HasAverageHeight("4ft")
-                                        .HasAverageWeight("1lbs")
-                                        .HasRacialAbilityScores(strength: 12, agility: 15, focus: 8, charm: 15)
-                                        .HasSkills(initiative: 4, deception: 6, escapeArtist: 6, stealth: 8, diplomacy: 2, intimidate: 4, perception: 7, survival: 4, perform: 1)
-                                        .WithMod("Energy", 13)
-                                        .WithMod("Defense", 3)
-                                        .WithMod("Speed", 70)
-                                        .WithNaturalWeapon("Claw", WeaponUseAbility.Agility, WeaponUseAbility.Strength, "1d3")
-                                        .WithWeaponCharacteristic("Claw", "Weapon Training, 1")
-                                        .WithCharacteristic("Speak Language", "Auran")
-                                        .WithCharacteristic("Small")
-                                        .WithCharacteristic("Natural Flyer")
-                                        .WithCharacteristic("Darkvision")
-                                        .WithCharacteristic("Resistance, Slashing")
-                                        .WithCharacteristic("Resistance, Bludgeoning")
-                                        .WithCharacteristic("Resistance, Piercing")
-                                        .WithSpecialCharacteristic("Breath Weapon", @"Content\Creatures\AirMephit\breath-weapon.md", 11)
-                                        .WithCharacteristic("Fast Healing, 2", "Air mephits can only heal if exposed to moving air, be it a breeze, a draft, a spell effect, or even the mephit fanning itself.")
-                                        .WithSpell("Blur", "Air mephit surrounds itself with vapor")
-                                        .WithSpell("Gust")
-                                        .WithSpellCharacteristic("Blur", atWillSpell)
-                                        .WithSpellCharacteristic("Gust", atWillSpell)
-                                        .BuildAndReset();
-
-
-                        yield return creature;
-            */
             builder = new CreatureBuilder(ctx);
             creature = builder.HasName("Allip")
                             .HasDescriptionFile(@"Content\Creatures\Allip\description.md")
@@ -1809,228 +1778,172 @@ namespace Elixr2.Api.Services.Seeding
         private IEnumerable<Creature> SeedCreaturesStartingWithF(CreatureBuilderContext context)
         {
             yield return null;
-            //             MEDIUM FIRE ELEMENTAL
-
-            // Medium Fire Elemental
-            // Size/Type:	Medium Elemental (Fire, Extraplanar)
-            // Hit Dice:	4d8+8 (26 hp)
-            // Initiative:	+7
-            // Speed:	50 ft. (10 squares)
-            // Armor Class:	16 (+3 Dex, +3 natural), touch 13, flat-footed 13
-            // Full Attack:	Slam +6 melee (1d6+1 plus 1d6 fire)
-            // Special Attacks:	Burn
-            // Special Qualities:	Darkvision 60 ft., elemental traits, immunity to fire, vulnerability to cold
-            // Abilities:	Str 12, Dex 17, Con 14, Int 4, Wis 11, Cha 11
-            // Skills:	Listen +3, Spot +4
-            // Feats:	Dodge, Improved InitiativeB, Mobility, Weapon FinesseB
-
-
-            // A fire elemental cannot enter water or any other nonflammable liquid. A body of water is an impassible barrier unless the fire elemental can step or jump over it.
-
-            // Fire elementals speak Ignan, though they rarely choose to do so.
-
-            // COMBAT
-
-            // A fire elemental is a fierce opponent that attacks its enemies directly and savagely. It takes joy in burning the creatures and objects of the Material Plane to ashes.
-
-            // Burn (Ex): A fire elemental’s slam attack deals bludgeoning damage plus fire damage from the elemental’s flaming body. Those hit by a fire elemental‘s slam attack also must succeed on a Reflex save or catch on fire. The flame burns for 1d4 rounds. The save DC varies with the elemental’s size (see the table below). A burning creature can take a move action to put out the flame. The save DC is Constitution- based.
-
-            // Creatures hitting a fire elemental with natural weapons or unarmed attacks take fire damage as though hit by the elemental’s attack, and also catch on fire unless they succeed on a Reflex save.
-
-            // Fire Elemental Sizes
-            // Elemental	Height	Weight	Burn Save DC
-            // Medium	8 ft.	2 lb.	14
-
-            //             FIRE GIANT
-
-            // Size/Type:	Large Giant (Fire)
-            // Hit Dice:	15d8+75 (142 hp)
-            // Initiative:	–1
-            // Speed:	30 ft. in half-plate armor (6 squares); base speed 40 ft.
-            // Armor Class:	23 (–1 size, –1 Dex, +8 natural, +7 half-plate armor), touch 8, flat-footed 23
-            // Full Attack:	Greatsword +20/+15/+10 melee (3d6+15) or 2 slams +20 melee (1d4+10) or rock +10 ranged (2d6+10 plus 2d6 fire)
-            // Special Attacks:	Rock throwing
-            // Special Qualities:	Immunity to fire, low-light vision, rock catching, vulnerability to cold
-            // Abilities:	Str 31, Dex 9, Con 21, Int 10, Wis 14, Cha 11
-            // Skills:	Climb +9, Craft (any one) +6, Intimidate +6, Jump +9, Spot +14
-            // Feats:	Cleave, Great Cleave, Improved Overrun, Improved Sunder, Iron Will, Power Attack
-
-            // Some fire giants have bright orange hair.. An adult male is 12 feet tall, has a chest that measures 9 feet around, and weighs about 7,000 pounds. Females are slightly shorter and lighter. Fire giants can live to be 350 years old.
-
-            // Fire giants wear sturdy cloth or leather garments colored red, orange, yellow, or black. Warriors wear helmets and half-plate armor of blackened steel.
-
-            // COMBAT
-
-            // Fire giants heat their rocks in a nearby fire, geyser, or lava pools, so that they deal extra fire damage. They favor magic flaming swords in melee (when they can get them). They are also fond of grabbing smaller opponents and tossing them somewhere very hot.
-
-            // Rock Throwing (Ex): The range increment is 120 feet for a fire giant’s thrown rocks.
-
-            //             FORMIAN WORKER
-
-            // Formian Worker
-            // Size/Type:	Small Outsider (Lawful, Extraplanar)
-            // Hit Dice:	1d8+1 (5 hp)
-            // Initiative:	+2
-            // Speed:	40 ft. (8 squares)
-            // Armor Class:	17 (+1 size, +2 Dex, +4 natural), touch 13, flat-footed 15
-            // Full Attack:	Bite +3 melee (1d4+1)
-            // Special Qualities:	Cure serious wounds, hive mind, immunity to poison, petrification, and cold, make whole, resistance to electricity 10, fire 10, and sonic 10
-            // Abilities:	Str 13, Dex 14, Con 13, Int 6, Wis 10, Cha 9
-            // Skills:	Climb +10, Craft (any one) +5, Hide +6, Listen +4, Search +2, Spot +4
-            // Feats:	Skill Focus (Craft [selected skill])
-
-            // A formian resembles a cross between an ant and a centaur. All formians are covered in a brownish-red carapace; size and appearance differs for each variety.
-
-            // While workers cannot speak, they can convey simple concepts (such as danger) by body movements. Through the hive mind, however, they can communicate just fine—although their intelligence still limits the concepts that they can grasp.
-
-            // A worker is about 3 feet long and about 2-1/2 feet high at the front. It weighs about 60 pounds. Its hands are suitable only for manual labor.
-
-            // COMBAT
-
-            // Formians are generally aggressive, seeking to subdue all they encounter. If they perceive even the slightest threat to their hive-city or to their queen, they attack immediately and fight to the death. Any formian also attacks immediately if ordered to do so by a superior.
-
-            // Hive Mind (Ex): All formians within 50 miles of their queen are in constant communication. If one is aware of a particular danger, they all are. If one in a group is not flatfooted, none of them are. No formian in a group is considered flanked unless all of them are.
-
-            // Formian workers fight only to defend their hive-cities, using their mandibled bite.
-
-            // A formian worker’s natural weapons, as well as any weapons it wields, are treated as lawful-aligned for the purpose of overcoming damage reduction.
-
-            // Cure Serious Wounds (Sp): Eight workers together can heal a creature’s wounds as though using the cure serious wounds spell (caster level 7th). This is a full-round action for all eight workers.
-
-            // Make Whole (Sp): Three workers together can repair an object as though using the make whole spell (caster level 7th). This is a fullround action for all three workers.
-
-            //             FORMIAN WARRIOR
-
-            // Formian Warrior
-            // Size/Type:	Medium Outsider (Lawful, Extraplanar)
-            // Hit Dice:	4d8+8 (26 hp)
-            // Initiative:	+3
-            // Speed:	40 ft. (8 squares)
-            // Armor Class:	18 (+3 Dex, +5 natural), touch 13, flat-footed 15
-            // Full Attack:	Sting +7 melee (2d4+3 plus poison) and 2 claws +5 melee (1d6+1) and bite +5 melee (1d4+1)
-            // Special Attacks:	Poison
-            // Special Qualities:	Hive mind, immunity to poison, petrification, and cold, resistance to electricity 10, fire 10, and sonic 10, spell resistance 18
-            // Abilities:	Str 17, Dex 16, Con 14, Int 10, Wis 12, Cha 11
-            // Skills:	Climb +10, Hide +10, Jump +14, Listen +8, Move Silently +10, (+3 following tracks), Tumble +12
-            // Feats:	Dodge, Multiattack
-
-            // A formian resembles a cross between an ant and a centaur. All formians are covered in a brownish-red carapace; size and appearance differs for each variety.
-
-            // Warriors communicate through the hive mind to convey battle plans and make reports to their commanders. They cannot speak otherwise.
-
-            // A warrior is about is about 5 feet long and about 4-1/2 feet high at the front. It weighs about 180 pounds.
-
-            // COMBAT
-
-            // Formians are generally aggressive, seeking to subdue all they encounter. If they perceive even the slightest threat to their hive-city or to their queen, they attack immediately and fight to the death. Any formian also attacks immediately if ordered to do so by a superior.
-
-            // Hive Mind (Ex): All formians within 50 miles of their queen are in constant communication. If one is aware of a particular danger, they all are. If one in a group is not flatfooted, none of them are. No formian in a group is considered flanked unless all of them are.
-
-            // Warriors are wicked combatants, using claws, bite, and a poisonous sting all at once. Through the hive mind, they attack with coordinated and extremely efficient tactics.
-
-            // A formian warrior’s natural weapons, as well as any weapons it wields, are treated as lawful-aligned for the purpose of overcoming damage reduction.
-
-            // Poison (Ex): Injury, Fortitude DC 14, initial and secondary damage 1d6 Str. The save DC is Constitution-based.
-
-            //             FORMIAN QUEEN
-
-            // Formian Queen
-            // Size/Type:	Large Outsider (Lawful, Extraplanar)
-            // Hit Dice:	20d8+100 (190 hp)
-            // Initiative:	–5
-            // Speed:	0 ft.
-            // Armor Class:	23 (–1 size, +14 natural), touch 9, flat-footed 23
-            // Space/Reach:	10 ft./5 ft.
-            // Special Attacks:	Spell-like abilities, spells
-            // Special Qualities:	fast healing 2, hive mind, immunity to poison, petrification, and cold, resistance to electricity 10, fire 10, and sonic 10, spell resistance 30, telepathy
-            // Abilities:	Str —, Dex —, Con 20, Int 20, Wis 20, Cha 21
-            // Skills:	Appraise +28, Bluff +28, Concentration +28, Diplomacy +32, Disguise +5 (+7 acting), Intimidate +30, Knowledge (any three) +28, Listen +30, Sense Motive +28, Spellcraft +28 (+30 scrolls), Spot +30, Use Magic Device +28 (+30 scrolls)
-            // Feats:	Alertness, Eschew MaterialsB, Great Fortitude, Improved Counterspell, Iron Will, item creation feat (any one), Maximize Spell, Spell Focus (enchantment)
-
-            // A formian queen resembles a cross between an ant and a centaur. Formian queens are covered in a brownish-red carapace; size and appearance differs for each variety. The formian queen cannot move. With her telepathic abilities, though, she can send instructions to and get reports from any formian within her range.
-
-            // She is about 10 feet long, perhaps 4 feet high, and weighs about 3,500 pounds.
-
-            // The queen speaks Formian and Common, although she can communicate with any creature telepathically.
-
-            // COMBAT
-
-            // Formians are generally aggressive, seeking to subdue all they encounter. If they perceive even the slightest threat to their hive-city or to their queen, they attack immediately and fight to the death. Any formian also attacks immediately if ordered to do so by a superior.
-
-            // Hive Mind (Ex): All formians within 50 miles of their queen are in constant communication. If one is aware of a particular danger, they all are. If one in a group is not flatfooted, none of them are. No formian in a group is considered flanked unless all of them are.
-
-            // The queen does not fight. She has no ability to move. If necessary, a team of workers and myrmarchs (or dominated slaves) haul her enormous bulk to where she needs to go. This sort of occurrence is very rare, however, and most of the time the queen remains within her well-defended chambers.
-
-            // Despite her utter lack of physical activity, the queen can cast spells and use spell-like abilities to great effect in her own defense as well as the defense of the hive-city.
-
-            // Spells: The queen casts arcane spells as a 17th-level sorcerer.
-
-            // Typical Sorcerer Spells Known (6/8/7/7/7/7/6/6/4, base save DC 15 + spell level): 0—acid splash, arcane mark, daze, detect magic, light, mage hand, read magic, resistance, touch of fatigue; 1st—comprehend languages, identify, mage armor, magic missile, shield; 2nd— hypnotic pattern, invisibility, protection from arrows, resist energy, scorching ray; 3rd—dispel magic, heroism, nondetection, slow; 4th— confusion, detect scrying, black tentacles, scrying; 5th—cone of cold, dismissal, teleport, wall of force; 6th—analyze dweomer, geas/quest, repulsion; 7th—summon monster vii, vision, waves of exhaustion; 8th—prismatic wall, temporal stasis.
-
-            // Spell-Like Abilities: At will—calm emotions (DC 17), charm monster (DC 19), clairaudience/clairvoyance, detect chaos, detect thoughts, dictum (DC 22), divination, hold monster (DC 20), magic circle against chaos, order’s wrath (DC 19), shield of law (DC 23), true seeing. Caster level 17th. The save DCs are Charisma-based.
-
-            // Telepathy (Su): The queen can communicate telepathically with any intelligent creature within 50 miles whose presence she is aware of.
-
-            //             FROST WORM
-
-            // Size/Type:	Huge Magical Beast (Cold)
-            // Hit Dice:	14d10+70 (147 hp)
-            // Initiative:	+4
-            // Speed:	30 ft. (6 squares), burrow 10 ft.
-            // Armor Class:	18 (–2 size, +10 natural), touch 8, flat-footed 18
-            // Full Attack:	Bite +21 melee (2d8+12 plus 1d8 cold)
-            // Special Attacks:	Trill, cold, breath weapon
-            // Special Qualities:	Darkvision 60 ft., death throes, immunity to cold, low-light vision, vulnerability to fire
-            // Abilities:	Str 26, Dex 10, Con 20, Int 2, Wis 11, Cha 11
-            // Skills:	Hide +3*, Listen +5, Spot +5
-            // Feats:	Alertness, Improved Initiative, Improved Natural Attack (bite), Iron Will, Weapon Focus (bite)
-
-            // A frost worm cannot burrow through stone, but can manage ice and frozen earth. When moving through such hard materials it leaves behind a usable tunnel about 5 feet in diameter.
-
-            // A frost worm is about 40 feet long, 5 feet in diameter, and weighs about 8,000 pounds.
-
-            // COMBAT
-
-            // Frost worms lurk under the snow, waiting for prey to come near.
-
-            // They begin an attack with a trill and then set upon helpless prey with their bite.
-
-            // Trill (Su): A frost worm can emit a noise that forces its prey to stand motionless. This sonic mind-affecting compulsion affects all creatures other than frost worms within a 100-foot radius. Creatures must succeed on a DC 17 Will save or be stunned for as long as the worm trills and for 1d4 rounds thereafter, even if they are attacked. However, if attacked or violently shaken (a full-round action), a victim is allowed another saving throw. Once a creature has resisted or broken the effect, it cannot be affected again by that same frost worm’s trill for 24 hours. The effect’s caster level is 14th. The save DC is Charisma-based.
-
-            // Cold (Ex): A frost worm’s body generates intense cold, causing opponents to take an extra 1d8 points of cold damage every time the creature succeeds on a bite attack. Creatures attacking a frost worm unarmed or with natural weapons take this same cold damage each time one of their attacks hits.
-
-            // Breath Weapon (Su): 30-foot cone, once per hour, damage 15d6 cold, Reflex DC 22 half. Opponents held motionless by the frost worm’s trill get no saving throw. The save DC is Constitution-based.
-
-            // Death Throes (Ex): When killed, a frost worm turns to ice and shatters in an explosion that deals 12d6 points of cold damage and 8d6 points of piercing damage to everything within 100 feet (Reflex half DC 22). The save DC is Constitution-based.
-
-            // FROST GIANT
-
-            // Frost Giant
-            // Size/Type:	Large Giant (Cold)
-            // Hit Dice:	14d8+70 (133 hp)
-            // Initiative:	–1
-            // Speed:	40 ft. (8 squares)
-            // Armor Class:	21 (–1 size, –1 Dex, +9 natural, +4 chain shirt), touch 8, flat-footed 21
-            // Full Attack:	Huge greataxe +18/+13 melee (3d6+13/x3) or 2 slams +18 melee (1d4+9) or rock +9 ranged (2d6+9)
-            // Special Attacks:	Rock throwing
-            // Special Qualities:	Immunity to cold, low-light vision, rock catching, vulnerability to fire
-            // Abilities:	Str 29, Dex 9, Con 21, Int 10, Wis 14, Cha 11
-            // Skills:	Climb +13, Craft (any one) +6, Intimidate +6, Jump +17, Spot +12
-            // Feats:	Cleave, Great Cleave, Improved Overrun, Improved Sunder, Power Attack
-
-            // A frost giant’s hair can be light blue or dirty yellow, and its eyes usually match its hair color. Frost giants dress in skins and pelts, along with any jewelry they own. Frost giant warriors add chain shirts and metal helmets decorated with horns or feathers.
-
-            // An adult male is about 15 feet tall and weighs about 2,800 pounds. Females are slightly shorter and lighter, but otherwise identical with males. Frost giants can live to be 250 years old.
-
-            // COMBAT
-
-            // Frost giants usually start combat at a distance, throwing rocks until they run out of ammunition or the opponent closes, then wading in with their enormous battleaxes.
-
-            // A favorite tactic is to lay an ambush by hiding buried in the snow at the top of an icy or snowy slope, where opponents will have difficulty reaching them.
-
-            // Rock Throwing (Ex): The range increment is 120 feet for a frost giant’s thrown rocks.
-
-
+            var builder = new CreatureBuilder(context);
+
+            var burning = (new WeaponCharacteristicBuilder(context.Setting)).HasName("Burning")
+                                                                            .HasExtraDamage("1d6")
+                                                                            .HasSpecificPower(5)
+                                                                            .HasDescription("Those hit by a slam attack have a 20% chance of catching on fire. The flame burns for 1d4 rounds. At the start of the Elemental's turn, each creature currently aflame takes 1d6 fire damage.\n\nA Creature can extinguish the flames as an action with a Speed Cost of 20ft.")
+                                                                            .Build();
+            yield return builder.HasName("Fire Elemental, Medium")
+                                .WithTemplate("Elemental")
+                                .HasDescription("A humanoid being made entirely of vibrant flames. Fire Elementals reside on the Elemental Plane of Fire.")
+                                .HasAverageHeight("8ft")
+                                .HasAverageWeight("2lbs")
+                                .HasPrimaryStats(energy: 26, defense: 3, speed: 80)
+                                .HasRacialAbilityScores(strength: 12, agility: 17, focus: 4, charm: 11)
+                                .HasSkills(initiative: 4, survival: 3, insight: 3, perception: 6)
+                                .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d8", bludgeon: true)
+                                .WithWeaponCharacteristic("Slam", "Weapon Training, 5")
+                                .WithSpecialWeaponCharacteristic("Slam", burning)
+                                .WithCharacteristic("Speak Language", "Ignan; rarely")
+                                .WithSpecialCharacteristic("Fire Body", "Those that attempt an attack using natural weapons/unarmed strike must also make an Acrobatics check with a Difficulty of 14 or take 1d6 of fire damage", 3)
+                                .WithCharacteristic("Aversion", "Water")
+                                .WithCharacteristics("Vulnerability, Cold", "Immunity, Fire")
+                                .BuildAndReset();
+
+            var heated = (new WeaponCharacteristicBuilder(context.Setting)).HasName("Heated")
+                                                                           .HasDescription("Fire giants heat their rocks in a nearby fire, geyser, or lava pools, so that they deal extra fire damage.")
+                                                                           .HasExtraDamage("1d6")
+                                                                           .Build();
+            yield return builder.HasName("Fire Giant")
+                                .HasDescription("Fire giants wear study cloth or leather garments colored red, orange, yellow, or black.")
+                                .HasAverageHeight("12ft")
+                                .HasAverageWeight("7,000lbs")
+                                .WithCharacteristics("Large", "Immunity, Fire", "Cat Like Vision", "Vulnerability, Cold")
+                                .HasHair("Bright orange")
+                                .HasPrimaryStats(energy: 142, defense: 8, speed: 60)
+                                .HasRacialAbilityScores(strength: 29, agility: 11, focus: 10, charm: 11)
+                                .HasSkills(climb: -1, athletics: -1, insight: 2, survival: 2, perception: 14, engineer: 6)
+                                .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4", bludgeon: true)
+                                .WithWeaponCharacteristic("Slam", "Weapon Training, 10")
+                                .WithNaturalWeapon("Rock Throw", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d6", range: 120, bludgeon: true)
+                                .WithSpecialWeaponCharacteristic("Rock Throw", heated)
+                                .WithArmors("Half Plate")
+                                .WithWeapon("Sword, great", "Some might carry flaming swords instead.")
+                                .WithWeaponCharacteristic("Sword, great", "Weapon Training, 10")
+                                .WithWeaponCharacteristic("Sword, great", "Weapon Specialization, 5")
+                                .BuildAndReset();
+
+            var hiveMind = (new CharacteristicBuilder(context.Setting)).HasName("Hive Mind")
+                                                                       .HasDescription("All formians within 50 miles of their queen are in constant communiation. If one is aware of a particular danger, they all are. If one in a group is not flatfooted, none of them are. No formian in a group is considered flanked unless all of them are.")
+                                                                       .HasSpecificPowerAdjustment(12)
+                                                                       .OfType(CharacteristicType.Feature)
+                                                                       .Build();
+
+            yield return builder.HasName("Formian Worker")
+                                .WithTemplates("Outsider")
+                                .HasDescription(@"A formian resembles a cross between an ant and a centaur.
+                                
+While workers cannot speak, they can convey simple concepts (such as danger) by body movements. Through the hive mind, however, they can communicate just fine—although their intelligence still limits the concepts that they can grasp.
+                                
+Its hands are suitable only for manual labor.
+
+Formians are generally aggressive, seeking to subdue all they encounter. If they perceive even the slightest threat to their hive-city or to their queen, they attack immediately and fight to the death. Any formian also attacks immediately if ordered to do so by a superior.")
+                                .HasAverageHeight("3ft long, 2-1/2ft high at the front")
+                                .HasAverageWeight("60lbs")
+                                .HasSkin("Brownish-red carapce")
+                                .WithCharacteristics("Small", "Immunity, All Poison", "Immunity, Cold", "Resistance, Electric", "Resistance, Fire", "Resistance, Sonic")
+                                .HasPrimaryStats(energy: 5, defense: 4, speed: 90)
+                                .HasRacialAbilityScores(15, 12, 6, 9)
+                                .HasSkills(insight: 3, survival: 2, perception: 6, climb: 9, engineer: 7, stealth: 2)
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Agility, WeaponUseAbility.Strength, "1d4")
+                                .WithWeaponCharacteristic("Bite", "Weapon Training, 1")
+                                .WithSpecialCharacteristic(hiveMind)
+                                .WithSpells("Transfer Energy", "Mend")
+                                .WithSpellCharacteristic("Transfer Energy", atWillSpell)
+                                .WithSpellCharacteristic("Mend", atWillSpell)
+                                .BuildAndReset();
+
+            yield return builder.HasName("Formian Warrior")
+                                .WithTemplates("Outsider")
+                                .HasDescription("A formian resembles a cross between an ant and a centaur.\n\nWarriors communicate through the hive mind to convey battle plans and make reports to their commanders. They cannot speak otherwise.\n\nFormians are generally aggressive, seeking to subdue all they encounter. If they perceive even the slightest threat to their hive-city or to their queen, they attack immediately and fight to the death. Any formian also attacks immediately if ordered to do so by a superior.")
+                                .HasAverageHeight("5ft long, 4-1/2ft high at the front")
+                                .HasAverageWeight("180lbs")
+                                .HasSkin("Brownish-red carapce")
+                                .WithCharacteristics("Dodge", "Immunity, All Poison", "Immunity, Cold", "Resistance, Electric", "Resistance, Fire", "Resistance, Sonic")
+                                .HasPrimaryStats(energy: 26, defense: 5, speed: 80)
+                                .HasRacialAbilityScores(17, 16, 10, 11)
+                                .HasSkills(insight: 1, perception: 8, survival: 1, climb: 7, stealth: 7, athletics: 11, acrobatics: 9)
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4")
+                                .WithWeaponCharacteristic("Bite", "Weapon Training, 2")
+                                .WithWeaponCharacteristic("Bite", "Weak Weapon, 2")
+                                .WithNaturalWeapon("Claws", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d6")
+                                .WithWeaponCharacteristic("Claws", "Weapon Training, 2")
+                                .WithWeaponCharacteristic("Claws", "Weak Weapon, 2")
+                                .WithNaturalWeapon("Sting", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d4")
+                                .WithWeaponCharacteristic("Sting", "Weapon Training, 4")
+                                .WithWeaponCharacteristic("Sting", "Poison, 1d6 Str")
+                                .WithSpecialCharacteristic(hiveMind)
+                                .WithSpells("Transfer Energy", "Mend")
+                                .WithSpellCharacteristic("Transfer Energy", atWillSpell)
+                                .WithSpellCharacteristic("Mend", atWillSpell)
+                                .BuildAndReset();
+
+
+            
+
+            yield return builder.HasName("Formian Queen")
+                               .WithTemplates("Outsider")
+                               .HasDescription("A formian resembles a cross between an ant and a centaur.\n\nThe formian queen cannot move. With her telepathic abilities, though, she can send instructions to and get reports from any formian within her range.")
+                               .HasAverageHeight("10ft long, 4ft high at the front")
+                               .HasAverageWeight("3,500lbs")
+                               .HasSkin("Brownish-red carapce")
+                               .WithCharacteristics("Large", "Gimped", "Fast Healing, 2", "Immunity, All Poison", "Immunity, Cold", "Resistance, Electric", "Resistance, Fire", "Resistance, Sonic")
+                               .HasPrimaryStats(energy: 190, defense: 19, speed: 20)
+                               .HasRacialAbilityScores(-1, 2, 20, 21)
+                               .HasSkills(insight: 23, deception: 23, diplomacy: 27, perform: 2, threaten: 25, recall: 23, perception: 25, concentration: 4)
+                               .WithSpells("Telepathy", "Energy Blast, Acid", "Daze", "Detect Energy", "Energy Blast, Light", "Mend",
+                               "Telekinesis", "Tongues", "Buff", "Energy Blast, Shadow", "Invisibility", "Energy Blast, Fire",
+                               "Energy Blast, Cold", "Charm", "Clairvoyance", "Detect Thoughts", "Compel", "Divinate", "Reveal", "Teleport",
+                               "Mage Armor", "Hypnotism", "Hope", "Anti-Magic")
+                               .WithSpellCharacteristic("Telepathy", atWillSpell)
+                               .WithSpecialCharacteristic(hiveMind)
+                               .BuildAndReset();
+
+
+            var cold = (new WeaponCharacteristicBuilder(context.Setting)).HasName("Cold")
+                                                                         .HasExtraDamage("1d8")
+                                                                         .Build();
+            yield return builder.HasName("Frost Worm")
+                                .HasDescription("Frost worms lurk under the snow, waiting for prey to come near. \n\n They begin an attack with a trill and then set upon helpless prey with their bite.")
+                                .HasAverageHeight("40ft long, 5ft diameter")
+                                .HasAverageWeight("8,000lbs")
+                                .WithCharacteristics("Huge", "Darkvision", "Immunity, Cold", "Cat Like Vision", "Vulnerability, Fire", "Camoflage")
+                                .HasPrimaryStats(energy: 147, defense: 10, speed: 50)
+                                .HasRacialAbilityScores(strength: 22, agility: 14, focus: 2, charm: 11)
+                                .HasSkills(stealth: 4, initiative: 4, insight: 4, survival: 4, perception: 9)
+                                .WithNaturalWeapon("Bite", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d8", pierce: true)
+                                .WithWeaponCharacteristic("Bite", "Weapon Training, 13")
+                                .WithWeaponCharacteristic("Bite", "Weapon Specialization, 4")
+                                .WithSpecialWeaponCharacteristic("Bite", cold)
+                                .WithSpecialCharacteristic("Cold Body", "Those that succeed on an attack using natural weapons/unarmed strike automatically take 1d8 of cold damage.", 14)
+                                .WithSpecialCharacteristic("Burrow", "For every 15ft of Movement Speed spent, a Frost Worm can tunnel 5ft through ice and frozen earth, but not stone. It leaves behind a usable tunnel ~5ft in diameter.", 3)
+                                .WithSpecialCharacteristic("Death Throes", "When killed, a frost worm turns to ice and shatters in an explosion that deals 12d6 points of cold damage and 8d6 points of piercing damage to everything within 100 feet", 80)
+                                .WithSpecialCharacteristic("Trill", "A frost worm can emit a noise that forces its prey to stand motionless for 1d4 rounds. This affects all creatures within 100ft that are capable of hearing and have a Concentration Defense lower than 17. This is a mind-affecting ability. If attacked, or shaken by a comrade (an action with a Speed cost of 50ft), a victim is allowed a Concentration check at the start of their next turn. Once a creature is subjected to this ability, the cannot be affected again by that same frost worm's trill for 24 hours.", 40)
+                                .WithNaturalWeapon("Breath Weapon", WeaponUseAbility.Agility, WeaponUseAbility.None, "15d6")
+                                .WithWeaponCharacteristic("Breath Weapon", "Conic, 30ft")
+                                .WithWeaponCharacteristic("Breath Weapon", "Targets Acrobatics Defense")
+                                .BuildAndReset();
+
+            yield return builder.HasName("Frost Giant")
+                                .HasDescription("Frost giants dress in skins and pelts, along with any jewelry they own. Frost giant warriors add chain shirts and metal helmets decorated with horns or feathers.")
+                                .HasAverageHeight("15ft")
+                                .HasAverageWeight("2,800lbs")
+                                .WithCharacteristics("Large", "Immunity, Cold", "Cat Like Vision", "Vulnerability, Fire")
+                                .HasHair("Light blue or dirty yellow")
+                                .HasEyes("Matches hair color")
+                                .HasPrimaryStats(energy: 133, defense: 9, speed: 70)
+                                .HasRacialAbilityScores(strength: 27, agility: 11, focus: 10, charm: 11)
+                                .HasSkills(climb: 4, engineer: 6, athletics: 8, perception: 12, insight: 2, survival: 2)
+                                .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d4", bludgeon: true)
+                                .WithWeaponCharacteristic("Slam", "Weapon Training, 9")
+                                .WithNaturalWeapon("Rock Throw", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "2d6", range: 120, bludgeon: true)
+                                .WithArmors("Chain Shirt")
+                                .WithWeapon("Axe, great", "Some might carry flaming swords instead.")
+                                .WithWeaponCharacteristic("Axe, great", "Weapon Training, 9")
+                                .WithWeaponCharacteristic("Axe, great", "Weapon Specialization, 4")
+                                .BuildAndReset();
         }
 
         private IEnumerable<Creature> SeedCreaturesStartingWithG(CreatureBuilderContext ctx)
