@@ -26,7 +26,7 @@ namespace Elixr2.Api.Services
             return await SettingsQuery.FirstOrDefaultAsync(cs => cs.Id == settingId);
         }
 
-        public async Task<CampaignSetting> GetCampaignSettingByCode(long code)
+        public async Task<CampaignSetting> GetCampaignSettingByCode(string code)
         {
             return await SettingsQuery.FirstOrDefaultAsync(cs => cs.Code == code);
         }

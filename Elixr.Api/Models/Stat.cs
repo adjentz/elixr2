@@ -1,6 +1,6 @@
 namespace Elixr2.Api.Models
 {
-    public class Stat
+    public class Stat : ModelBase
     {
         public Stat()
         {
@@ -14,7 +14,6 @@ namespace Elixr2.Api.Models
             this.Ratio = ratio;
             this.DisplayName = name; //until proven otherwise
         }
-        public int Id { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
         public StatGroup Group { get; set; }

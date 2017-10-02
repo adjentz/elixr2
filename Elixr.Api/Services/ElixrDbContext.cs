@@ -7,7 +7,8 @@ namespace Elixr2.Api.Services
     {
         public ElixrDbContext(DbContextOptions<ElixrDbContext> options)
         : base(options)
-        { }
+        {
+        }
         public DbSet<CampaignSetting> CampaignSettings { get; set; }
         public DbSet<Characteristic> Characteristics { get; set; }
 
@@ -20,6 +21,15 @@ namespace Elixr2.Api.Services
         public DbSet<Creature> Creatures { get; set; }
         public DbSet<WeaponCharacteristic> WeaponCharacteristics { get; set; }
         public DbSet<SpellCharacteristic> SpellCharacteristics { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        {
+#if DEBUG
+            builder.EnableSensitiveDataLogging();
+#endif
+            base.OnConfiguring(builder);
+
+        }
 
     }
 }

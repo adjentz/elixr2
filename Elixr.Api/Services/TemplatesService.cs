@@ -13,7 +13,7 @@ namespace Elixr2.Api.Services
         { }
         public async Task<List<Template>> GetTemplates(bool onlyRaces, string name = null)
         {
-            var templatesQuery = StartQuery<Template>()
+            var templatesQuery = QueryGameElements<Template>()
                                         .Include(t => t.Mods).ThenInclude(sm => sm.Stat)
                                         .Include(t => t.AppliedCharacteristics).ThenInclude(tc => tc.Characteristic).ThenInclude(c => c.Mods).ThenInclude(sm => sm.Stat)
                                         .AsQueryable();

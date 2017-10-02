@@ -13,7 +13,7 @@ namespace Elixr2.Api.Services
         { }
         public async Task<List<Characteristic>> GetCharacteristics(CharacteristicType type, string name = null)
         {
-            var characteristicsQuery = StartQuery<Characteristic>()
+            var characteristicsQuery = QueryGameElements<Characteristic>()
                                         .Include(c => c.Mods).ThenInclude(sm => sm.Stat)
                                         .Where(c => c.Type == type);
 

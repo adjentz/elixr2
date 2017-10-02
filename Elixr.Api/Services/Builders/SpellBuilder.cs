@@ -9,6 +9,7 @@ namespace Elixr2.Api.Services.Seeding
         {
             this._spell = new Spell();
             this._spell.CampaignSettingId = setting.Id;
+            this.HasAuthor(setting.AuthorId);
         }
 
         public SpellBuilder HasName(string name)
@@ -42,7 +43,11 @@ namespace Elixr2.Api.Services.Seeding
             _spell.DoesDamage = doesDamage;
             return this;
         }
-
+        public SpellBuilder HasAuthor(int authorId)
+        {
+            _spell.AuthorId = authorId;
+            return this;
+        }
         public Spell Build() => _spell;
     }
 }

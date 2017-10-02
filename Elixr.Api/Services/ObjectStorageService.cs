@@ -12,10 +12,10 @@ namespace Elixr2.Api.Services
     {
         private readonly string s3AccessKeyId;
         private readonly string s3SecretKey;
-        public ObjectStorageService(string s3AccessKeyId, string s3SecretKey)
+        public ObjectStorageService(SettingsService settingsService)
         {
-            this.s3AccessKeyId = s3AccessKeyId;
-            this.s3SecretKey = s3SecretKey;
+            this.s3AccessKeyId = settingsService.S3AccessKeyId;
+            this.s3SecretKey = settingsService.S3SecretKey;
         }
         public async Task SaveStream(Stream stream, string path)
         {

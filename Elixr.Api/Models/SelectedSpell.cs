@@ -2,9 +2,8 @@ using System.Collections.Generic;
 
 namespace Elixr2.Api.Models
 {
-    public class SelectedSpell
+    public class SelectedSpell : ModelBase
     {
-        public int Id { get; set; }
         public int SpellId { get; set; }
         public Spell Spell { get; set; }
         public long SelectedAtMS { get; set; }

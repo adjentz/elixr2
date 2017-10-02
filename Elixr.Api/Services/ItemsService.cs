@@ -13,7 +13,7 @@ namespace Elixr2.Api.Services
         { }
         public async Task<List<Item>> GetItems(string name = null)
         {
-            var itemsQuery = StartQuery<Item>();
+            var itemsQuery = QueryGameElements<Item>();
 
             if (!string.IsNullOrWhiteSpace(name))
             {

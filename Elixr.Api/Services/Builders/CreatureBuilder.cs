@@ -25,6 +25,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         {
             creature = new Creature();
             creature.CampaignSettingId = ctx.Setting.Id;
+            HasAuthor(ctx.Setting.AuthorId);
             this.context = ctx;
         }
 
@@ -347,6 +348,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
                 SelectedAtMS = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
             creature.SelectedSpells.Add(selectedSpell);
+            return this;
+        }
+        public CreatureBuilder HasAuthor(int authorId)
+        {
+            creature.AuthorId = authorId;
             return this;
         }
         public Creature BuildAndReset()

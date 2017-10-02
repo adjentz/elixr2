@@ -2,12 +2,11 @@ using System.Collections.Generic;
 
 namespace Elixr2.Api.Models
 {
-    public class CampaignSetting
+    public class CampaignSetting : ModelBase
     {
-        public static long StandardCampaignSettingCode = 20170415191948;
+        public const string StandardCampaignSettingCode = "20170415191948";
 
-        public int Id { get; set; }
-        public long Code { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
         public int CharacteristicPointsEachLevel { get; set; }
         public float StartingWealth { get; set; }
@@ -20,6 +19,8 @@ namespace Elixr2.Api.Models
         public List<StatMod> ModsEachLevel { get; set; } = new List<StatMod>();
         public List<Stat> Stats { get; set; } = new List<Stat>();
 
+        public int AuthorId { get; set; }
+        public Gamer Author { get; set; }
     }
 
 }

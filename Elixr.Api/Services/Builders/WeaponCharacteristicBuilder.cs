@@ -9,6 +9,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         {
             _weaponCharacteristic = new WeaponCharacteristic();
             _weaponCharacteristic.CampaignSettingId = setting.Id;
+            HasAuthor(setting.AuthorId);
         }
 
         public WeaponCharacteristicBuilder HasName(string name)
@@ -46,6 +47,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public WeaponCharacteristicBuilder HasSpecificPower(int power)
         {
             _weaponCharacteristic.SpecifiedPowerAdjustment = power;
+            return this;
+        }
+        public WeaponCharacteristicBuilder HasAuthor(int authorId)
+        {
+            _weaponCharacteristic.AuthorId = authorId;
             return this;
         }
         public WeaponCharacteristic Build() => _weaponCharacteristic;

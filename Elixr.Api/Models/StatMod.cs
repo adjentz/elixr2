@@ -1,6 +1,6 @@
 namespace Elixr2.Api.Models
 {
-    public class StatMod
+    public class StatMod : ModelBase
     {
         public StatMod() { }
         public StatMod(int statId, int modifier, string reason)
@@ -9,7 +9,6 @@ namespace Elixr2.Api.Models
             this.Modifier = modifier;
             this.Reason = reason;
         }
-        public int Id { get; set; }
         public string Reason { get; set; }
         public int StatId { get; set; }
         public Stat Stat { get; set; }

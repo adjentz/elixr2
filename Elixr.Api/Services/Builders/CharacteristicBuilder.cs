@@ -12,6 +12,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         {
             _characteristic = new Characteristic();
             _characteristic.CampaignSettingId = setting.Id;
+            HasAuthor(setting.AuthorId);
             this.setting = setting;
         }
         public CharacteristicBuilder OfType(CharacteristicType type)
@@ -27,7 +28,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public CharacteristicBuilder WithMod(string name, int modifier)
         {
             var stat = setting.Stats.FirstOrDefault(s => s.Name.ToLower() == name.ToLower());
-            if(stat == null)
+            if (stat == null)
             {
                 throw new System.Exception();
             }
@@ -51,7 +52,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         {
             descFilePath = descFilePath.Replace("\\", "/");
             string desc = System.IO.File.ReadAllText(descFilePath);
-            if(formatParams.Length > 0)
+            if (formatParams.Length > 0)
             {
                 desc = string.Format(desc, formatParams);
             }
@@ -60,6 +61,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public CharacteristicBuilder HasSpecificPowerAdjustment(int? power = null)
         {
             _characteristic.SpecifiedPowerAdjustment = power;
+            return this;
+        }
+        public CharacteristicBuilder HasAuthor(int authorId)
+        {
+            _characteristic.AuthorId = authorId;
             return this;
         }
         public Characteristic Build()

@@ -9,6 +9,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         {
             _weapon = new Weapon();
             _weapon.CampaignSettingId = setting.Id;
+            HasAuthor(setting.AuthorId);
         }
 
         public WeaponBuilder HasCost(int gold, int silver = 0, int copper = 0)
@@ -88,6 +89,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public WeaponBuilder MarkIgnoresArmor(bool ignoresArmor = true)
         {
             _weapon.IgnoresArmor = ignoresArmor;
+            return this;
+        }
+        public WeaponBuilder HasAuthor(int authorId)
+        {
+            _weapon.AuthorId = authorId;
             return this;
         }
         public Weapon Build() => _weapon;

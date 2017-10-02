@@ -19,7 +19,7 @@ namespace Elixr2.Api.Services
         {
             get
             {
-                return StartQuery<Creature>().Include(c => c.Mods).ThenInclude(asm => asm.StatMod).ThenInclude(sm => sm.Stat)
+                return QueryGameElements<Creature>().Include(c => c.Mods).ThenInclude(asm => asm.StatMod).ThenInclude(sm => sm.Stat)
                                                                  .Include(c => c.SelectedArmor).ThenInclude(sa => sa.Armor)
                                                                  .Include(c => c.SelectedCharacteristics).ThenInclude(sc => sc.Characteristic).ThenInclude(c => c.Mods).ThenInclude(sm => sm.Stat)
                                                                  .Include(c => c.SelectedItems).ThenInclude(si => si.Item)

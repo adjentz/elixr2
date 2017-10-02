@@ -9,6 +9,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         { 
             _item = new Item();
             _item.CampaignSettingId = setting.Id;
+            HasAuthor(setting.AuthorId);
         }
 
         public ItemBuilder HasCost(int gold, int silver = 0, int copper = 0)
@@ -38,6 +39,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public ItemBuilder HasWeight(float pounds)
         {
             _item.WeightInPounds = pounds;
+            return this;
+        }
+        public ItemBuilder HasAuthor(int authorId)
+        {
+            _item.AuthorId = authorId;
             return this;
         }
         public Item Build() => _item;

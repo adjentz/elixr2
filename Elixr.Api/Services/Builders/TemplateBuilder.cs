@@ -19,6 +19,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
             this.setting = setting;
             this.spells = spells;
             this.spellCharacteristics = spellCharacteristics;
+            HasAuthor(setting.AuthorId);
         }
 
         public TemplateBuilder AsRace(bool isRace)
@@ -114,7 +115,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
             _template.Mods.Add(statMod);
             return this;
         }
-
+        public TemplateBuilder HasAuthor(int authorId)
+        {
+            _template.AuthorId = authorId;
+            return this;
+        }
         public Template Build()
         {
             _template.SelectedSpells.ForEach(ss => ss.Spell = null);

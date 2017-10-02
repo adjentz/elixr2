@@ -9,6 +9,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         { 
             _armor = new Armor();
             _armor.CampaignSettingId = setting.Id;
+            HasAuthor(setting.AuthorId);
         }
 
         public ArmorBuilder HasCost(int gold, int silver = 0, int copper = 0)
@@ -55,6 +56,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public ArmorBuilder HasAgilityPenalty(int penalty)
         {
             _armor.AgilityPenalty = penalty;
+            return this;
+        }
+        public ArmorBuilder HasAuthor(int authorId)
+        {
+            _armor.AuthorId = authorId;
             return this;
         }
         public Armor Build() => _armor;

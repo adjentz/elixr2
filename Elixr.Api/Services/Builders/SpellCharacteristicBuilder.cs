@@ -9,6 +9,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         {
             _spellCharacteristic = new SpellCharacteristic();
             _spellCharacteristic.CampaignSettingId = setting.Id;
+            HasAuthor(setting.AuthorId);
         }
 
         public SpellCharacteristicBuilder HasName(string name)
@@ -30,6 +31,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public SpellCharacteristicBuilder HasSpecificPower(int power)
         {
             _spellCharacteristic.SpecifiedPowerAdjustment = power;
+            return this;
+        }
+        public SpellCharacteristicBuilder HasAuthor(int authorId)
+        {
+            _spellCharacteristic.AuthorId = authorId;
             return this;
         }
         public SpellCharacteristic Build() => _spellCharacteristic;

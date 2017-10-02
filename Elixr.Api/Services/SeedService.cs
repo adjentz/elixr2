@@ -9,7 +9,11 @@ namespace Elixr2.Api.Services.Seeding
     {
         private readonly CampaignSetting standardCampaignSetting;
         private readonly ElixrDbContext dbContext;
-        public SeedService(ElixrDbContext dbContext)
+        private readonly GamerService gamerService;
+        private readonly string theGameMasterPassword;
+
+        private Gamer theGameMaster;
+        public SeedService(SettingsService settingsService, GamerService gamerService, ElixrDbContext dbContext)
         {
             this.dbContext = dbContext;
             standardCampaignSetting = new CampaignSetting()
@@ -23,9 +27,11 @@ namespace Elixr2.Api.Services.Seeding
                 StartingAbilityPoints = 48,
                 StartingWealth = 200,
                 MaxSkillRanksAboveLevel = 3,
-
-
             };
+
+            this.gamerService = gamerService;
+            this.theGameMasterPassword = settingsService.GameMasterPassword;
+            settingsService.FlushGameMasterPassword();
 
             AddCharacterStats();
             AddAbilityStats();
@@ -283,15 +289,18 @@ namespace Elixr2.Api.Services.Seeding
                 }
             }
 
+            theGameMaster = await gamerService.AddGamer("The Game Master", theGameMasterPassword, code: Gamer.TheGameMasterCode);
+            standardCampaignSetting.AuthorId = theGameMaster.Id;
+
             dbContext.CampaignSettings.Add(standardCampaignSetting);
             await dbContext.SaveChangesAsync();
+
             //Stats need to be inserted (have an Id) before the following can be created (thus the multiple call to SaveChanges).
             AddInitialMods();
             AddModsEachLevel();
 
             AddEquipment();
             AddChildStats();
-
             dbContext.Entry(standardCampaignSetting).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();
 
@@ -325,7 +334,7 @@ namespace Elixr2.Api.Services.Seeding
             {
                 creatures = creatures.Where(c => c != null).ToList();
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }
@@ -338,6 +347,7 @@ namespace Elixr2.Api.Services.Seeding
 
 
             creatures.ToList().ForEach(c => dbContext.Creatures.Add(c));
+
             await dbContext.SaveChangesAsync();
         }
     }

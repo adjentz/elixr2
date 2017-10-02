@@ -4,11 +4,8 @@ using System.Linq;
 
 namespace Elixr2.Api.Models
 {
-    public class Creature : ICampaignSettingElement
+    public class Creature : GameElementBase
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
         public string Age { get; set; }
         public string Gender { get; set; }
         public string Weight { get; set; }
@@ -26,15 +23,13 @@ namespace Elixr2.Api.Models
         public List<SelectedArmor> SelectedArmor { get; set; } = new List<SelectedArmor>();
         public List<SelectedWeapon> SelectedWeapons { get; set; } = new List<SelectedWeapon>();
         public List<SelectedItem> SelectedItems { get; set; } = new List<SelectedItem>();
-        public List<SelectedSpell> SelectedSpells { get; set; } = new List<SelectedSpell>();
-        public int CampaignSettingId { get; set; }
-        public string Description { get; set; }
-        public bool IsDelisted { get; set; }
-
-        public int Power
+        public List<SelectedSpell> SelectedSpells { get; set; } = new List<SelectedSpell>();        
+        
+        public override int Power
         {
             get
             {
+                //TODO: Each GameElement should have it's own Power, use that instead of calculating here.
                 int power = 0;
                 power += SelectedSpells.Count;
                 power += Mods.Sum(asm => GetStatModPower(asm.StatMod));
@@ -45,7 +40,7 @@ namespace Elixr2.Api.Models
         }
 
         private int GetCharacteristicPower(Characteristic characteristic) => characteristic.SpecifiedPowerAdjustment ?? characteristic.Mods.Sum(sm => GetStatModPower(sm));
-        private int GetStatModPower(StatMod statMod) =>  statMod.Stat.PowerRating * (int)Math.Ceiling(statMod.Modifier * 1.0f / statMod.Stat.Ratio);
+        private int GetStatModPower(StatMod statMod) => statMod.Stat.PowerRating * (int)Math.Ceiling(statMod.Modifier * 1.0f / statMod.Stat.Ratio);
 
         private int GetTemplatePower(Template template)
         {

@@ -13,7 +13,7 @@ namespace Elixr2.Api.Services
         { }
         public async Task<List<Spell>> GetSpells(string name = null)
         {
-            var spellsQuery = StartQuery<Spell>();
+            var spellsQuery = QueryGameElements<Spell>();
 
             if (!string.IsNullOrWhiteSpace(name))
             {
