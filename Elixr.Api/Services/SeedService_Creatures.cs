@@ -2222,32 +2222,6 @@ Formians are generally aggressive, seeking to subdue all they encounter. If they
 
             // Carrying Capacity: A light load for a griffon is up to 300 pounds; a medium load, 301–600 pounds; and a heavy load, 601–900 pounds.
 
-            // GRIG
-
-            // Size/Type:	Tiny Fey
-            // Hit Dice:	1/2 d6+1 (2 hp)
-            // Initiative:	+4
-            // Speed:	20 ft. (4 squares), fly 40 ft. (poor)
-            // Armor Class:	18 (+2 size, +4 Dex, +2 natural), touch 16, flat-footed 16
-            // Full Attack:	Short Sword +6 melee (1d3–3/19–20) or longbow +6 ranged (1d4–3/x3)
-            // Special Attacks:	Spell-like abilities, fiddle
-            // Special Qualities:	Damage reduction 5/cold iron, low-light vision, spell resistance 17
-            // Abilities:	Str 5, Dex 18, Con 13, Int 10, Wis 13, Cha 14
-            // Skills:	Craft (any one) +4, Escape Artist +8, Hide +16 +18, Jump +3, Listen +3, Move Silently +8 +10*, Perform (string instruments) +6, Search +2, Spot +3
-            // Feats:	DodgeB, Stealthy, Weapon FinesseB
-
-            // Grigs can leap great distances. They have light blue skin, forest-green hair, and brown hairy legs, and usually wear tunics or brightly colored vests with buttons made from tiny gems. A grig stands 1-1/2 feet tall and weighs about 1 pound.
-
-            // Grigs speak Sylvan. Some also speak Common.
-
-            // COMBAT
-
-            // Grigs are fierce by sprite standards, attacking opponents fearlessly with bow and dagger.
-
-            // Spell-Like Abilities: 3/day—disguise self, entangle (DC 13), invisibility (self only), pyrotechnics (DC 14), ventriloquism (DC 13). Caster level 9th. The save DCs are Charisma-based.
-
-            // Fiddle (Su): One grig in each band carries a tiny, grig-sized fiddle. When the fiddler plays, any nonsprite within 30 feet of the instrument must succeed on a DC 12 Will save or be affected as though by irresistible dance for as long as the playing continues. The save DC is Charisma-based.
-
             //             GYNOSPHINX
 
             // Size/Type:	Large Magical Beast
