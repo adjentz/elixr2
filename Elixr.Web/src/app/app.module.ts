@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -37,6 +37,7 @@ import { CreatureWealthComponent } from './creature-editor/creature-wealth/creat
 import { CreatureEquipmentComponent } from './creature-editor/creature-equipment/creature-equipment.component';
 import { CharacteristicsComponent } from './characteristics/characteristics.component';
 import { CharacteristicComponent } from './characteristics/characteristic/characteristic.component';
+import { CharacteristicsComponent as SrdCharacteristics } from './srd/characteristics/characteristics.component';
 import { FeaturesComponent } from './srd/features/features.component';
 import { RacesComponent } from './srd/races/races.component';
 import { TemplatesComponent } from './templates/templates.component';
@@ -55,6 +56,14 @@ import { SrdWeaponsComponent } from './srd/equipment/srd-weapons/srd-weapons.com
 import { SrdItemsComponent } from './srd/equipment/srd-items/srd-items.component';
 import { MagicComponent } from './srd/magic/magic.component';
 import { CreaturesComponent } from './srd/creatures/creatures.component';
+import { CreatingACharacterComponent } from './srd/creating-a-character/creating-a-character.component';
+import { BaseStatsComponent } from './srd/base-stats/base-stats.component';
+import { CharacterDescriptionComponent } from './srd/character-description/character-description.component';
+import { AbilitiesComponent } from './srd/abilities/abilities.component';
+import { SkillsComponent } from './srd/skills/skills.component';
+import { PlayingElixrComponent } from './srd/playing-elixr/playing-elixr.component';
+import { RunningElixrComponent } from './srd/running-elixr/running-elixr.component';
+import { EquipmentComponent } from './srd/equipment/equipment.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +101,16 @@ import { CreaturesComponent } from './srd/creatures/creatures.component';
     SpellsComponent,
     SpellDetailComponent,
     MagicComponent,
-    CreaturesComponent
+    CreaturesComponent,
+    CreatingACharacterComponent,
+    BaseStatsComponent,
+    CharacterDescriptionComponent,
+    AbilitiesComponent,
+    SkillsComponent,
+    PlayingElixrComponent,
+    RunningElixrComponent,
+    EquipmentComponent,
+    SrdCharacteristics
   ],
   imports: [
     BrowserModule,
@@ -111,7 +129,8 @@ import { CreaturesComponent } from './srd/creatures/creatures.component';
     ItemService,
     SpellsService,
     MarkdownService,
-    AppService
+    AppService,
+    Title
   ],
   bootstrap: [AppComponent]
 })
