@@ -76,21 +76,34 @@ namespace Elixr2.Api.Services.Seeding
             strengthMisc.ParentStat = strengthScore;
             standardCampaignSetting.Stats.Add(strengthMisc);
 
-            Stat athletics = new Stat("Athletics", StatGroup.SkillDefense, 2);
+            Skill athletics = new Skill("Athletics", 2);
+            athletics.Description = "Athletics is the Skill to perform general feats of athleticism, such as jumping over a chasm or throwing a grappling hook.";
+            athletics.SpeedCost = "Varies";
+            athletics.OnFailure = "Varies";
             athletics.ParentStat = strengthScore;
+            athletics.HasDefense = true;
             standardCampaignSetting.Stats.Add(athletics);
 
-            Stat climb = new Stat("Climb", StatGroup.Skill, 1);
+            var climb = new Skill("Climb", 1);
+            climb.Description = "Climb is the Skill to scale difficult surfaces.";
+            climb.SpeedCost = "10ft for every 5ft to scale.";
+            climb.OnFailure = "The creature remains in the same spot";
             climb.ParentStat = strengthScore;
             climb.Order = 0;
             standardCampaignSetting.Stats.Add(climb);
 
-            Stat intimidate = new Stat("Intimidate", StatGroup.Skill, 1);
+            var intimidate = new Skill("Intimidate", 1);
+            intimidate.Description = "Coerce a creature into performing an action they normally would not do for fear of being physically harmed otherwise.";
             intimidate.ParentStat = strengthScore;
             intimidate.Order = 1;
+            intimidate.OnFailure = "The subject does feel intimidated";
+            intimidate.SpeedCost = "30ft";
             standardCampaignSetting.Stats.Add(intimidate);
 
-            Stat swim = new Stat("Swim", StatGroup.Skill, 1);
+            var swim = new Skill("Swim", 1);
+            swim.Description = "Swim is the Skill to move through water quickly and effecively. Calm water does not require a check.";
+            swim.SpeedCost = "10ft for every 5ft to swim";
+            swim.OnFailure = "The creature begins to sink";
             swim.ParentStat = strengthScore;
             intimidate.Order = 2;
             standardCampaignSetting.Stats.Add(swim);
@@ -103,27 +116,45 @@ namespace Elixr2.Api.Services.Seeding
             agilityMisc.ParentStat = agilityScore;
             standardCampaignSetting.Stats.Add(agilityMisc);
 
-            Stat acrobatics = new Stat("Acrobatics", StatGroup.SkillDefense, 2);
+            Skill acrobatics = new Skill("Acrobatics", 2);
+            acrobatics.Description = "Acrobatics is the Skill to balance on a ledge, tumble between a giant's legs, dodge out of harm's way, and reduce fall damage.";
+            acrobatics.SpeedCost = "Varies";
+            acrobatics.OnFailure = "Varies";
             acrobatics.ParentStat = agilityScore;
+            acrobatics.HasDefense = true;
             standardCampaignSetting.Stats.Add(acrobatics);
 
-            Stat escapeArtist = new Stat("Escape Artist", StatGroup.Skill, 1);
+            var escapeArtist = new Skill("Escape Artist", 1);
+            escapeArtist.Description = "Escape Artist is the Skill to escape restraints such as handcuffs and knots.";
+            escapeArtist.SpeedCost = "30ft";
+            escapeArtist.OnFailure = "The creature remains restrained.";
             escapeArtist.ParentStat = agilityScore;
             escapeArtist.Order = 0;
             standardCampaignSetting.Stats.Add(escapeArtist);
 
-            Stat initiative = new Stat("Initiative", StatGroup.Skill, 1);
+            var initiative = new Skill("Initiative", 1);
+            initiative.Description = "In-game, Initiaitve is how quickly a creature respond to a situation. Around the table, Initiative indicates whose turn is first. See the combat section in Playing Elixr for more information.";
+            initiative.SpeedCost = "0ft";
+            initiative.OnFailure = "N/A";
             initiative.ParentStat = agilityScore;
             initiative.Order = 1;
             standardCampaignSetting.Stats.Add(initiative);
 
-            Stat sleightOfHand = new Stat("Sleight of Hand", StatGroup.Skill, 1);
+            var sleightOfHand = new Skill("Sleight of Hand", 1);
+            sleightOfHand.Description = "Stealth is the Skill to move and hide without being noticed. It is combined with some manner of misdirection, and therefore has a Speed Cost of 30ft";
+            sleightOfHand.SpeedCost = "30ft";
+            sleightOfHand.OpposedBy = "Perception";
+            sleightOfHand.OnFailure = "Opponents have a chance to notice the sleight on their turn through a Perception check.";
             sleightOfHand.ParentStat = agilityScore;
             sleightOfHand.Order = 2;
             standardCampaignSetting.Stats.Add(sleightOfHand);
 
-            Stat stealth = new Stat("Stealth", StatGroup.Skill, 1);
+            var stealth = new Skill("Stealth", 1);
             stealth.ParentStat = agilityScore;
+            stealth.Description = "Stealth is this Skill to move and hide without being noticed.";
+            stealth.SpeedCost = "10ft for every 5ft traveled";
+            stealth.OpposedBy = "Perception";
+            stealth.OnFailure = "Opponents have a chance to notice the sneaking individual on their turn through a Perception check.";
             sleightOfHand.Order = 3;
             standardCampaignSetting.Stats.Add(stealth);
         }
@@ -135,36 +166,58 @@ namespace Elixr2.Api.Services.Seeding
             focusMisc.ParentStat = focusScore;
             standardCampaignSetting.Stats.Add(focusMisc);
 
-            Stat concentration = new Stat("Concentration", StatGroup.SkillDefense, 2);
+            var concentration = new Skill("Concentration", 2);
+            concentration.Description = "Concentration is the Skill to not be distracted, as well as protect your mind from certain spells.";
+            concentration.SpeedCost = "0ft";
+            concentration.OnFailure = "Varies";
             concentration.ParentStat = focusScore;
+            concentration.HasDefense = true;
             standardCampaignSetting.Stats.Add(concentration);
 
-            Stat engineer = new Stat("Engineer", StatGroup.Skill, 1);
+            var engineer = new Skill("Engineer", 1);
+            engineer.Description = "Engineer is the Skill to create items and discern structural details.";
+            engineer.SpeedCost = "Varies";
+            engineer.OnFailure = "The result is ineffective.";
             engineer.ParentStat = focusScore;
             engineer.Order = 0;
             standardCampaignSetting.Stats.Add(engineer);
 
-            Stat insight = new Stat("Insight", StatGroup.Skill, 1);
+            var insight = new Skill("Insight", 1);
+            insight.Description = "Insight is the Skill to discern information from subtle details.";
+            insight.SpeedCost = "0ft";
+            insight.OnFailure = "No extra information is discerned";
             insight.ParentStat = focusScore;
             insight.Order = 1;
             standardCampaignSetting.Stats.Add(insight);
 
-            Stat medicine = new Stat("Medicine", StatGroup.Skill, 1);
+            var medicine = new Skill("Medicine", 1);
+            medicine.Description = "Medicine is the Skill to determine a creatures ailments and apply cures to some wounds.";
+            medicine.SpeedCost = "Varies, at least 50ft";
+            medicine.OnFailure = "The treatment is ineffective";
             medicine.ParentStat = focusScore;
             insight.Order = 2;
             standardCampaignSetting.Stats.Add(medicine);
 
-            Stat perception = new Stat("Perception", StatGroup.Skill, 1);
+            var perception = new Skill("Perception", 1);
+            perception.Description = "Perception is the Skill to notice the presence or absence of other entites through sound, sight, smell, or other sense.";
+            perception.SpeedCost = "0ft";
+            perception.OnFailure = "Something goes unnoticed";
             perception.ParentStat = focusScore;
             insight.Order = 3;
             standardCampaignSetting.Stats.Add(perception);
 
-            Stat recall = new Stat("Recall", StatGroup.Skill, 1);
+            var recall = new Skill("Recall", 1);
+            recall.Description = "Recall is the Skill to remember information that a creature would have collected in the past. The information must be something a creature would already know. The GM can challenge if a creature would actually have the information depending on their background.";
+            recall.SpeedCost = "0ft";
+            recall.OnFailure = "The information isn't available to the creature. A retry can only be attempted 24 hours later for the same information.";
             recall.ParentStat = focusScore;
             insight.Order = 4;
             standardCampaignSetting.Stats.Add(recall);
 
-            Stat survival = new Stat("Survival", StatGroup.Skill, 1);
+            var survival = new Skill("Survival", 1);
+            survival.Description = "Survival is the Skill to survive in the wild. Can include things such as tying knots in a rope, lighting a fire, or discerning what direction is North.";
+            survival.SpeedCost = "Varies";
+            survival.OnFailure = "The action is unsuccessful.";
             survival.ParentStat = focusScore;
             survival.Order = 5;
             standardCampaignSetting.Stats.Add(survival);
@@ -215,29 +268,46 @@ namespace Elixr2.Api.Services.Seeding
             charm.ParentStat = charmScore;
             standardCampaignSetting.Stats.Add(charm);
 
-            Stat animalHandling = new Stat("Animal Handling", StatGroup.Skill, 1);
+            var animalHandling = new Skill("Animal Handling", 1);
+            animalHandling.Description = "Animal Handling is the Skill to effectively interact with animals. A successful check will shift an animals attitude by one step in a positive direction. See Social Interaction in the Playing Elixr section";
             animalHandling.ParentStat = charmScore;
+            animalHandling.SpeedCost = "50ft";
+            animalHandling.OnFailure = "If the check fails by a difference of 5 or more, the animal's attitude shifts one step in a negative direction. Otherwise the animal remains at it's previous stance towards the creature.";
             animalHandling.Order = 0;
             standardCampaignSetting.Stats.Add(animalHandling);
 
-            Stat deception = new Stat("Deception", StatGroup.Skill, 1);
+            var deception = new Skill("Deception", 1);
+            deception.Description = "Deception is the Skill to bluff and misdirect others. If a lie is too unbelievable, a GM may allow the target to roll with Advantage, or increase the Difficulty of performing the Deception.";
+            deception.SpeedCost = "0ft";
+            deception.OpposedBy = "Insight";
+            deception.OnFailure = "Opponents have a chance to notice a tell and become wary of what is said on their turn through an Insight check.";
             deception.ParentStat = charmScore;
             deception.Order = 1;
             standardCampaignSetting.Stats.Add(deception);
 
-            Stat diplomacy = new Stat("Diplomacy", StatGroup.Skill, 1);
+            var diplomacy = new Skill("Diplomacy", 1);
+            diplomacy.Description = "Diplomacy is the Skill to cause other to see your point of view. A successful check will shift another's attitude towards the creature by one step in a postive direction. Diplomacy cannot be used to coerce a creature into taking an action that would be against their character. Diplomacy checks cannot be used on player characters.";
+            diplomacy.SpeedCost = "0ft";
+            diplomacy.OpposedBy = "Diplomacy (counter from opponent)";
+            diplomacy.OnFailure = "If the check fails by a difference of 5 or more, the target's attitude shifts one step in a negative direction. Otherwise the target remains at it's previous stance towards the creature.";
             diplomacy.ParentStat = charmScore;
             diplomacy.Order = 2;
             standardCampaignSetting.Stats.Add(diplomacy);
 
-            Stat perform = new Stat("Perform", StatGroup.Skill, 1);
+            var perform = new Skill("Perform", 1);
+            perform.SpeedCost = "Varies, at least 50ft";
+            perform.OnFailure = "The audience doesn't pay much attention to the performer, or boos if the performer is particularily bad.";
+            perform.Description = "Perform is the Skill to effectively capture the attention of others through song, stories, dance, or playing an instrument. A character's background should specify what talents they have ahead of time. On exceptional checks, the audience may even tip the performer.";
             perform.ParentStat = charmScore;
             perform.Order = 3;
             standardCampaignSetting.Stats.Add(perform);
 
-            Stat threaten = new Stat("Threaten", StatGroup.Skill, 1);
+            var threaten = new Skill("Threaten", 1);
+            threaten.Description = "Coerce a creature into performing an action they normally would not do for fear of what you say will happen if they don't.";
             threaten.ParentStat = charmScore;
             threaten.Order = 2;
+            threaten.OnFailure = "The subject does not feel threatened";
+            threaten.SpeedCost = "30ft";
             standardCampaignSetting.Stats.Add(threaten);
         }
         private void AddChildStats()

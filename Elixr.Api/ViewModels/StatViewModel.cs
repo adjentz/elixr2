@@ -16,6 +16,6 @@ namespace Elixr2.Api.ViewModels
         public int Order { get; set; }
         public string DisplayName { get; set; }
         public string MaxValueFormula { get; set; }
-
+        public string Description { get; set; }
     }
 }

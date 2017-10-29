@@ -30,6 +30,9 @@ export class AppComponent implements OnInit {
       .filter((route) => route.outlet === 'primary')
       .mergeMap((route) => route.data)
       .subscribe((event) => {
+
+        window.scrollTo(0, 0);
+
         let title = 'Elixr RPG';
         if (event['title']) {
           title += ` | ${event['title']}`;
@@ -38,9 +41,11 @@ export class AppComponent implements OnInit {
         this.titleService.setTitle(title);
       });
   }
-
   showNavBox = false;
   hamburgerClicked(): void {
     this.showNavBox = !this.showNavBox;
+  }
+  dismissNav(): void {
+    this.showNavBox = false;
   }
 }

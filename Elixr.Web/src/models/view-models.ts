@@ -43,6 +43,7 @@ export interface IStat {
     ratio: number;
     order: number;
     parentStatId: number;
+    description: string;
 }
 
 export interface ICreature {
@@ -213,4 +214,10 @@ export interface IWealthAdjustment {
     reason: string;
     adjustedAtMS: number;
     wealthAdjustmentId: number;
+}
+
+export interface ISkill extends IStat {
+    opposedBy: string,
+    speedCost: string,
+    hasDefense: boolean
 }

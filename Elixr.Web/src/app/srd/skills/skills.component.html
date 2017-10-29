@@ -1,3 +1,178 @@
-<p>
-  skills works!
-</p>
+<section>
+  <article>
+    <h2>
+      Skills
+    </h2>
+    <p>
+      Skills indicate how adept or well trained your character is at performing a certain action. Each Skill is detailed below.
+    </p>
+    <p>
+      Skills have four parts: Ranks, Modifier, Misc., and Bonus.
+    </p>
+    <h3>
+      Ranks
+    </h3>
+    <p>
+      You determine how versatile you want your character to be at a Skill by placing points in the ranks column.
+    </p>
+    <p>
+      When you first create your character, each rank starts at 0. You then have a pool of 8 Points to distribute between all of
+      the Skills. To increase a rank by one, you reduce the pool by one, until the remaining Skill points is zero.
+    </p>
+    <p>
+      Ranks for a Skill can go no higher than your character's level + 3
+    </p>
+    <h3>
+      Modifier
+    </h3>
+    <p>
+      The Skill modifier is carried down from the relevant ability modifier. If your Strength Modifier is 3, for example, all of
+      the Skills in the Strength section have a modifier of 3. The same follows for the other abilities.
+    </p>
+    <h3>
+      Misc.
+    </h3>
+    <p>
+      Various Features and magical items can give a Misc. bonus to specific Skills. This is added to the Misc. bonus of the relevent
+      Ability.
+    </p>
+    <h3>
+      Bonus
+    </h3>
+    <p>
+      The sum of Ranks, Modifier, and Misc..
+    </p>
+  </article>
+  <article>
+    <h2>
+      Making a Skill check
+    </h2>
+    <p>
+      Your GM may call for a Skill check to be rolled when you attempt an action related to that Skill.
+    </p>
+    <p>
+      To roll a Skill check, take the result of 1d20 + Skill Bonus. Your GM will tell you if the result is high enough to perform
+      the action you were attempting.
+    </p>
+    <p>
+      Regardless of if the check succeeds or not, the Speed cost, if any, is applied fully.
+    </p>
+    <h3>
+      Criticaling
+    </h3>
+    <p>
+      When rolling 1d20, if the result of the roll is 20 before any other modifiers are applied, this is referred to as a critical.
+    </p>
+    <p>
+      A critical indicates an automatic success, as long as the GM rules that the action isn't physically impossible, and that
+      you have the necessary equipment, if any.
+    </p>
+    <p>
+      A critical also means that you performed the action so effectively, that you can add a flourish to the action for flavor,
+      if desired.
+    </p>
+    <h3>
+      Fumbling
+    </h3>
+    <p>
+      <p>
+        When rolling 1d20, if the result of the roll is 1 before any other modifiers are applied, this is referred to as a fumble.
+      </p>
+      <p>
+        A fumble indicates an automatic failure, but
+        <strong>only</strong> if a creature is under pressure, such as a combat situation. Otherwise, the roll is added normally.
+      </p>
+      <p>
+        On a fumble, you can still continue your turn, even to retry the check, as long as you have enough Speed remaining to do
+        so.
+      </p>
+  </article>
+  <article>
+    <h2>
+      Opposed Skill checks
+    </h2>
+    <p>
+      Usually, the GM is the one that determines what the Difficulty of making a specific check is. However, that is not always
+      the case.
+    </p>
+    <p>
+      Suppose a creature attempts to hide using a Stealth Check. An opponent that might want to notice the hidden creature can,
+      on their turn, make a Perception check. If the Perception Check is greater than the result of the Stealth Check, the
+      opponent notices the hidden creature. It is said that Stealth is Opposed by Perception.
+    </p>
+    <p>
+      When a skill specifies that it is opposed by another skill, record the result of the skill check. On their turn, opponents
+      may attempt to make the specified "opposed-by" skill check. If the result of the opposed-by check is greater than the
+      result of the original skill check, the opponent's check is then considered successful.
+    </p>
+
+  </article>
+  <article>
+    <h2>
+      Skill Defenses
+    </h2>
+    <p>
+      Some skills indicate that they have an associated "Defense". A Skill Defense is equal to 10, plus the bonus of the associated
+      Skill.
+    </p>
+    <p>
+      The primary skills with Defenses are: Athletics, Acrobatics, and Concentration.
+    </p>
+    <p>
+      These skill Defenses are used passively to determine the Difficulty of certain actions. You can see how they might be used
+      in the combat section of Playing Elixr.
+    </p>
+  </article>
+  <article>
+    <h2>
+      Character Backgrounds
+    </h2>
+    <p>
+      The GM is free to challenge what your character is capable of doing based on your character's background, or alter the Difficulty to your character. 
+      <br>
+      For example, a character might want to use Engineer to craft a sword. 
+      The GM might reply "Were you a blacksmith before joining the party? Were you an apprentice to a blacksmith? Have you ever seen a blacksmith? Then no, you cannot craft a sword."
+    </p>
+    <p>
+      Take the opportunity to flesh out in writing what your character has done in their lifetime to have gained the skills that they have now.
+    </p>
+  </article>
+</section>
+<div *ngFor="let ability of abilityStats">
+  <h2>
+    {{ ability.displayName || ability.name }}
+  </h2>
+  <p>
+    Skills that fall under the {{ ability.displayName || ability.name }} Ability.
+  </p>
+  <div *ngFor="let skill of skillsByAbilityId[ability.statId]">
+    <h3>
+      {{ skill.displayName || skill.name }}
+    </h3>
+    <p>
+      {{ skill.description }}
+    </p>
+    <ul>
+      <li>
+        Speed Cost: {{ skill.speedCost }}
+      </li>
+      <li>
+        Opposed By: {{ skill.opposedBy || 'None' }}
+      </li>
+      <li>
+        On Failure: {{ skill.onFailure }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="chapter-nav">
+  <a routerLink="/srd/abilities">
+    <i class="fa fa-angle-double-left"></i>
+    Abilities
+  </a>
+  <a routerLink="/srd/characteristics" class="pull-right">
+    Characteristics
+    <i class="fa fa-angle-double-right"></i>
+  </a>
+</div>

@@ -9,6 +9,8 @@ namespace Elixr2.Api.Models
         public List<SelectedCharacteristic> AppliedCharacteristics { get; set; } = new List<SelectedCharacteristic>();
         public List<SelectedSpell> SelectedSpells { get; set; } = new List<SelectedSpell>();
         public bool IsRace { get; set; }
+        // False if a creature must be born/created with this template.
+        public bool CanBeAcquired {get;set;}
 
         public override int Power => throw new System.NotImplementedException();
     }

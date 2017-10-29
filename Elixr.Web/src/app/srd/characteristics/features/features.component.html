@@ -1,0 +1,23 @@
+<section>
+  <article>
+    <h2>
+      Features
+    </h2>
+    <p>
+      Features are special abilities that a creature has beyond their physical abilities.
+    </p>
+  </article>
+</section>
+
+<div class="chapter-nav">
+  <a routerLink="/srd/characteristics">
+      <i class="fa fa-angle-double-left"></i>
+      Characteristics
+  </a>
+  <a routerLink="/srd/characteristics/flaws" class="pull-right">
+      Flaws
+      <i class="fa fa-angle-double-right"></i>
+  </a>
+</div>
+
+<app-characteristics [type]="features"></app-characteristics>

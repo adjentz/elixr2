@@ -133,50 +133,50 @@ export class CreatureEditorComponent implements OnInit {
   }
   save(): void {
     console.log(this.creature);
-    // let newMods = this.creature.mods.filter(asm => asm.appliedStatModId < 0);
-    // let newTemplates = this.creature.selectedTemplates.filter(st => st.selectedTemplateId < 0);
-    // let newCharacteristics = this.creature.selectedCharacteristics.filter(sc => sc.selectedCharacteristicId < 0);
-    // let newArmor = this.creature.selectedArmor.filter(sa => sa.selectedArmorId < 0);
-    // let newWeapons = this.creature.selectedWeapons.filter(sw => sw.selectedWeaponId < 0);
-    // let newItems = this.creature.selectedItems.filter(si => si.selectedItemId < 0);
-    // let newSpells = this.creature.selectedSpells.filter(ss => ss.selectedSpellId < 0);
-    // let newWealthAdjustments = this.creature.wealthAdjustments.filter(wa => wa.wealthAdjustmentId < 0);
+    let newMods = this.creature.mods.filter(asm => asm.appliedStatModId < 0);
+    let newTemplates = this.creature.selectedTemplates.filter(st => st.selectedTemplateId < 0);
+    let newCharacteristics = this.creature.selectedCharacteristics.filter(sc => sc.selectedCharacteristicId < 0);
+    let newArmor = this.creature.selectedArmor.filter(sa => sa.selectedArmorId < 0);
+    let newWeapons = this.creature.selectedWeapons.filter(sw => sw.selectedWeaponId < 0);
+    let newItems = this.creature.selectedItems.filter(si => si.selectedItemId < 0);
+    let newSpells = this.creature.selectedSpells.filter(ss => ss.selectedSpellId < 0);
+    let newWealthAdjustments = this.creature.wealthAdjustments.filter(wa => wa.wealthAdjustmentId < 0);
 
-    // let input: ISaveCreatureInput = {
-    //   ageChangedTo: this.creature.age,
-    //   descriptionChangedTo: this.creature.description,
-    //   eyesChangedTo: this.creature.eyes,
-    //   genderChangedTo: this.creature.gender,
-    //   hairChangedTo: this.creature.hair,
-    //   heightChangedTo: this.creature.height,
-    //   nameChangedTo: this.creature.name,
-    //   skinChangedTo: this.creature.skin,
-    //   weightChangedTo: this.creature.weight,
+    let input: ISaveCreatureInput = {
+      ageChangedTo: this.creature.age,
+      descriptionChangedTo: this.creature.description,
+      eyesChangedTo: this.creature.eyes,
+      genderChangedTo: this.creature.gender,
+      hairChangedTo: this.creature.hair,
+      heightChangedTo: this.creature.height,
+      nameChangedTo: this.creature.name,
+      skinChangedTo: this.creature.skin,
+      weightChangedTo: this.creature.weight,
 
-    //   newAppliedStatMods: newMods,
-    //   newSelectedArmor: newArmor,
-    //   newSelectedCharacteristics: newCharacteristics,
-    //   newSelectedItems: newItems,
-    //   newSelectedSpells: newSpells,
-    //   newSelectedTemplates: newTemplates,
-    //   newSelectedWeapons: newWeapons,
+      newAppliedStatMods: newMods,
+      newSelectedArmor: newArmor,
+      newSelectedCharacteristics: newCharacteristics,
+      newSelectedItems: newItems,
+      newSelectedSpells: newSpells,
+      newSelectedTemplates: newTemplates,
+      newSelectedWeapons: newWeapons,
 
-    //   deletedAppliedStatModIds: this.removedAppliedStatModIds,
-    //   deletedSelectedArmorIds: this.removedSelectedArmorIds,
-    //   deletedSelectedCharacteristicIds: this.removedSelectedCharacteristicIds,
-    //   deletedSelectedItemIds: this.removedSelectedItemIds,
-    //   deletedSelectedSpellIds: this.removedSelectedSpellIds,
-    //   deletedSelectedTemplateIds: this.removedSelectedTemplateIds,
-    //   deletedSelectedWeaponIds: this.removedSelectedWeaponIds,
+      deletedAppliedStatModIds: this.removedAppliedStatModIds,
+      deletedSelectedArmorIds: this.removedSelectedArmorIds,
+      deletedSelectedCharacteristicIds: this.removedSelectedCharacteristicIds,
+      deletedSelectedItemIds: this.removedSelectedItemIds,
+      deletedSelectedSpellIds: this.removedSelectedSpellIds,
+      deletedSelectedTemplateIds: this.removedSelectedTemplateIds,
+      deletedSelectedWeaponIds: this.removedSelectedWeaponIds,
 
-    //   creatureId: this.creature.creatureId,
-    //   levelSetTo: this.creature.level,
-    //   campaignSettingId: this.campaignSetting.campaignSettingId,
+      creatureId: this.creature.creatureId,
+      levelSetTo: this.creature.level,
+      campaignSettingId: this.campaignSetting.campaignSettingId,
 
-    //   newWealthAdjustments: newWealthAdjustments,
-    // };
+      newWealthAdjustments: newWealthAdjustments,
+    };
 
-    // this.creaturesService.saveCreature(input);
+    this.creaturesService.saveCreature(input);
 
   }
 

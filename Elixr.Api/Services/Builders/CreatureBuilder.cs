@@ -83,6 +83,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public CreatureBuilder WithSpecialWeaponCharacteristic(string weaponName, WeaponCharacteristic characteristic)
         {
             var selectedWeapon = creature.SelectedWeapons.First(sw => sw.Weapon.Name.ToLower() == weaponName.ToLower());
+            characteristic.IsDelisted = true;
             selectedWeapon.AppliedCharacteristics.Add(new SelectedWeaponCharacteristic
             {
                 Characteristic = characteristic
@@ -91,6 +92,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
         }
         public CreatureBuilder WithSpecialWeaponCharacteristic(string weaponName, string name, string descriptionOrPath, int powerAdjustment, CharacteristicType type = CharacteristicType.Feature)
         {
+
             descriptionOrPath = descriptionOrPath.Replace("\\", "/");
             WeaponCharacteristic weaponCharacteristic = new WeaponCharacteristic
             {
@@ -117,6 +119,8 @@ namespace Elixr2.Api.Services.Seeding.Builders
                                         .OfType(type)
                                         .Build();
 
+            characteristic.IsDelisted = true;
+
             this.creature.SelectedCharacteristics.Add(new SelectedCharacteristic
             {
                 Characteristic = characteristic,
@@ -127,6 +131,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
 
         public CreatureBuilder WithSpecialCharacteristic(Characteristic characteristic)
         {
+            characteristic.IsDelisted = true;
             this.creature.SelectedCharacteristics.Add(new SelectedCharacteristic
             {
                 Characteristic = characteristic,

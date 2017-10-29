@@ -25,6 +25,8 @@ namespace Elixr2.Api.Models
         //Order within the group
         public int Order { get; set; }
 
+        public string Description {get;set;}
+
         public int? ParentStatId { get; set; }
         public Stat ParentStat { get; set; }
     }

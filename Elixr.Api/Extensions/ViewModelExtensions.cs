@@ -58,7 +58,8 @@ namespace Elixr2.Api.Extensions
                 Ratio = stat.Ratio,
                 ParentStatId = stat.ParentStatId ?? 0,
                 Order = stat.Order,
-                DisplayName = stat.DisplayName
+                DisplayName = stat.DisplayName,
+                Description = stat.Description
             };
         }
         public static StatModViewModel ToViewModel(this StatMod mod)
@@ -100,7 +101,7 @@ namespace Elixr2.Api.Extensions
                 CharacteristicPointsEachLevel = setting.CharacteristicPointsEachLevel
             };
         }
-        
+
 
         public static CreatureViewModel ToViewModel(this Creature creature)
         {
@@ -307,6 +308,28 @@ namespace Elixr2.Api.Extensions
                 Amount = wealthAdjustment.Amount,
                 Reason = wealthAdjustment.Reason,
                 AdjustedAtMS = wealthAdjustment.AdjustedAtMS
+            };
+        }
+        public static SkillViewModel ToViewModel(this Skill skill)
+        {
+            return new SkillViewModel
+            {
+                StatId = skill.Id,
+                Name = skill.Name,
+                Group = skill.Group,
+                MaxValue = skill.MaxValue,
+                MaxValueFormula = skill.MaxValueFormula,
+                PowerRating = skill.PowerRating,
+                NonModdable = skill.NonModdable,
+                Ratio = skill.Ratio,
+                ParentStatId = skill.ParentStatId ?? 0,
+                Order = skill.Order,
+                DisplayName = skill.DisplayName,
+                SpeedCost = skill.SpeedCost,
+                OpposedBy = skill.OpposedBy,
+                Description = skill.Description,
+                HasDefense = skill.HasDefense,
+                OnFailure = skill.OnFailure
             };
         }
     }

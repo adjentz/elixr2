@@ -21,6 +21,7 @@ namespace Elixr2.Api.Services
         public DbSet<Creature> Creatures { get; set; }
         public DbSet<WeaponCharacteristic> WeaponCharacteristics { get; set; }
         public DbSet<SpellCharacteristic> SpellCharacteristics { get; set; }
+        private DbSet<Skill> Skills { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

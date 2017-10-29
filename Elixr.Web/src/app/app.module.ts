@@ -38,12 +38,11 @@ import { CreatureEquipmentComponent } from './creature-editor/creature-equipment
 import { CharacteristicsComponent } from './characteristics/characteristics.component';
 import { CharacteristicComponent } from './characteristics/characteristic/characteristic.component';
 import { CharacteristicsComponent as SrdCharacteristics } from './srd/characteristics/characteristics.component';
-import { FeaturesComponent } from './srd/features/features.component';
 import { RacesComponent } from './srd/races/races.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { TemplateComponent } from './templates/template/template.component';
 import { SelectedCharacteristicDetailComponent } from './components/selected-characteristic-detail/selected-characteristic-detail.component';
-import { SrdArmorComponent } from './srd/equipment/armor/srd-armor.component';
+import { SrdArmorComponent } from './srd/equipment/srd-armor/srd-armor.component';
 import { ArmorDetailComponent } from './armor/armor-detail/armor-detail.component';
 import { ArmorComponent } from './armor/armor.component';
 import { WeaponsComponent } from './weapons/weapons.component';
@@ -64,6 +63,19 @@ import { SkillsComponent } from './srd/skills/skills.component';
 import { PlayingElixrComponent } from './srd/playing-elixr/playing-elixr.component';
 import { RunningElixrComponent } from './srd/running-elixr/running-elixr.component';
 import { EquipmentComponent } from './srd/equipment/equipment.component';
+import { FeaturesComponent } from './srd/characteristics/features/features.component';
+import { FlawsComponent } from './srd/characteristics/flaws/flaws.component';
+import { OathsComponent } from './srd/characteristics/oaths/oaths.component';
+import { CombatComponent } from './srd/playing-elixr/combat/combat.component';
+import { SocialInteractionComponent } from './srd/playing-elixr/social-interaction/social-interaction.component';
+import { ExplorationComponent } from './srd/playing-elixr/exploration/exploration.component';
+import { ActionsComponent } from './srd/playing-elixr/combat/actions/actions.component';
+import { HealingComponent } from './srd/playing-elixr/combat/healing/healing.component';
+import { CampaignsComponent } from './srd/running-elixr/campaigns/campaigns.component';
+import { DungeonsComponent } from './srd/running-elixr/campaigns/dungeons/dungeons.component';
+import { WorldBuildingComponent } from './srd/running-elixr/world-building/world-building.component';
+import { PlayerDeathComponent } from './srd/running-elixr/player-death/player-death.component';
+import { StatsService } from './services/stats.service';
 
 @NgModule({
   declarations: [
@@ -110,7 +122,18 @@ import { EquipmentComponent } from './srd/equipment/equipment.component';
     PlayingElixrComponent,
     RunningElixrComponent,
     EquipmentComponent,
-    SrdCharacteristics
+    SrdCharacteristics,
+    FlawsComponent,
+    OathsComponent,
+    CombatComponent,
+    SocialInteractionComponent,
+    ExplorationComponent,
+    ActionsComponent,
+    HealingComponent,
+    CampaignsComponent,
+    DungeonsComponent,
+    WorldBuildingComponent,
+    PlayerDeathComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +153,8 @@ import { EquipmentComponent } from './srd/equipment/equipment.component';
     SpellsService,
     MarkdownService,
     AppService,
-    Title
+    Title,
+    StatsService
   ],
   bootstrap: [AppComponent]
 })

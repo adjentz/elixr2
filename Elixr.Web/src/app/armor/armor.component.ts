@@ -35,10 +35,10 @@ export class ArmorComponent implements OnInit {
     if (armor.speedPenalty === 0) {
       this.armorGroups["Light"].push(armor);
     }
-    else if(armor.speedPenalty === 5) {
+    else if(armor.speedPenalty === 10) {
       this.armorGroups["Medium"].push(armor);
     }
-    else if(armor.speedPenalty === 10) {
+    else if(armor.speedPenalty === 20) {
       this.armorGroups["Heavy"].push(armor);
     }
   }

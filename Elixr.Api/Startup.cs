@@ -49,7 +49,7 @@ namespace Elixr2
             services.AddScoped<TemplatesService>();
             services.AddScoped<GamerService>();
             services.AddScoped<ObjectStorageService>();
-            
+            services.AddScoped<StatsService>();
             services.AddTransient<SeedService>();
 
             services.AddSingleton(s => new SettingsService(configuration["S3AccessKeyID"], configuration["S3SecretKey"], configuration["SecretHashingKey"], configuration["TheGameMasterPassword"]));
