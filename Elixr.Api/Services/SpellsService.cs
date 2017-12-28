@@ -8,8 +8,8 @@ namespace Elixr2.Api.Services
 {
     public class SpellsService : ServiceBase
     {
-        public SpellsService(ElixrDbContext dbContext)
-        : base(dbContext)
+        public SpellsService(ElixrDbContext dbContext,UserSession userSession)
+        : base(dbContext, userSession)
         { }
         public async Task<List<Spell>> GetSpells(string name = null)
         {

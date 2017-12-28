@@ -15,7 +15,12 @@ namespace Elixr2.Api.Extensions
                 Description = characteristic.Description,
                 Type = characteristic.Type,
                 CharacteristicId = characteristic.Id,
-                SpecifiedPowerAdjustment = characteristic.SpecifiedPowerAdjustment
+                CombatPower = characteristic.CombatPower,
+                EnvironmentPower = characteristic.EnvironmentPower,
+                PresencePower = characteristic.PresencePower,
+                SpecifiedCombatPower = characteristic.SpecifiedCombatPower,
+                SpecifiedEnvironmentPower = characteristic.EnvironmentPower,
+                SpecifiedPresencePower = characteristic.PresencePower
             };
         }
 
@@ -29,7 +34,11 @@ namespace Elixr2.Api.Extensions
                 Mods = template.Mods.Select(m => m.ToViewModel()).ToList(),
                 AppliedCharacteristics = template.AppliedCharacteristics.Select(tc => tc.ToViewModel()).ToList(),
                 SelectedSpells = template.SelectedSpells.Select(ss => ss.ToViewModel()).ToList(),
-                IsRace = template.IsRace
+                IsRace = template.IsRace,
+                CanBeAcquired = template.CanBeAcquired,
+                CombatPower = template.CombatPower,
+                EnvironmentPower = template.EnvironmentPower,
+                PresencePower = template.PresencePower
             };
         }
         public static SelectedCharacteristicViewModel ToViewModel(this SelectedCharacteristic takenCharacteristic)
@@ -126,7 +135,10 @@ namespace Elixr2.Api.Extensions
                 SelectedTemplates = creature.SelectedTemplates.Select(st => st.ToViewModel()).ToList(),
                 SelectedItems = creature.SelectedItems.Select(si => si.ToViewModel()).ToList(),
                 SelectedSpells = creature.SelectedSpells.Select(ss => ss.ToViewModel()).ToList(),
-                WealthAdjustments = creature.WealthAdjustments.Select(wa => wa.ToViewModel()).ToList()
+                WealthAdjustments = creature.WealthAdjustments.Select(wa => wa.ToViewModel()).ToList(),
+                CombatPower = creature.CombatPower,
+                PresencePower = creature.PresencePower,
+                EnvironmentPower = creature.EnvironmentPower
             };
         }
 
@@ -138,7 +150,6 @@ namespace Elixr2.Api.Extensions
                 DamageAbility = weapon.DamageAbility,
                 Damage = weapon.Damage,
                 Range = weapon.Range,
-                HasReach = weapon.HasReach,
                 WeaponId = weapon.Id,
                 Name = weapon.Name,
                 Description = weapon.Description,
@@ -146,10 +157,17 @@ namespace Elixr2.Api.Extensions
                 SilverCost = weapon.SilverCost,
                 CopperCost = weapon.CopperCost,
                 WeightInPounds = weapon.WeightInPounds,
-                IsTwoHanded = weapon.IsTwoHanded,
-                CanSlash = weapon.CanSlash,
-                CanBludgeon = weapon.CanBludgeon,
-                CanPierce = weapon.CanPierce
+                DefaultCharacteristics = weapon.DefaultCharacteristics.Select(dc => dc.ToViewModel()).ToList()
+            };
+        }
+
+        public static DefaultWeaponCharacteristicViewModel ToViewModel(this DefaultWeaponCharacteristic defaultWeaponCharacteristic)
+        {
+            return new DefaultWeaponCharacteristicViewModel
+            {
+                DefaultWeaponCharacteristicId = defaultWeaponCharacteristic.Id,
+                Characteristic = defaultWeaponCharacteristic.Characteristic.ToViewModel(),
+                Notes = defaultWeaponCharacteristic.Notes
             };
         }
 
@@ -272,7 +290,7 @@ namespace Elixr2.Api.Extensions
                 Description = spellCharacteristic.Description,
                 SpellCharacteristicId = spellCharacteristic.Id,
                 Name = spellCharacteristic.Name,
-                SpecifiedPowerAdjustment = spellCharacteristic.SpecifiedPowerAdjustment
+                //SpecifiedSpecifiedPowerAdjustment = spellCharacteristic.SpecifiedPowerAdjustment
             };
         }
 
@@ -282,7 +300,7 @@ namespace Elixr2.Api.Extensions
             {
                 Description = weaponCharacteristic.Description,
                 Name = weaponCharacteristic.Name,
-                SpecifiedPowerAdjustment = weaponCharacteristic.SpecifiedPowerAdjustment,
+                // SpecifiedPowerAdjustment = weaponCharacteristic.SpecifiedPowerAdjustment,
                 WeaponCharacteristicId = weaponCharacteristic.Id,
                 AttackBonusMod = weaponCharacteristic.AttackBonusMod,
                 DamageBonusMod = weaponCharacteristic.DamageBonusMod,

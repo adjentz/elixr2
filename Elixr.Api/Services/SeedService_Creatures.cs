@@ -411,7 +411,7 @@ namespace Elixr2.Api.Services.Seeding
 
             var fearInducing = (new WeaponCharacteristicBuilder(standardCampaignSetting)).HasName("Fear Inducing")
                                                                                          .HasDescriptionFile(@"Content\Creatures\BarbedDevil\fear-inducing.md")
-                                                                                         .HasSpecificPower(9)
+                                                                                         .HasSpecificCombatPower(9)
                                                                                          .Build();
 
             builder = new CreatureBuilder(ctx);
@@ -570,7 +570,7 @@ namespace Elixr2.Api.Services.Seeding
             var gimpedClaw = (new WeaponCharacteristicBuilder(standardCampaignSetting)).HasName("Gimped")
                                                                             .HasDamageBonusMod(-4)
                                                                             .HasDescription("A Behir cannot make normal attacks with their claws. Instead, they must be in control of grapple, and make use of the Rake Characteristic applied to the Claw attack.")
-                                                                            .HasSpecificPower(-6)
+                                                                            .HasSpecificCombatPower(-6)
                                                                             .Build();
             builder = new CreatureBuilder(ctx);
             yield return builder.HasName("Behir")
@@ -666,7 +666,7 @@ namespace Elixr2.Api.Services.Seeding
             var puddingAcid = (new WeaponCharacteristicBuilder(standardCampaignSetting)).HasName("Acid")
                                                                                         .HasExtraDamage("2d6")
                                                                                         .HasDescriptionFile(@"Content\Creatures\BlackPudding\acid-slam.md")
-                                                                                        .HasSpecificPower(18) // It disolves the targets armor...
+                                                                                        .HasSpecificCombatPower(18) // It disolves the targets armor...
                                                                                         .Build();
 
             builder = new CreatureBuilder(ctx);
@@ -777,41 +777,6 @@ namespace Elixr2.Api.Services.Seeding
                                 .WithMod("Defense", 5)
                                 .WithMod("Energy", 51)
                                 .WithMod("Speed", 70)
-                                .BuildAndReset();
-
-            builder = new CreatureBuilder(ctx);
-            yield return builder.HasName("Bugbear Warrior")
-                                .HasDescriptionFile(@"Content\Templates\bugbear.md")
-                                .WithTemplate("Bugbear")
-                                .HasRacialAbilityScores(strength: 11, agility: 10, focus: 10, charm: 11)
-                                .HasSkills(climb: 1, stealth: 3, perception: 4)
-                                .WithArmor("Leather")
-                                .WithArmor("Buckler")
-                                .WithWeapon("Morningstar")
-                                .WithWeapon("Javelin")
-                                .WithMod("Energy", 18)
-                                .WithMod("Speed", 60)
-                                .BuildAndReset();
-
-            builder = new CreatureBuilder(ctx);
-            yield return builder.HasName("Bugbear Zombie")
-                                .HasDescription("Zombies are corpses reanimated through dark and sinister magic.\n\nBecause of their utter lack of intelligence, the instructions given to a newly created zombie must be very simple. Note their very reduced Speed.")
-                                .WithTemplate("Bugbear")
-                                .WithTemplate("Undead")
-                                .HasRacialAbilityScores(strength: 13, agility: 8, focus: 10, charm: 3)
-                                .HasSkills()
-                                .WithArmor("Buckler")
-                                .WithWeapon("Morningstar")
-                                .WithWeaponCharacteristic("Morningstar", "Weapon Training, 3")
-                                .WithWeapon("Javelin")
-                                .WithWeaponCharacteristic("Javelin", "Weapon Training, 3")
-                                .WithNaturalWeapon("Slam", WeaponUseAbility.Strength, WeaponUseAbility.Strength, "1d6")
-                                .WithWeaponCharacteristic("Slam", "Weapon Training, 3")
-                                .WithMod("Energy", 44)
-                                .WithMod("Speed", 30)
-                                .WithMod("Defense", 2, "Natural (Zombie)")
-                                .WithCharacteristic("Resistance, Bludgeoning")
-                                .WithCharacteristic("Resistance, Piercing")
                                 .BuildAndReset();
 
             builder = new CreatureBuilder(ctx);
@@ -959,7 +924,7 @@ namespace Elixr2.Api.Services.Seeding
 
             var multiplePartsCharacteristic = (new CharacteristicBuilder(ctx.Setting)).HasName("Multiple Parts")
                                                                                       .HasDescriptionFile(@"Content\Creatures\Chimera\multiple-parts.md")
-                                                                                      .HasSpecificPowerAdjustment(40)
+                                                                                      .HasSpecificCombatPower(40)
                                                                                       .Build();
 
             Dictionary<string, string> lineEnergyTypesByColor = new Dictionary<string, string>
@@ -1782,7 +1747,7 @@ namespace Elixr2.Api.Services.Seeding
 
             var burning = (new WeaponCharacteristicBuilder(context.Setting)).HasName("Burning")
                                                                             .HasExtraDamage("1d6")
-                                                                            .HasSpecificPower(5)
+                                                                            .HasSpecificCombatPower(5)
                                                                             .HasDescription("Those hit by a slam attack have a 20% chance of catching on fire. The flame burns for 1d4 rounds. At the start of the Elemental's turn, each creature currently aflame takes 1d6 fire damage.\n\nA Creature can extinguish the flames as an action with a Speed Cost of 20ft.")
                                                                             .Build();
             yield return builder.HasName("Fire Elemental, Medium")
@@ -1827,7 +1792,7 @@ namespace Elixr2.Api.Services.Seeding
 
             var hiveMind = (new CharacteristicBuilder(context.Setting)).HasName("Hive Mind")
                                                                        .HasDescription("All formians within 50 miles of their queen are in constant communiation. If one is aware of a particular danger, they all are. If one in a group is not flatfooted, none of them are. No formian in a group is considered flanked unless all of them are.")
-                                                                       .HasSpecificPowerAdjustment(12)
+                                                                       .HasSpecificCombatPower(12)
                                                                        .OfType(CharacteristicType.Feature)
                                                                        .Build();
 

@@ -9,7 +9,8 @@ import { TemplatesService } from '../services/templates.service';
 })
 export class TemplatesComponent implements OnInit {
 
-  @Input() onlyRaces: boolean;
+  @Input() onlyRaces?: boolean;
+  @Input() onlyAcquireable?: boolean;
   @Input() forSelection: boolean;
   @Output() selected = new EventEmitter<ITemplate>();
 

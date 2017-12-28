@@ -4,12 +4,14 @@ namespace Elixr2.Api.Services.Seeding.Builders
 {
     class WeaponCharacteristicBuilder
     {
-        private readonly WeaponCharacteristic _weaponCharacteristic;
+        private WeaponCharacteristic _weaponCharacteristic;
+        private readonly CampaignSetting campaignSetting;
         public WeaponCharacteristicBuilder(CampaignSetting setting)
         {
             _weaponCharacteristic = new WeaponCharacteristic();
             _weaponCharacteristic.CampaignSettingId = setting.Id;
             HasAuthor(setting.AuthorId);
+            this.campaignSetting = setting;
         }
 
         public WeaponCharacteristicBuilder HasName(string name)
@@ -44,9 +46,9 @@ namespace Elixr2.Api.Services.Seeding.Builders
             desc = string.Format(desc, formatStrParams);
             return HasDescription(desc);
         }
-        public WeaponCharacteristicBuilder HasSpecificPower(int power)
+        public WeaponCharacteristicBuilder HasSpecificCombatPower(int power)
         {
-            _weaponCharacteristic.SpecifiedPowerAdjustment = power;
+            _weaponCharacteristic.SpecifiedCombatPower = power;
             return this;
         }
         public WeaponCharacteristicBuilder HasAuthor(int authorId)
@@ -54,6 +56,19 @@ namespace Elixr2.Api.Services.Seeding.Builders
             _weaponCharacteristic.AuthorId = authorId;
             return this;
         }
-        public WeaponCharacteristic Build() => _weaponCharacteristic;
+        public WeaponCharacteristic Build() 
+        {
+            try 
+            {
+                return _weaponCharacteristic;
+            }
+            finally 
+            {
+                _weaponCharacteristic = new WeaponCharacteristic();
+                _weaponCharacteristic.CampaignSettingId = campaignSetting.Id;
+                HasAuthor(campaignSetting.AuthorId);
+            }
+        } 
+            
     }
 }

@@ -5,23 +5,37 @@
             </h2>
             <p>
                 Armor is worn by characters to increase their Defense, making them less likely to be hit.
-                Armor descriptions include: Is Cumbersome and Don Time.  
+                Armor descriptions include: Defense Bonus, Speed Penalty, Agility Penalty.
             </p>
             <h3>
-                Is Cumbersome
+                Defense Bonus
             </h3>
             <p>
-                When worn, some armor causes some skills to have Disadvantage due to the armor's weight or awkwardness. 
-                These skills include: Athletics, Acrobatics, Climb, Swim, and Stealth 
+                While wearing the given armor, a creature's Defense is increased by an amount equal to the Defense Bonus.
             </p>
             <h3>
-                Don Time
+                Speed Penalty
             </h3>
             <p>
-                Armor takes time to put on. The Don Time is how many rounds it takes to fully put on armor.
+                A creature's Effective Speed is reduced by the sum of the Speed Penalty for all armor that the creature is wearing.
             </p>
             <p>
-                The time it takes to remove armor is half of the Don Time.
+                This penalty is <i>doubled</i> when performing the Swim or Climb skills.
+            </p>
+            <h3>
+                Agility Penalty
+            </h3>
+            <p>
+                A creature's Effective Agility Score is reduced by the sum of the Agility Penalty for all armor that creature is wearing.
+            </p>
+            <h3>
+                Donning Armor
+            </h3>
+            <p>
+                It takes a number of rounds equal to the armor's weight divided by 10, then multiplied by 2. So an armor with a weight of 50 would have a don time of 10 (50 / 2 = 5. 5 * 2 = 10.)
+            </p>
+            <p>
+                Taking off armor (doffing) takes half as long as donning.
             </p>
         </article>
     </section>    

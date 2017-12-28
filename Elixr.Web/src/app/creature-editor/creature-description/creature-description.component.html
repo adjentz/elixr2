@@ -22,7 +22,7 @@
 </div>
 <div class="slideout" *ngIf="selectingTemplate">
   <a (click)="cancelSlideout()" class="close">x</a>
-  <app-templates [forSelection]="true" (selected)="templateChosen($event)" [onlyRaces]="false"></app-templates>
+  <app-templates [onlyRaces]="creature.isCharacter" [forSelection]="true" (selected)="templateChosen($event)" [onlyRaces]="false"></app-templates>
 </div>
 <div class="flex-cols">
   <div class="flex-col left-col">
@@ -47,7 +47,7 @@
       </div>
       <div class="flex-row">
         <strong>
-        Race/Templates <i style="cursor:pointer" (click)="explainRaceTemplates()" class="fa fa-info-circle" title="Test!"></i>
+        Race/Templates <i style="cursor:pointer" (click)="explainRaceTemplates()" class="fa fa-info-circle"></i>
       </strong>
         <div>
           <ul class="templates-list">

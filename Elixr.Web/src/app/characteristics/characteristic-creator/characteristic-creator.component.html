@@ -1,0 +1,85 @@
+<div class="game-element">
+  <div class="title">
+    <input type="text" placeholder="Title" [(ngModel)]="title">
+  </div>
+  <div class="body">
+    <strong>Description</strong> (editing uses markdown syntax)
+    <app-markdown-editor [(model)]="description"></app-markdown-editor>
+    <div *ngIf="!loading">
+      <div class="flex-cols">
+        <div class="flex-col">
+          <strong>Stat</strong>
+        </div>
+        <div class="flex-col">
+          <strong>
+            Modifier
+          </strong>
+        </div>
+      </div>
+      <div class="flex-cols" *ngFor="let statMod of statMods">
+        <div class="flex-col">
+          {{ statMod.stat.displayName || statMod.stat.name }}
+        </div>
+        <div class="flex-col">
+          {{ statMod.modifier}}
+          <button (click)="removeMod(statMod)">
+            Remove
+          </button>
+        </div>
+      </div>
+      <div class="flex-cols">
+        <div class="flex-col">
+          <select [(ngModel)]="currentStatMod.stat" (ngModelChange)="currentStatModChanged()">
+            <option *ngFor="let stat of this.moddableStats" [ngValue]="stat">
+              {{ stat.displayName || stat.name }}
+            </option>
+          </select>
+        </div>
+        <div class="flex-col">
+          <input type="number" [(ngModel)]="currentStatMod.modifier" (ngModelChange)="clearError()" [step]="currentStatMod.stat.ratio">
+          <button (click)="addMod()">
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label>
+        <input type="radio" name="useSuggestedPowerRadio" [(ngModel)]="useSuggestedPower" [value]="true"> Use Suggested Power: {{ totalSuggestedPower }}
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="useSuggestedPowerRadio" [(ngModel)]="useSuggestedPower" [value]="false"> Specify Power:
+      </label>
+      <input type="number" [(ngModel)]="specifiedPower">
+    </div>
+    <strong>
+      Characteristic Type
+    </strong>
+    <a *ngIf="!explainCharacteristicTypes" (click)="explainCharacteristicTypes = true">Which should I choose?</a>
+    <a *ngIf="explainCharacteristicTypes" (click)="explainCharacteristicTypes = false">Hide</a>
+    <p *ngIf="explainCharacteristicTypes">
+      A Feature is something that grants an out of the ordinary ability or power to a creature. 
+      <br>
+      A Flaw causes a Creature to have some reduction in power or ability. 
+      If a Characteristic causes a gain in some areas, and a reduction in others, favor using Flaw.
+      <br>
+      An Oath always requires a condition that the creature must adhere to keep its effects, but is otherwise similar to a Feature.
+    </p>
+    <div>
+        <select [(ngModel)]="selectedType">
+            <option *ngFor="let type of characteristicTypes" [value]="type">
+              {{ type | characteristicType }}
+            </option>
+          </select>
+    </div>
+    <p class="error">
+      {{ error }}
+    </p>
+    <app-community-agreement (acceptedConditions)="updateAcceptedConditions($event)"></app-community-agreement>
+    <app-login></app-login>
+    <button class="lxr-button" (click)="submit()">
+      Submit
+    </button>
+  </div>
+</div>

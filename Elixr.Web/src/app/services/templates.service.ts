@@ -7,16 +7,17 @@ export class TemplatesService {
 
   constructor(private apiService: ApiService) { }
 
-  searchTemplates(onlyRaces: boolean, name?: string): Promise<ITemplate[]> {
+  searchTemplates(onlyRaces?: boolean, onlyAcquireable?: boolean, name?: string): Promise<ITemplate[]> {
     let input: ISearchTemplatesInput = {
       name: name,
       onlyRaces: onlyRaces
     };
     return this.apiService.post("templates/search", input);
   }
-  
+
 }
 export interface ISearchTemplatesInput {
   name: string,
-  onlyRaces: boolean
+  onlyRaces?: boolean,
+  onlyAcquireable?: boolean
 }

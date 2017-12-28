@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Elixr2.Api.Models
 {
@@ -12,6 +13,36 @@ namespace Elixr2.Api.Models
         // False if a creature must be born/created with this template.
         public bool CanBeAcquired {get;set;}
 
-        public override int Power => throw new System.NotImplementedException();
+        public override int CombatPower
+        {
+            get
+            {
+                int power = SelectedSpells.Sum(ss => ss.Spell.CombatPower);
+                power += Mods.Where(sm => sm.Stat.PowerType == PowerType.Combat).Sum(sm => sm.Power);
+                power += AppliedCharacteristics.Sum(sc => sc.Characteristic.CombatPower);
+                return power;
+            }
+        }
+        public override int PresencePower
+        {
+            get
+            {
+                int power = SelectedSpells.Sum(ss => ss.Spell.PresencePower);
+                power += Mods.Where(sm => sm.Stat.PowerType == PowerType.Presence).Sum(sm => sm.Power);
+                power += AppliedCharacteristics.Sum(sc => sc.Characteristic.PresencePower);
+                return power;
+            }
+        }
+
+        public override int EnvironmentPower
+        {
+            get
+            {
+                int power = SelectedSpells.Sum(ss => ss.Spell.EnvironmentPower);
+                power += Mods.Where(sm => sm.Stat.PowerType == PowerType.Environment).Sum(sm => sm.Power);
+                power += AppliedCharacteristics.Sum(sc => sc.Characteristic.EnvironmentPower);
+                return power;
+            }
+        }
     }
 }

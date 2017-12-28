@@ -29,6 +29,7 @@ import { CampaignsComponent } from './srd/running-elixr/campaigns/campaigns.comp
 import { DungeonsComponent } from './srd/running-elixr/campaigns/dungeons/dungeons.component';
 import { WorldBuildingComponent } from './srd/running-elixr/world-building/world-building.component';
 import { CharacterDescriptionComponent } from './srd/character-description/character-description.component';
+import { TosComponent } from './tos/tos.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/intro', pathMatch: 'full' },
@@ -59,11 +60,12 @@ const routes: Routes = [
     { path: 'srd/playing-elixr/combat/healing', component: HealingComponent, data: { title: 'Healing' } },
     { path: 'srd/playing-elixr/social-interaction', component: SocialInteractionComponent, data: { title: 'Social Interaction' } },
     { path: 'srd/playing-elixr/exploration', component: ExplorationComponent, data: { title: 'Exploration' } },
-    { path: 'srd/running-elixr/player-death', component: PlayerDeathComponent, data: { title: 'Player Death' } },    
+    { path: 'srd/running-elixr/player-death', component: PlayerDeathComponent, data: { title: 'Player Death' } },
     { path: 'srd/running-elixr', component: RunningElixrComponent, data: { title: 'Running Elixr' } },
     { path: 'srd/running-elixr/campaigns', component: CampaignsComponent, data: { title: 'Campaigns' } },
     { path: 'srd/running-elixr/campaigns/dungeons', component: DungeonsComponent, data: { title: 'Dungeons' } },
     { path: 'srd/running-elixr/world-building', component: WorldBuildingComponent, data: { title: 'World Building' } },
+    { path: 'tos', component: TosComponent, data: { title: 'Terms of Service' } }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

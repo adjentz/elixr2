@@ -37,7 +37,7 @@ export class WeaponsComponent implements OnInit {
     if (weapon.range > 0) {
       this.weaponGroups["Ranged"].push(weapon);
     }
-    else if (weapon.isTwoHanded) {
+    else if (weapon.defaultCharacteristics.findIndex(dc => dc.characteristic.name.toLowerCase() === 'two-handed') > -1) {
       this.weaponGroups["Two-Handed"].push(weapon);
     }
     else {
@@ -77,32 +77,15 @@ export class WeaponsComponent implements OnInit {
     }
   }
 
-  getWeaponAttributes(weapon: IWeapon): string {
-    let attrs = "";
-
-    if (weapon.canBludgeon) {
-      attrs += "B";
-    }
-    if (weapon.canPierce) {
-      attrs += "P";
-    }
-    if (weapon.canSlash) {
-      attrs += "S";
-    }
-    if (weapon.hasReach) {
-      attrs += "R";
-    }
-    if (attrs.length > 0) {
-      return "[" + attrs + "]";
-    }
-    return "--";
+  getWeaponCharacteristics(weapon: IWeapon): string {
+    return weapon.defaultCharacteristics.map(dc => dc.characteristic.name).join(', ');
   }
 
   formatAttack(weapon: IWeapon): string {
-    return this.formatUseAbility(weapon.attackAbility) + " Bonus";
+    return this.formatUseAbility(weapon.attackAbility);
   }
-  formatDamage(weapon: IWeapon): string {
-    return `${weapon.damage} + ${this.formatUseAbility(weapon.damageAbility)} Bonus`;
+  formatDamageAbility(weapon: IWeapon): string {
+    return `${this.formatUseAbility(weapon.damageAbility)}`;
   }
 
   weaponChosen(weapon: IWeapon) {
@@ -111,6 +94,10 @@ export class WeaponsComponent implements OnInit {
   }
 
   viewDetail(weapon:IWeapon):void {
+    if(this.forSelection) {
+      this.weaponChosen(weapon);
+      return;
+    }
     this.detailWeapon = weapon;
     this.appService.showSlideout();
   }

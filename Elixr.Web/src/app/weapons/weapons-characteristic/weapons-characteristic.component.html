@@ -1,0 +1,34 @@
+<div class="game-element">
+  <div class="title">
+    {{ characteristic.name }}
+  </div>
+  <div class="body">
+    {{ characteristic.description }}
+    <table>
+      <tr>
+        <th>
+          Extra Damage
+        </th>
+        <td>
+          {{ characteristic.extraDamage || 'None' }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Attack Bonus Mod
+        </th>
+        <td>
+          {{ characteristic.attackBonusMod || 0 }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Damage Bonus Mod
+        </th>
+        <td>
+          {{ characteristic.damageBonusMod || 0 }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

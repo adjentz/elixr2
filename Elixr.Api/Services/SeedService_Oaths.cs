@@ -15,7 +15,7 @@ namespace Elixr2.Api.Services.Seeding
             var oath = builder.OfType(CharacteristicType.Oath)
                     .HasName("Chastity")
                     .HasDescriptionFile("Content\\Oaths\\chastity.md")
-                    .HasSpecificPowerAdjustment(-1)
+                    //.HasSpecificPowerAdjustment(-1)
                     .Build();
             dbContext.Characteristics.Add(oath);
 
@@ -23,7 +23,7 @@ namespace Elixr2.Api.Services.Seeding
             oath = builder.OfType(CharacteristicType.Oath)
                     .HasName("Eschew Magic")
                     .HasDescriptionFile("Content\\Oaths\\eschew-magic.md")
-                    .HasSpecificPowerAdjustment(-8)
+                    //.HasSpecificPowerAdjustment(-8)
                     .Build();
             dbContext.Characteristics.Add(oath);
 
@@ -31,7 +31,7 @@ namespace Elixr2.Api.Services.Seeding
             oath = builder.OfType(CharacteristicType.Oath)
                     .HasName("Eschew Spells")
                     .HasDescriptionFile("Content\\Oaths\\eschew-spells.md")
-                    .HasSpecificPowerAdjustment(-4)
+                    //.HasSpecificPowerAdjustment(-4)
                     .Build();
             dbContext.Characteristics.Add(oath);
 
@@ -39,7 +39,7 @@ namespace Elixr2.Api.Services.Seeding
             oath = builder.OfType(CharacteristicType.Oath)
                     .HasName("Fealty")
                     .HasDescriptionFile("Content\\Oaths\\fealty.md")
-                    .HasSpecificPowerAdjustment(-2)
+                    //.HasSpecificPowerAdjustment(-2)
                     .Build();
             dbContext.Characteristics.Add(oath);
 
@@ -55,7 +55,7 @@ namespace Elixr2.Api.Services.Seeding
             oath = builder.OfType(CharacteristicType.Oath)
                     .HasName("Poverty")
                     .HasDescriptionFile("Content\\Oaths\\poverty.md")
-                    .HasSpecificPowerAdjustment(-1)
+                    //.HasSpecificPowerAdjustment(-1)
                     .Build();
             dbContext.Characteristics.Add(oath);
 

@@ -22,7 +22,7 @@ export class CharacteristicComponent implements OnInit {
     return this.characteristic.mods.length > 0;
   }
   get power(): number {
-    return this.elixrService.getCharacteristicPower(this.characteristic);
+    return this.characteristic.combatPower + this.characteristic.presencePower + this.characteristic.environmentPower;
   }
 
   nameClicked(): void {

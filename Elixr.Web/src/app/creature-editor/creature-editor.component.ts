@@ -210,6 +210,14 @@ export class CreatureEditorComponent implements OnInit {
   }
 
   templateSelected(template: ITemplate): void {
+    if(this.creature.selectedTemplates.findIndex(st => st.templateId === template.templateId) > -1) {
+      alert("Cannot select same template twice");
+      return;
+    }
+    if(template.isRace && this.creature.selectedTemplates.findIndex(st => st.template.isRace) > -1) {
+      alert("Cannot have more than 1 race");
+      return;
+    }
 
     this.creature.selectedTemplates.push({
       notes: "",
@@ -430,7 +438,7 @@ export class CreatureEditorComponent implements OnInit {
     if (!this.creature || !this.creature.mods) {
       return [];
     }
-
+    
     let result = [...this.creature.mods];
     for (let selectedCharacteristic of this.creature.selectedCharacteristics) {
       for (let mod of selectedCharacteristic.characteristic.mods) {

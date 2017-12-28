@@ -7,6 +7,8 @@ namespace Elixr2.Api.Models
     {
         // Just generic gear.
 
-        public override int Power => throw new NotImplementedException();
+        public override int CombatPower => 0;
+        public override int PresencePower => 0;
+        public override int EnvironmentPower => 0;
     }
 }

@@ -1,0 +1,38 @@
+<h3>
+  {{ signingUp ? 'Sign Up' : 'Log In'}}
+</h3>
+<div>
+  <strong>
+    Username
+  </strong>
+  <i class="fa fa-asterisk"></i>  
+  <input type="text">
+</div>
+<div>
+  <strong>
+    Password
+  </strong>
+  <i class="fa fa-asterisk"></i>  
+  <input type="text">
+</div>
+<div *ngIf="signingUp">
+  <strong>
+    Confirm Password
+  </strong>
+  <i class="fa fa-asterisk"></i>
+  <input type="text">
+</div>
+<div *ngIf="signingUp">
+  <strong>
+    Email
+  </strong>
+  <input type="text">
+</div>
+<div>
+  <label>
+    <input type="checkbox" [(ngModel)]="signingUp"> New Account?
+  </label>
+  <button class="lxr-button">
+    Go
+  </button>
+</div>

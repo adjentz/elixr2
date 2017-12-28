@@ -4,7 +4,10 @@
       Name
     </th>
     <th>
-      Attack
+      Attack Ability
+    </th>
+    <th>
+      Damage Ability
     </th>
     <th>
       Damage
@@ -19,12 +22,12 @@
       Weight
     </th>
     <th>
-      Attributes
+      Characteristics
     </th>
   </tr>
   <tbody *ngFor="let group of weaponGroupKeys">
     <tr>
-      <th colspan="7">
+      <th colspan="8">
         {{ group }}
       </th>
     </tr>
@@ -38,7 +41,10 @@
         {{ formatAttack(weapon) }}
       </td>
       <td>
-        {{ formatDamage(weapon) }}
+        {{ formatDamageAbility(weapon) }}
+      </td>
+      <td>
+        {{ weapon.damage }}
       </td>
       <td>
         {{ formatRange(weapon) }}
@@ -50,7 +56,7 @@
         {{ weapon.weightInPounds }} lbs.
       </td>
       <td>
-        {{ getWeaponAttributes(weapon) }}
+        {{ getWeaponCharacteristics(weapon) }}
       </td>
     </tr>
   </tbody>

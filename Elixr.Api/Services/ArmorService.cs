@@ -8,8 +8,8 @@ namespace Elixr2.Api.Services
 {
     public class ArmorService : ServiceBase
     {
-        public ArmorService(ElixrDbContext dbContext)
-        : base(dbContext)
+        public ArmorService(ElixrDbContext dbContext, UserSession userSession)
+        : base(dbContext, userSession)
         { }
         public async Task<List<Armor>> GetArmor(string name = null)
         {

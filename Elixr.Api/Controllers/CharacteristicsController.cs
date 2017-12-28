@@ -16,17 +16,29 @@ namespace Elixr2.Api.Controllers
         {
             this.characteristicsService = characteristicsService;
         }
-        
+
         [HttpPost("~/characteristics/search")]
         public async Task<List<CharacteristicViewModel>> SearchCharacteristics([FromBody]SearchCharacteristicsInput input)
         {
             var characteristics = await characteristicsService.GetCharacteristics(input.Type, input.Name);
             return characteristics.Select(c => c.ToViewModel()).ToList();
         }
+
+        [HttpPost("characteristics/submit")]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task SubmitCharacteristic(CharacteristicViewModel viewModel)
+        {
+            //var result = await characteristicsService.GetCharacteristics
+            throw new System.NotImplementedException();
+        }
         public class SearchCharacteristicsInput
         {
             public string Name { get; set; }
             public CharacteristicType Type { get; set; }
+        }
+        public class SubmitCharacteristicOutput
+        {
+            public int CharacteristicId { get; set; }
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Elixr2.Api.Services
 {
     public class ItemsService : ServiceBase
     {
-        public ItemsService(ElixrDbContext dbContext)
-        : base(dbContext)
+        public ItemsService(ElixrDbContext dbContext, UserSession userSession)
+        : base(dbContext, userSession)
         { }
         public async Task<List<Item>> GetItems(string name = null)
         {

@@ -24,6 +24,13 @@ namespace Elixr2.Api.Controllers
             return stats.Select(s => s.ToViewModel()).ToList();
         }
 
+        [HttpGet("~/stats/moddable")]
+        public async Task<List<StatViewModel>> GetStatsInGroup()
+        {
+            var stats = await statsService.GetModdableStatsAsync();
+            return stats.Select(s => s.ToViewModel()).ToList();
+        }
+
         [HttpGet("~/skills")]
         public async Task<List<SkillViewModel>> GetSkills()
         {

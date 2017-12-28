@@ -54,7 +54,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
                 IsDelisted = true,
                 IsTemplateOnly = true,
                 Name = name,
-                SpecifiedPowerAdjustment = power,
+                //SpecifiedPowerAdjustment = power,
                 Type = type
             };
             _template.AppliedCharacteristics.Add(new SelectedCharacteristic

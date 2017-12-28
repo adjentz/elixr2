@@ -11,59 +11,45 @@
       Attack Ability
     </h3>
     <p>
-      What physical <a routerLink="/srd/abilities">ability</a> is relevant to the attack roll.
-    </p>
-    <p>
-      When making an attack roll, a character takes the result of 1d20 + The Modifier of the weapon's attack ability + any misc.
-      modifiers. If the result exceeds the target Defense, the character gets to roll Damage against the target.
+      When making an attack roll, a character takes the result of 1d20 + the Bonus of the
+      <a routerLink="/srd/abilities">ability</a> as specified by this property of the weapon. If the result exceeds the target Defense, the character gets
+      to roll Damage against the target. See the combat section of <i>Playing Elixr</i> for more information.
     </p>
     <h3>
       Damage Ability
     </h3>
     <p>
-      What physical <a routerLink="/srd/abilities">ability</a> is relevant to the damage roll.
+      On a successful attack, damage is rolled according to the damage property of the weapon (see below). 
+      Then, the result of the damage roll is increased by the Bonus of the <a routerLink="/srd/abilities">ability</a> as specified by this property of the weapon.
     </p>
     <h3>
       Damage
     </h3>
     <p>
-      The Damage of a weapon is what is rolled on a successful hit. When a target is hit, they reduce their Energy by the amount
-      of damage rolled + the Modifier of the Damage Ability.
+      On a successful a
+      <a routerLink="/srd/abilities">ability</a> as specified by this propety of the weapon. If the result exceeds the target Defense, the character gets
+      to roll Damage against the target.
     </p>
     <h3>
       Range
     </h3>
     <p>
-      Some weapons have a Range, which is the distance that a weapon can effectively be aimed and fired at a target. There are
-      four range categories: Short, Medium, Long, and Extreme.
-    </p>
-    <p>
-      Short range is any distance less than or equal to 50ft.
-    </p>
-    <p>
-      Medium range is any distance less than or equal to 100ft, and greater than 50ft.
-    </p>
-    <p>
-      Long range is any distance less than or equal to 200ft, and greater than 100ft.
-    </p>
-    <p>
-      Extreme range is any distance longer than 200ft.
-    </p>
-    <p>
-      A ranged weapon can be fired one category above its given Range, but attacks are made with Disadvantage.
+      Indicates how far away from a target a weapon is effective. 
+      While the distance to the target is within range, an attacker rolls normally.
+      If the distance is to the target is still within double the range specified, the attacker may still roll, but with Disadvantage.
     </p>
   </article>
 </section>
 
 <div class="chapter-nav">
   <a routerLink="/srd/equipment/armor">
-        <i class="fa fa-angle-double-left"></i>
-        Armor
-    </a>
+    <i class="fa fa-angle-double-left"></i>
+    Armor
+  </a>
   <a routerLink="/srd/equipment/items" class="pull-right">
-        Items
-        <i class="fa fa-angle-double-right"></i>
-    </a>
+    Items
+    <i class="fa fa-angle-double-right"></i>
+  </a>
 </div>
 
 <app-weapons></app-weapons>

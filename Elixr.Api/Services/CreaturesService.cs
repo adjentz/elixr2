@@ -9,8 +9,8 @@ namespace Elixr2.Api.Services
     public class CreaturesService : ServiceBase
     {
         private ElixrDbContext dbContext;
-        public CreaturesService(ElixrDbContext dbContext)
-        : base(dbContext)
+        public CreaturesService(ElixrDbContext dbContext, UserSession userSession)
+        : base(dbContext, userSession)
         {
             this.dbContext = dbContext;
         }

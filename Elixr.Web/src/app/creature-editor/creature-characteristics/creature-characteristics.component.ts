@@ -15,6 +15,7 @@ export class CreatureCharacteristicsComponent implements OnInit {
   viewingDetail = false;
   detailSelectedCharacteristic: ISelectedCharacteristic;
 
+  @Input() countSpells = 0;
   @Input() allAppliedStatMods: IAppliedStatMod[];
   @Input() selectedCharacteristics: ISelectedCharacteristic[];
   @Input() selectedTemplates: ISelectedTemplate[];
@@ -78,6 +79,7 @@ export class CreatureCharacteristicsComponent implements OnInit {
     let costSum = 0;
     this.selectedCharacteristics.forEach(sc => costSum += this.elixrService.getCharacteristicPower(sc.characteristic));
     let pointsForLevel = this.setting.characteristicPointsEachLevel * this.level;
+    costSum += this.countSpells;
     return pointsForLevel - costSum;
   }
 

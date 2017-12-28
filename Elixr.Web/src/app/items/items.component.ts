@@ -40,7 +40,10 @@ export class ItemsComponent implements OnInit {
   }
 
   viewDetail(item: IItem): void {
-    console.log(item);
+    if(this.forSelection) {
+      this.itemChosen(item);
+      return;
+    }
     this.detailItem = item;
     this.appService.showSlideout();
   }

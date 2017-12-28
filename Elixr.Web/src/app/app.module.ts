@@ -76,6 +76,13 @@ import { DungeonsComponent } from './srd/running-elixr/campaigns/dungeons/dungeo
 import { WorldBuildingComponent } from './srd/running-elixr/world-building/world-building.component';
 import { PlayerDeathComponent } from './srd/running-elixr/player-death/player-death.component';
 import { StatsService } from './services/stats.service';
+import { TosComponent } from './tos/tos.component';
+import { CommunityAgreementComponent } from './community-agreement/community-agreement.component';
+import { WeaponsCharacteristicComponent } from './weapons/weapons-characteristic/weapons-characteristic.component';
+import { CharacteristicCreatorComponent } from './characteristics/characteristic-creator/characteristic-creator.component';
+import { CharacteristicTypePipe } from './pipes/characteristic-type.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { UserSessionService } from 'app/services/user-session.service';
 
 @NgModule({
   declarations: [
@@ -133,7 +140,13 @@ import { StatsService } from './services/stats.service';
     CampaignsComponent,
     DungeonsComponent,
     WorldBuildingComponent,
-    PlayerDeathComponent
+    PlayerDeathComponent,
+    TosComponent,
+    CommunityAgreementComponent,
+    WeaponsCharacteristicComponent,
+    CharacteristicCreatorComponent,
+    CharacteristicTypePipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -154,7 +167,8 @@ import { StatsService } from './services/stats.service';
     MarkdownService,
     AppService,
     Title,
-    StatsService
+    StatsService,
+    UserSessionService
   ],
   bootstrap: [AppComponent]
 })

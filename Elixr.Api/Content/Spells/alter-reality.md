@@ -1,6 +1,8 @@
-Alter Reality is the most versatile spell. The only limit is that the spell cannot permanently alter free-will, at least not entirely (the subject will always feel like something is wrong if this attempted on them). Otherwise, you permanently make a change to the world. 
+Alter Reality is the most versatile spell. The spell allows you to permanently make a change to the world. 
 
 The Energy Requirement for the spell depends on the magnitude of the requested effect. The GM determines this using similar spells (to the desired effect) as a reference, as well as their own discretion.
+
+Additionally, Energy cast for this spell must be sacrificed, meaning that the caster's Current Energy is reduced by the amount they Channel. 
 
 It is not recommended for lower-level characters to learn this spell, as the Energy Requirement will almost always be higher than their Max Energy.
 

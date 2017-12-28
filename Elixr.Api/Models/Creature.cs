@@ -23,32 +23,50 @@ namespace Elixr2.Api.Models
         public List<SelectedArmor> SelectedArmor { get; set; } = new List<SelectedArmor>();
         public List<SelectedWeapon> SelectedWeapons { get; set; } = new List<SelectedWeapon>();
         public List<SelectedItem> SelectedItems { get; set; } = new List<SelectedItem>();
-        public List<SelectedSpell> SelectedSpells { get; set; } = new List<SelectedSpell>();        
-        
-        public override int Power
+        public List<SelectedSpell> SelectedSpells { get; set; } = new List<SelectedSpell>();
+
+        public int GearPower
         {
             get
             {
-                //TODO: Each GameElement should have it's own Power, use that instead of calculating here.
-                int power = 0;
-                power += SelectedSpells.Count;
-                power += Mods.Sum(asm => GetStatModPower(asm.StatMod));
-                power += SelectedCharacteristics.Sum(sc => GetCharacteristicPower(sc.Characteristic));
-                power += SelectedTemplates.Sum(st => GetTemplatePower(st.Template));
+                return SelectedWeapons.Sum(sw => sw.Weapon.CombatPower)
+                + SelectedArmor.Sum(sa => sa.Armor.CombatPower)
+                + SelectedItems.Sum(si => si.Item.CombatPower);
+            }
+        }
+        public override int CombatPower
+        {
+            get
+            {
+                int power = SelectedSpells.Sum(ss => ss.Spell.CombatPower);
+                power += Mods.Where(asm => asm.StatMod.Stat.PowerType == PowerType.Combat).Sum(asm => asm.StatMod.Power);
+                power += SelectedCharacteristics.Sum(sc => sc.Characteristic.CombatPower);
+                power += SelectedTemplates.Sum(st => st.Template.CombatPower);
+                return power;
+            }
+        }
+        public override int PresencePower
+        {
+            get
+            {
+                int power = SelectedSpells.Sum(ss => ss.Spell.PresencePower);
+                power += Mods.Select(asm => asm.StatMod).Where(sm => sm.Stat.PowerType == PowerType.Presence).Sum(sm => sm.Power);
+                power += SelectedCharacteristics.Sum(sc => sc.Characteristic.PresencePower);
+                power += SelectedTemplates.Sum(st => st.Template.PresencePower);
                 return power;
             }
         }
 
-        private int GetCharacteristicPower(Characteristic characteristic) => characteristic.SpecifiedPowerAdjustment ?? characteristic.Mods.Sum(sm => GetStatModPower(sm));
-        private int GetStatModPower(StatMod statMod) => statMod.Stat.PowerRating * (int)Math.Ceiling(statMod.Modifier * 1.0f / statMod.Stat.Ratio);
-
-        private int GetTemplatePower(Template template)
+        public override int EnvironmentPower
         {
-            int power = 0;
-            power += template.Mods.Sum(sm => GetStatModPower(sm));
-            power += template.AppliedCharacteristics.Sum(ac => GetCharacteristicPower(ac.Characteristic));
-            power += template.SelectedSpells.Count;
-            return power;
+            get
+            {
+                int power = SelectedSpells.Sum(ss => ss.Spell.EnvironmentPower);
+                power += Mods.Select(asm => asm.StatMod).Where(sm => sm.Stat.PowerType == PowerType.Environment).Sum(sm => sm.Power);
+                power += SelectedCharacteristics.Sum(sc => sc.Characteristic.EnvironmentPower);
+                power += SelectedTemplates.Sum(st => st.Template.EnvironmentPower);
+                return power;
+            }
         }
     }
 }

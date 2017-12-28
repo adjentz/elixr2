@@ -8,8 +8,8 @@ namespace Elixr2.Api.Services
 {
     public class TemplatesService : ServiceBase
     {
-        public TemplatesService(ElixrDbContext dbContext)
-        : base(dbContext)
+        public TemplatesService(ElixrDbContext dbContext, UserSession userSession)
+        : base(dbContext, userSession)
         { }
         public async Task<List<Template>> GetTemplates(bool onlyRaces, string name = null)
         {

@@ -12,5 +12,10 @@ namespace Elixr2.Api.ViewModels
         public List<SelectedCharacteristicViewModel> AppliedCharacteristics { get; set; }
         public List<SelectedSpellViewModel> SelectedSpells { get; set; }
         public bool IsRace { get; set; }
+        public bool CanBeAcquired { get; set; }
+
+        public int CombatPower { get; set; }
+        public int PresencePower { get; set; }
+        public int EnvironmentPower { get; set; }
     }
 }

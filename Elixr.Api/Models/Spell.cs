@@ -9,6 +9,8 @@ namespace Elixr2.Api.Models
         public bool IsConcentration { get; set; }
         public bool DoesDamage { get; set; }
 
-        public override int Power => 1;
+        public override int CombatPower => 1;
+        public override int PresencePower => 0;
+        public override int EnvironmentPower => 0;
     }
 }

@@ -71,12 +71,16 @@ namespace Elixr2.Api.Services.Seeding
         private void AddStrengthSkillsAndMisc()
         {
             Stat strengthScore = standardCampaignSetting.Stats.First(s => s.Name == "Strength Score");
+            strengthScore.PowerType = PowerType.Combat;
 
             Stat strengthMisc = new Stat("Strength Misc", StatGroup.AbilityMisc, 8);
+            strengthMisc.PowerType = PowerType.Combat;
+
             strengthMisc.ParentStat = strengthScore;
             standardCampaignSetting.Stats.Add(strengthMisc);
 
             Skill athletics = new Skill("Athletics", 2);
+            athletics.PowerType = PowerType.Combat;
             athletics.Description = "Athletics is the Skill to perform general feats of athleticism, such as jumping over a chasm or throwing a grappling hook.";
             athletics.SpeedCost = "Varies";
             athletics.OnFailure = "Varies";
@@ -85,6 +89,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(athletics);
 
             var climb = new Skill("Climb", 1);
+            climb.PowerType = PowerType.Environment;
             climb.Description = "Climb is the Skill to scale difficult surfaces.";
             climb.SpeedCost = "10ft for every 5ft to scale.";
             climb.OnFailure = "The creature remains in the same spot";
@@ -93,6 +98,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(climb);
 
             var intimidate = new Skill("Intimidate", 1);
+            intimidate.PowerType = PowerType.Presence;
             intimidate.Description = "Coerce a creature into performing an action they normally would not do for fear of being physically harmed otherwise.";
             intimidate.ParentStat = strengthScore;
             intimidate.Order = 1;
@@ -101,6 +107,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(intimidate);
 
             var swim = new Skill("Swim", 1);
+            swim.PowerType = PowerType.Environment;
             swim.Description = "Swim is the Skill to move through water quickly and effecively. Calm water does not require a check.";
             swim.SpeedCost = "10ft for every 5ft to swim";
             swim.OnFailure = "The creature begins to sink";
@@ -111,12 +118,16 @@ namespace Elixr2.Api.Services.Seeding
         private void AddAgilitySkillsAndMisc()
         {
             Stat agilityScore = standardCampaignSetting.Stats.First(s => s.Name == "Agility Score");
+            agilityScore.PowerType = PowerType.Combat;
 
             Stat agilityMisc = new Stat("Agility Misc", StatGroup.AbilityMisc, 8);
+            agilityMisc.PowerType = PowerType.Combat;
+
             agilityMisc.ParentStat = agilityScore;
             standardCampaignSetting.Stats.Add(agilityMisc);
 
             Skill acrobatics = new Skill("Acrobatics", 2);
+            acrobatics.PowerType = PowerType.Combat;
             acrobatics.Description = "Acrobatics is the Skill to balance on a ledge, tumble between a giant's legs, dodge out of harm's way, and reduce fall damage.";
             acrobatics.SpeedCost = "Varies";
             acrobatics.OnFailure = "Varies";
@@ -125,6 +136,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(acrobatics);
 
             var escapeArtist = new Skill("Escape Artist", 1);
+            escapeArtist.PowerType = PowerType.Environment;
             escapeArtist.Description = "Escape Artist is the Skill to escape restraints such as handcuffs and knots.";
             escapeArtist.SpeedCost = "30ft";
             escapeArtist.OnFailure = "The creature remains restrained.";
@@ -133,6 +145,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(escapeArtist);
 
             var initiative = new Skill("Initiative", 1);
+            initiative.PowerType = PowerType.Combat;
             initiative.Description = "In-game, Initiaitve is how quickly a creature respond to a situation. Around the table, Initiative indicates whose turn is first. See the combat section in Playing Elixr for more information.";
             initiative.SpeedCost = "0ft";
             initiative.OnFailure = "N/A";
@@ -140,33 +153,47 @@ namespace Elixr2.Api.Services.Seeding
             initiative.Order = 1;
             standardCampaignSetting.Stats.Add(initiative);
 
+            var ride = new Skill("Ride", 1);
+            ride.PowerType = PowerType.Environment;
+            ride.Description = "Effectively ride a mount, or hold on to a moving object or creature.";
+            ride.SpeedCost = "0ft";
+            ride.OnFailure = "Unable to control mount, or hold on to object or creature.";
+            ride.ParentStat = agilityScore;
+            ride.Order = 2;
+            standardCampaignSetting.Stats.Add(ride);
+
             var sleightOfHand = new Skill("Sleight of Hand", 1);
+            sleightOfHand.PowerType = PowerType.Environment;
             sleightOfHand.Description = "Stealth is the Skill to move and hide without being noticed. It is combined with some manner of misdirection, and therefore has a Speed Cost of 30ft";
             sleightOfHand.SpeedCost = "30ft";
             sleightOfHand.OpposedBy = "Perception";
             sleightOfHand.OnFailure = "Opponents have a chance to notice the sleight on their turn through a Perception check.";
             sleightOfHand.ParentStat = agilityScore;
-            sleightOfHand.Order = 2;
+            sleightOfHand.Order = 3;
             standardCampaignSetting.Stats.Add(sleightOfHand);
 
             var stealth = new Skill("Stealth", 1);
+            stealth.PowerType = PowerType.Combat;
             stealth.ParentStat = agilityScore;
             stealth.Description = "Stealth is this Skill to move and hide without being noticed.";
             stealth.SpeedCost = "10ft for every 5ft traveled";
             stealth.OpposedBy = "Perception";
             stealth.OnFailure = "Opponents have a chance to notice the sneaking individual on their turn through a Perception check.";
-            sleightOfHand.Order = 3;
+            sleightOfHand.Order = 4;
             standardCampaignSetting.Stats.Add(stealth);
         }
         private void AddFocusSkillsAndMisc()
         {
             Stat focusScore = standardCampaignSetting.Stats.First(s => s.Name == "Focus Score");
+            focusScore.PowerType = PowerType.Combat;
 
             Stat focusMisc = new Stat("Focus Misc", StatGroup.AbilityMisc, 8);
+            focusScore.PowerType = PowerType.Combat;
             focusMisc.ParentStat = focusScore;
             standardCampaignSetting.Stats.Add(focusMisc);
 
             var concentration = new Skill("Concentration", 2);
+            concentration.PowerType = PowerType.Combat;
             concentration.Description = "Concentration is the Skill to not be distracted, as well as protect your mind from certain spells.";
             concentration.SpeedCost = "0ft";
             concentration.OnFailure = "Varies";
@@ -175,6 +202,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(concentration);
 
             var engineer = new Skill("Engineer", 1);
+            engineer.PowerType = PowerType.Environment;
             engineer.Description = "Engineer is the Skill to create items and discern structural details.";
             engineer.SpeedCost = "Varies";
             engineer.OnFailure = "The result is ineffective.";
@@ -183,6 +211,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(engineer);
 
             var insight = new Skill("Insight", 1);
+            insight.PowerType = PowerType.Environment;
             insight.Description = "Insight is the Skill to discern information from subtle details.";
             insight.SpeedCost = "0ft";
             insight.OnFailure = "No extra information is discerned";
@@ -191,6 +220,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(insight);
 
             var medicine = new Skill("Medicine", 1);
+            medicine.PowerType = PowerType.Environment;
             medicine.Description = "Medicine is the Skill to determine a creatures ailments and apply cures to some wounds.";
             medicine.SpeedCost = "Varies, at least 50ft";
             medicine.OnFailure = "The treatment is ineffective";
@@ -199,6 +229,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(medicine);
 
             var perception = new Skill("Perception", 1);
+            perception.PowerType = PowerType.Environment;
             perception.Description = "Perception is the Skill to notice the presence or absence of other entites through sound, sight, smell, or other sense.";
             perception.SpeedCost = "0ft";
             perception.OnFailure = "Something goes unnoticed";
@@ -207,6 +238,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(perception);
 
             var recall = new Skill("Recall", 1);
+            recall.PowerType = PowerType.Environment;
             recall.Description = "Recall is the Skill to remember information that a creature would have collected in the past. The information must be something a creature would already know. The GM can challenge if a creature would actually have the information depending on their background.";
             recall.SpeedCost = "0ft";
             recall.OnFailure = "The information isn't available to the creature. A retry can only be attempted 24 hours later for the same information.";
@@ -215,6 +247,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(recall);
 
             var survival = new Skill("Survival", 1);
+            survival.PowerType = PowerType.Environment;
             survival.Description = "Survival is the Skill to survive in the wild. Can include things such as tying knots in a rope, lighting a fire, or discerning what direction is North.";
             survival.SpeedCost = "Varies";
             survival.OnFailure = "The action is unsuccessful.";
@@ -227,35 +260,42 @@ namespace Elixr2.Api.Services.Seeding
         {
 
             Stat strengthScore = new Stat("Strength Score", StatGroup.Ability, 4, 18);
+            strengthScore.PowerType = PowerType.Combat;
             strengthScore.DisplayName = "Strength";
             standardCampaignSetting.Stats.Add(strengthScore);
 
             Stat racialStrengthScore = new Stat("Racial Strength Score", StatGroup.RacialAbility, 4);
+            racialStrengthScore.PowerType = PowerType.Combat;
             racialStrengthScore.ParentStat = strengthScore;
             standardCampaignSetting.Stats.Add(racialStrengthScore);
 
             Stat agilityScore = new Stat("Agility Score", StatGroup.Ability, 4, 18);
+            agilityScore.PowerType = PowerType.Combat;
             agilityScore.DisplayName = "Agility";
             standardCampaignSetting.Stats.Add(agilityScore);
 
             Stat racialAgilityScore = new Stat("Racial Agility Score", StatGroup.RacialAbility, 4);
+            racialAgilityScore.PowerType = PowerType.Combat;
             racialAgilityScore.ParentStat = agilityScore;
             standardCampaignSetting.Stats.Add(racialAgilityScore);
 
             Stat focusScore = new Stat("Focus Score", StatGroup.Ability, 4, 18);
             focusScore.DisplayName = "Focus";
+            focusScore.PowerType = PowerType.Combat;
             standardCampaignSetting.Stats.Add(focusScore);
 
             Stat racialFocusScore = new Stat("Racial Focus Score", StatGroup.RacialAbility, 4);
+            racialFocusScore.PowerType = PowerType.Combat;
             racialFocusScore.ParentStat = focusScore;
             standardCampaignSetting.Stats.Add(racialFocusScore);
 
             Stat charmScore = new Stat("Charm Score", StatGroup.Ability, 4, 18);
+            charmScore.PowerType = PowerType.Presence;
             charmScore.DisplayName = "Charm";
             standardCampaignSetting.Stats.Add(charmScore);
 
-            //Racial Charm score is intentionally lower...
-            Stat racialCharmScore = new Stat("Racial Charm Score", StatGroup.RacialAbility, 0);
+            Stat racialCharmScore = new Stat("Racial Charm Score", StatGroup.RacialAbility, 4);
+            racialCharmScore.PowerType = PowerType.Presence;
             racialCharmScore.ParentStat = charmScore;
             standardCampaignSetting.Stats.Add(racialCharmScore);
         }
@@ -269,6 +309,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(charm);
 
             var animalHandling = new Skill("Animal Handling", 1);
+            animalHandling.PowerType = PowerType.Environment;
             animalHandling.Description = "Animal Handling is the Skill to effectively interact with animals. A successful check will shift an animals attitude by one step in a positive direction. See Social Interaction in the Playing Elixr section";
             animalHandling.ParentStat = charmScore;
             animalHandling.SpeedCost = "50ft";
@@ -277,6 +318,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(animalHandling);
 
             var deception = new Skill("Deception", 1);
+            deception.PowerType = PowerType.Presence;
             deception.Description = "Deception is the Skill to bluff and misdirect others. If a lie is too unbelievable, a GM may allow the target to roll with Advantage, or increase the Difficulty of performing the Deception.";
             deception.SpeedCost = "0ft";
             deception.OpposedBy = "Insight";
@@ -286,6 +328,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(deception);
 
             var diplomacy = new Skill("Diplomacy", 1);
+            diplomacy.PowerType = PowerType.Presence;
             diplomacy.Description = "Diplomacy is the Skill to cause other to see your point of view. A successful check will shift another's attitude towards the creature by one step in a postive direction. Diplomacy cannot be used to coerce a creature into taking an action that would be against their character. Diplomacy checks cannot be used on player characters.";
             diplomacy.SpeedCost = "0ft";
             diplomacy.OpposedBy = "Diplomacy (counter from opponent)";
@@ -295,6 +338,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(diplomacy);
 
             var perform = new Skill("Perform", 1);
+            perform.PowerType = PowerType.Presence;
             perform.SpeedCost = "Varies, at least 50ft";
             perform.OnFailure = "The audience doesn't pay much attention to the performer, or boos if the performer is particularily bad.";
             perform.Description = "Perform is the Skill to effectively capture the attention of others through song, stories, dance, or playing an instrument. A character's background should specify what talents they have ahead of time. On exceptional checks, the audience may even tip the performer.";
@@ -303,6 +347,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(perform);
 
             var threaten = new Skill("Threaten", 1);
+            threaten.PowerType = PowerType.Presence;
             threaten.Description = "Coerce a creature into performing an action they normally would not do for fear of what you say will happen if they don't.";
             threaten.ParentStat = charmScore;
             threaten.Order = 2;
@@ -320,7 +365,10 @@ namespace Elixr2.Api.Services.Seeding
             var allSkills = standardCampaignSetting.Stats.Where(s => s.Group == StatGroup.Skill || s.Group == StatGroup.SkillDefense).ToList();
             allSkills.ForEach(s =>
             {
+                s.NonModdable = true;
+
                 var skillMiscStat = new Stat(s.Name + " Misc.", StatGroup.SkillMisc, s.PowerRating);
+                skillMiscStat.PowerType = s.PowerType;
                 skillMiscStat.ParentStat = s;
                 standardCampaignSetting.Stats.Add(skillMiscStat);
 
@@ -330,14 +378,17 @@ namespace Elixr2.Api.Services.Seeding
         private void AddCharacterStats()
         {
             var energy = new Stat("Energy", StatGroup.Character, 3);
+            energy.PowerType = PowerType.Combat;
             standardCampaignSetting.Stats.Add(energy);
 
             Stat defense = new Stat("Defense", StatGroup.Character, 3);
+            defense.PowerType = PowerType.Combat;
             standardCampaignSetting.Stats.Add(defense);
 
             Stat speed = new Stat("Speed", StatGroup.Character, 6)
             {
-                Ratio = 5
+                Ratio = 5,
+                PowerType = PowerType.Combat
             };
             standardCampaignSetting.Stats.Add(speed);
         }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ICampaignSetting, IStat, IAppliedStatMod, IStatMod, StatGroup, ICreature } from '../../../models/view-models';
+import { ICampaignSetting, IStat, IAppliedStatMod, IStatMod, StatGroup, ICreature, ISelectedArmor } from '../../../models/view-models';
 import { ElixrService } from '../../services/elixr.service';
 import { AppService } from '../../services/app.service';
 
@@ -24,6 +24,7 @@ export class CreatureAbilitiesComponent implements OnInit {
     }
   }
   @Input() allAppliedStatMods: IAppliedStatMod[];
+  @Input() allSelectedArmor: ISelectedArmor[];
   @Input() creature: ICreature;
   @Output() applyStatMod = new EventEmitter<IStatMod>();
   @Output() removeAppliedStatMods = new EventEmitter<IAppliedStatMod[]>();
@@ -94,7 +95,7 @@ export class CreatureAbilitiesComponent implements OnInit {
     if (stat.group === StatGroup.Skill || stat.group === StatGroup.SkillDefense) {
       let maxSkillRanks = this.creature.level + this.setting.maxSkillRanksAboveLevel;
       if (newStatTotal > maxSkillRanks) {
-        alert(`At this level, ranks cannot go to ${maxSkillRanks}`);
+        alert(`Ranks cannot exceed 3 + level (${maxSkillRanks})`);
         return false;
       }
     }
@@ -127,6 +128,9 @@ export class CreatureAbilitiesComponent implements OnInit {
   get remainingAbilityPoints(): number {
     let sum = 0;
     this.primaryAbilities.forEach(a => sum += this.getPureAbilityScore(a));
+    if(this.allSelectedArmor) {
+      this.allSelectedArmor.forEach(a => sum += a.armor.agilityPenalty);
+    }
     return this.setting.startingAbilityPoints - sum;
   }
   get remainingSkillPoints(): number {

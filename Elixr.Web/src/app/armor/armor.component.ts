@@ -58,6 +58,11 @@ export class ArmorComponent implements OnInit {
   }
 
   viewDetail(armor: IArmor): void {
+    if(this.forSelection) {
+      this.armorChosen(armor);
+      return;
+    }
+    
     this.detailArmor = armor;
     this.appService.showSlideout();
   }

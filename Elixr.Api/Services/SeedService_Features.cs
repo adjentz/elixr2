@@ -11,11 +11,15 @@ namespace Elixr2.Api.Services.Seeding
 
         private void AddFeatures()
         {
+            AddSkillFeatures();
+            AddAbilityFeatures();
+
             CharacteristicBuilder builder = new CharacteristicBuilder(standardCampaignSetting);
             var feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Animal Companion")
                     .HasDescriptionFile("Content\\Features\\animal-companion.md")
-                    .HasSpecificPowerAdjustment(3)
+                    .HasSpecificCombatPower(2)
+                    .HasSpecificEnvironmentPower(1)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -23,7 +27,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Cat Like Vision")
                     .HasDescriptionFile("Content\\Features\\cat-like-vision.md")
-                    .HasSpecificPowerAdjustment(2)
+                    .HasSpecificEnvironmentPower(2)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -31,7 +35,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Darkvision")
                     .HasDescriptionFile("Content\\Features\\darkvision.md")
-                    .HasSpecificPowerAdjustment(3)
+                    .HasSpecificEnvironmentPower(3)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -39,7 +43,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Cohort")
                     .HasDescriptionFile("Content\\Features\\cohort.md")
-                    .HasSpecificPowerAdjustment(5)
+                    .HasSpecificCombatPower(5)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -47,7 +51,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Dodge")
                     .HasDescriptionFile("Content\\Features\\dodge.md")
-                    .HasSpecificPowerAdjustment(2)
+                    .HasSpecificCombatPower(2)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -55,7 +59,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Echolocation (20 ft)")
                     .HasDescriptionFile("Content\\Features\\echolocation-20ft.md")
-                    .HasSpecificPowerAdjustment(5)
+                    .HasSpecificEnvironmentPower(5)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -65,7 +69,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Fast Healing, {i}")
                         .HasDescriptionFile("Content\\Features\\fast-healing.md")
-                        .HasSpecificPowerAdjustment(i * 6)
+                        .HasSpecificCombatPower(i * 6)
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
@@ -75,6 +79,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Fly")
                     .HasDescriptionFile("Content\\Features\\fly.md")
+                    .HasSpecificEnvironmentPower(20)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -86,7 +91,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Resistance, {type}")
                         .HasDescriptionFile("Content\\Features\\resistance-attack.md", type)
-                        .HasSpecificPowerAdjustment(energyResistancePower)
+                        .HasSpecificCombatPower(energyResistancePower)
                         .Build();
                 dbContext.Characteristics.Add(feature);
 
@@ -94,18 +99,16 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Immunity, {type}")
                         .HasDescriptionFile("Content\\Features\\immunity-attack.md", type)
-                        .HasSpecificPowerAdjustment(energyResistancePower * 2)
+                        .HasSpecificCombatPower(energyResistancePower * 2)
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
-
-
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Energy")
                     .HasDescriptionFile("Content\\Features\\resistance-attack.md", string.Join(", ", energyTypes))
-                    .HasSpecificPowerAdjustment(energyTypes.Length * energyResistancePower)
+                    .HasSpecificCombatPower(energyTypes.Length * energyResistancePower)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -113,7 +116,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Immunity, All Poison")
                     .HasDescriptionFile("Content\\Features\\immunity-all-poison.md")
-                    .HasSpecificPowerAdjustment(9)
+                    .HasSpecificCombatPower(9)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -121,7 +124,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Immunity, Poison")
                     .HasDescriptionFile("Content\\Features\\immunity-poison.md")
-                    .HasSpecificPowerAdjustment(6)
+                    .HasSpecificCombatPower(6)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -129,7 +132,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Poison")
                     .HasDescriptionFile("Content\\Features\\resistance-poison.md")
-                    .HasSpecificPowerAdjustment(3)
+                    .HasSpecificCombatPower(3)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -137,7 +140,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Mind-Affecting")
                     .HasDescriptionFile("Content\\Features\\resistance-mind-affecting.md")
-                    .HasSpecificPowerAdjustment(8)
+                    .HasSpecificCombatPower(8)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -150,7 +153,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Resistance, {type}")
                         .HasDescriptionFile("Content\\Features\\resistance-attack.md", type)
-                        .HasSpecificPowerAdjustment(physicalResistancePower)
+                        .HasSpecificCombatPower(physicalResistancePower)
                         .Build();
                 dbContext.Characteristics.Add(feature);
 
@@ -158,7 +161,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Immunity, {type}")
                         .HasDescriptionFile("Content\\Features\\immunity-attack.md", type)
-                        .HasSpecificPowerAdjustment(physicalResistancePower * 2)
+                        .HasSpecificCombatPower(physicalResistancePower * 2)
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
@@ -167,7 +170,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Physical")
                     .HasDescriptionFile("Content\\Features\\resistance-attack.md", "Bludgeoning, Piercing, or Slashing")
-                    .HasSpecificPowerAdjustment(physicalResistancePower * physicalTypes.Length)
+                    .HasSpecificCombatPower(physicalResistancePower * physicalTypes.Length)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -175,7 +178,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                      .HasName("Learn Spell")
                      .HasDescriptionFile("Content\\Features\\learn-spell.md")
-                     .HasSpecificPowerAdjustment(1)
+                     .HasSpecificCombatPower(1)
                      .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -183,7 +186,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Leech")
                     .HasDescriptionFile("Content\\Features\\leech.md")
-                    .HasSpecificPowerAdjustment(12)
+                    .HasSpecificCombatPower(12)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -192,7 +195,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Speak Language")
                     .HasDescriptionFile("Content\\Features\\speak-language.md")
-                    .HasSpecificPowerAdjustment(1)
+                    .HasSpecificPresencePower(1)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -208,7 +211,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Two Weapon Training")
                     .HasDescriptionFile("Content\\Features\\two-weapon-training.md")
-                    .HasSpecificPowerAdjustment(7)
+                    .HasSpecificCombatPower(7)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -237,21 +240,21 @@ namespace Elixr2.Api.Services.Seeding
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Tremorsense, 30ft")
                     .HasDescriptionFile(@"Content\Features\tremorsense.md", 30)
-                    .HasSpecificPowerAdjustment(3)
+                    .HasSpecificEnvironmentPower(3)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Tremorsense, 60ft")
                     .HasDescriptionFile(@"Content\Features\tremorsense.md", 60)
-                    .HasSpecificPowerAdjustment(6)
+                    .HasSpecificEnvironmentPower(6)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Immunity, Mind-Affecting")
                     .HasDescriptionFile(@"Content\Features\immunity-mind-affecting.md")
-                    .HasSpecificPowerAdjustment(13)
+                    .HasSpecificCombatPower(13)
                     .Build());
 
 
@@ -259,14 +262,14 @@ namespace Elixr2.Api.Services.Seeding
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Camoflage")
                     .HasDescriptionFile(@"Content\Features\camoflage.md")
-                    .HasSpecificPowerAdjustment(2)
+                    .HasSpecificEnvironmentPower(2)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Ferocity")
                     .HasDescriptionFile(@"Content\Features\ferocity.md")
-                    .HasSpecificPowerAdjustment(3)
+                    .HasSpecificCombatPower(3)
                     .Build());
 
             for (int i = 1; i <= 12; i++)
@@ -276,7 +279,7 @@ namespace Elixr2.Api.Services.Seeding
                 dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                         .HasName($"Blindsight, {feet}ft")
                         .HasDescriptionFile(@"Content\Features\blind-sight.md", $"{feet}ft")
-                        .HasSpecificPowerAdjustment(feet / 5)
+                        .HasSpecificEnvironmentPower(feet / 5)
                         .Build());
             }
 
@@ -284,56 +287,56 @@ namespace Elixr2.Api.Services.Seeding
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Ignores Critical Damage")
                     .HasDescription("Extra damage from a critical hit is automatically negated. Any damage the weapon deals normally is still applied.")
-                    .HasSpecificPowerAdjustment(5)
+                    .HasSpecificCombatPower(5)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Can't Be Flanked")
                     .HasDescription("Being surrounded by opponents does not grant them Advantage when making attacks.")
-                    .HasSpecificPowerAdjustment(5)
+                    .HasSpecificCombatPower(5)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Smite Foe")
                     .HasDescriptionFile(@"Content\Features\smite-foe.md")
-                    .HasSpecificPowerAdjustment(4)
+                    .HasSpecificCombatPower(4)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Blind Fight")
                     .HasDescriptionFile(@"Content\Features\blind-fight.md")
-                    .HasSpecificPowerAdjustment(4)
+                    .HasSpecificCombatPower(4)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Amphibious")
                     .HasDescription(@"A creature with this Feature can survive indefinitely both in land and water.")
-                    .HasSpecificPowerAdjustment(1)
+                    .HasSpecificEnvironmentPower(1)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Combat Casting")
                     .HasDescriptionFile(@"Content\Features\combat-casting.md")
-                    .HasSpecificPowerAdjustment(3)
+                    .HasSpecificCombatPower(3)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Spell Defense")
                     .HasDescriptionFile(@"Content\Features\spell-defense.md")
-                    .HasSpecificPowerAdjustment(6)
+                    .HasSpecificCombatPower(6)
                     .Build());
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                     .HasName("Spell Resistance")
                     .HasDescriptionFile(@"Content\Features\spell-resistance.md")
-                    .HasSpecificPowerAdjustment(15)
+                    .HasSpecificCombatPower(15)
                     .Build());
 
             for (int i = 0; i < 12; i++)
@@ -342,7 +345,7 @@ namespace Elixr2.Api.Services.Seeding
                 dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                         .HasName($"Lifesense, {(i + 1) * 5}ft")
                         .HasDescriptionFile("Content\\Features\\lifesense.md")
-                        .HasSpecificPowerAdjustment(8 + i)
+                        .HasSpecificEnvironmentPower(8 + i)
                         .Build());
             }
             for (int i = 0; i < 5; i++)
@@ -351,10 +354,32 @@ namespace Elixr2.Api.Services.Seeding
                 dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
                         .HasName($"Regeneration, {i + 1}")
                         .HasDescriptionFile("Content\\Features\\regeneration.md", i + 1)
-                        .HasSpecificPowerAdjustment(8 + i)
+                        .HasSpecificCombatPower(8 + i)
                         .Build());
             }
 
+        }
+
+        private void AddSkillFeatures()
+        {
+
+            CharacteristicBuilder builder = new CharacteristicBuilder(standardCampaignSetting);
+
+            var skillMiscs = standardCampaignSetting.Stats.Where(s => s.Group == StatGroup.SkillMisc);
+            var skillFeatures = skillMiscs.Select(s =>
+            builder.HasName($"Increase {s.DisplayName}")
+                   .WithMod(new StatMod(s.Id, 1, $"Feature: Increase {s.DisplayName}")).Build());
+
+            dbContext.Characteristics.AddRange(skillFeatures);
+        }
+
+        private void AddAbilityFeatures()
+        {
+            CharacteristicBuilder builder = new CharacteristicBuilder(standardCampaignSetting);
+
+            var abilities = standardCampaignSetting.Stats.Where(s => s.Group == StatGroup.Ability);
+            var abilityFeatures = abilities.Select(a => builder.HasName($"Increase {a.DisplayName}").WithMod(new StatMod(a.Id, 1, $"Feature: Increase {a.DisplayName}")).Build());
+            dbContext.Characteristics.AddRange(abilityFeatures);
         }
     }
 }

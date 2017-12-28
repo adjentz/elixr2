@@ -58,11 +58,22 @@ namespace Elixr2.Api.Services.Seeding.Builders
             }
             return HasDescription(desc);
         }
-        public CharacteristicBuilder HasSpecificPowerAdjustment(int? power = null)
+        public CharacteristicBuilder HasSpecificCombatPower(int combatPower)
         {
-            _characteristic.SpecifiedPowerAdjustment = power;
+            _characteristic.SpecifiedCombatPower = combatPower;
             return this;
         }
+        public CharacteristicBuilder HasSpecificEnvironmentPower(int environmentPower)
+        {
+            _characteristic.SpecifiedEnvironmentPower = environmentPower;
+            return this;
+        }
+        public CharacteristicBuilder HasSpecificPresencePower(int presencePower)
+        {
+            _characteristic.SpecifiedPresencePower = presencePower;
+            return this;
+        }
+
         public CharacteristicBuilder HasAuthor(int authorId)
         {
             _characteristic.AuthorId = authorId;
@@ -70,7 +81,16 @@ namespace Elixr2.Api.Services.Seeding.Builders
         }
         public Characteristic Build()
         {
-            return _characteristic;
+            try
+            {
+                return _characteristic;
+            }
+            finally
+            {
+                _characteristic = new Characteristic();
+                _characteristic.CampaignSettingId = setting.Id;
+                HasAuthor(setting.AuthorId);
+            }
         }
     }
 }

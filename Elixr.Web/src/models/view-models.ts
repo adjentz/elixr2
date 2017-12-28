@@ -87,12 +87,22 @@ export enum CharacteristicType {
     Oath = 2,
     Feature = 3
 }
-export interface ICharacteristic {
-    id: number;
-    name: string;
+export interface IGameElement {
+    id: number,
+    description: string,
+    name: string,
+    campaignSettingId: number,
+    authorId: number
+}
+export interface ICharacteristic extends IGameElement {
     type: CharacteristicType;
     mods: IStatMod[];
-    specifiedPowerAdjustment?: number;
+    specifiedCombatPower?: number;
+    specifiedEnvironmentPower?: number;
+    specifiedPresencePower?: number;
+    combatPower: number;
+    presencePower: number;
+    environmentPower: number;
 }
 
 export interface ISelectedCharacteristic {
@@ -112,6 +122,7 @@ export interface ITemplate {
     appliedCharacteristics: ISelectedCharacteristic[];
     selectedSpells: ISelectedSpell[];
     isRace: boolean;
+    canBeAcquired: boolean
 }
 
 export interface IEquipment {
@@ -161,13 +172,15 @@ export interface IWeapon extends IEquipment {
     attackAbility: WeaponUseAbility;
     damageAbility: WeaponUseAbility;
     weaponId: number;
-    isTwoHanded: boolean;
-    canSlash: boolean;
-    canPierce: boolean;
-    canBludgeon: boolean;
-    hasReach: boolean;
     damage: string;
     range: number;
+    defaultCharacteristics: IDefaultWeaponCharacteristic[];
+}
+
+export interface IDefaultWeaponCharacteristic {
+    defaultWeaponCharacteristicId: number,
+    notes: string,
+    characteristic: IWeaponCharacteristic
 }
 
 export interface ISelectedWeapon {

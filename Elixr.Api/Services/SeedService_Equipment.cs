@@ -22,39 +22,78 @@ namespace Elixr2.Api.Services.Seeding
 
         private void AddWeapons()
         {
+            var weaponCharacteristicBuilder = new WeaponCharacteristicBuilder(standardCampaignSetting);
+            var slashing = weaponCharacteristicBuilder.HasName("Slashing")
+                                                      .HasDescription("This weapon is considered slashing. Relevant to resistances, vulnerabilities, and immunities.")
+                                                      .HasSpecificCombatPower(1)
+                                                      .Build();
+            dbContext.WeaponCharacteristics.Add(slashing);
+
+            var bludgeoning = weaponCharacteristicBuilder.HasName("Bludgeoning")
+            .HasDescription("This weapon is considered bludgeoning. Relevant to resistances, vulnerabilities, and immunities.")
+            .HasSpecificCombatPower(1)
+            .Build();
+            dbContext.WeaponCharacteristics.Add(bludgeoning);
+
+            var piercing = weaponCharacteristicBuilder.HasName("Piercing")
+                                                      .HasDescription("This weapon is considered piercing. Relevant to resistances, vulnerabilities, and immunities.")
+                                                      .HasSpecificCombatPower(1)
+                                                      .Build();
+            dbContext.WeaponCharacteristics.Add(piercing);
+
+            var twoHanded = weaponCharacteristicBuilder.HasName("Two-Handed")
+            .HasDescription("This weapon requires two hands to wield.")
+            .HasSpecificCombatPower(-1)
+            .Build();
+            dbContext.WeaponCharacteristics.Add(twoHanded);
+
+            var reaching = weaponCharacteristicBuilder.HasName("Reaching")
+            .HasDescription("This weapon can be used to attack an opponent one additional square away from you. Normal: Only enemies that are adjacent can be attacked.") // May need to make the wording: 1 * reach multiplier as specified by size characteristic additional square(s) away from you. Reach multiplier for a Medium creature would be 1.
+            .HasSpecificCombatPower(1)
+            .Build();
+            dbContext.WeaponCharacteristics.Add(reaching);
+
+            var ignoresArmor = weaponCharacteristicBuilder.HasName("Ignores Armor")
+            .HasDescription("The Effective Defense of an opponent that is attacked with this weapon does not include physical armor, such as Leather, or Natural Armor, such as scales. The Effective Defense may still include Agility Bonus, Deflection, and Dodge bonuses..") // May need to make the wording: 1 * reach multiplier as specified by size characteristic additional square(s) away from you. Reach multiplier for a Medium creature would be 1.
+            .HasSpecificCombatPower(10)
+            .Build();
+            dbContext.WeaponCharacteristics.Add(ignoresArmor);
+
+            //TODO: Rusted (More as an example of a negative characteristic), Tripping
+
             WeaponBuilder builder = new WeaponBuilder(standardCampaignSetting);
             dbContext.Weapons.Add(builder.HasName("Dagger")
                                        .HasDescription("A sharp knife designed as a weapon.")
-                                       .MarkPiercing()
-                                       .MarkSlashing()
                                        .HasWeight(1)
                                        .HasCost(2, 0, 0)
                                        .HasDamage("1d4")
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(slashing)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
             dbContext.Weapons.Add(builder.HasName("Dagger, throwing")
                                        .HasDescription("A sharp knife designed to be thrown as a weapon.")
                                        .HasWeight(1)
-                                       .MarkPiercing()
                                        .HasRange(10)
                                        .HasCost(2, 0, 0)
                                        .HasDamage("1d4")
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
             dbContext.Weapons.Add(builder.HasName("Mace, light")
                                        .HasDescription("A wooden rod with a heavy metal head on one end to deliver powerful blows.")
-                                       .MarkBludgeoning()
                                        .HasWeight(4)
                                        .HasCost(5, 0, 0)
                                        .HasDamage("1d6")
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -63,9 +102,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasWeight(3)
                                        .HasCost(0, 0, 1)
                                        .HasDamage("1d6")
-                                       .MarkBludgeoning()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -74,9 +113,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasWeight(8)
                                        .HasCost(12, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkBludgeoning()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -85,10 +124,10 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasWeight(6)
                                        .HasCost(8, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkBludgeoning()
-                                       .MarkPiercing()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -98,22 +137,22 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(20)
                                        .HasCost(1, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkPiercing()
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
             dbContext.Weapons.Add(builder.HasName("Longspear")
                                        .HasDescription("A wooden pole with a pointed metal head at the end.")
                                        .HasWeight(9)
-                                       .HasReach()
                                        .HasCost(5, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded()
-                                       .MarkPiercing()
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(reaching)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -123,10 +162,10 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(5, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(true)
-                                       .MarkBludgeoning()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -136,10 +175,10 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(2, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -153,10 +192,10 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(120)
                                        .HasCost(50, 0, 0)
                                        .HasDamage("1d10")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Agility)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -170,10 +209,10 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(80)
                                        .HasCost(35, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Agility)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -183,10 +222,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(30)
                                        .HasCost(1, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(false)
-                                       .MarkPiercing()
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -196,10 +234,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(10)
                                        .HasCost(8, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(false)
-                                       .MarkSlashing()
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -209,10 +246,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(1, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(false)
-                                       .MarkBludgeoning()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -222,10 +258,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(6, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(false)
-                                       .MarkSlashing()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -235,10 +270,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(10, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(false)
-                                       .MarkPiercing()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -248,10 +282,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(10, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(false)
-                                       .MarkSlashing()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -261,10 +294,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(8, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(false)
-                                       .MarkBludgeoning()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -274,10 +306,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(15, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(false)
-                                       .MarkSlashing()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -287,10 +318,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(20, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(false)
-                                       .MarkPiercing()
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -300,10 +330,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(15, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(false)
-                                       .MarkSlashing()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -313,10 +342,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(12, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(false)
-                                       .MarkBludgeoning()
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -326,8 +354,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(75, 0, 0)
                                        .HasDamage("2d4")
-                                       .MarkTwoHanded(true)
-                                       .MarkSlashing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -339,8 +367,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(20, 0, 0)
                                        .HasDamage("1d10")
-                                       .MarkTwoHanded(true)
-                                       .MarkSlashing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -352,8 +380,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(5, 0, 0)
                                        .HasDamage("1d10")
-                                       .MarkTwoHanded(true)
-                                       .MarkBludgeoning()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -365,8 +393,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(15, 0, 0)
                                        .HasDamage("1d10")
-                                       .MarkTwoHanded(true)
-                                       .MarkBludgeoning()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(bludgeoning)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -378,8 +406,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(50, 0, 0)
                                        .HasDamage("2d6")
-                                       .MarkTwoHanded(true)
-                                       .MarkSlashing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -391,9 +419,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(10, 0, 0)
                                        .HasDamage("1d10")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
-                                       .MarkSlashing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(piercing)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -404,13 +432,13 @@ namespace Elixr2.Api.Services.Seeding
                                        \n\n
                                        Attacks made while mounted deal double damage.")
                                        .HasWeight(10)
-                                       .HasReach()
                                        .HasCost(10, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(reaching)
                                        .Build());
 
             builder = new WeaponBuilder(standardCampaignSetting);
@@ -420,9 +448,9 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(18, 0, 0)
                                        .HasDamage("2d4")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
-                                       .MarkSlashing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(piercing)
+                                       .WithDefaultWeaponCharacteristic(slashing)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -434,8 +462,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(100)
                                        .HasCost(75, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Agility)
                                        .Build());
@@ -447,8 +475,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(110)
                                        .HasCost(100, 0, 0)
                                        .HasDamage("1d8")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
                                        .Build());
@@ -460,8 +488,8 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(60)
                                        .HasCost(30, 0, 0)
                                        .HasDamage("1d6")
-                                       .MarkTwoHanded(true)
-                                       .MarkPiercing()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
+                                       .WithDefaultWeaponCharacteristic(piercing)
                                        .UseAttackAbility(WeaponUseAbility.Agility)
                                        .UseDamageAbility(WeaponUseAbility.Agility)
                                        .Build());
@@ -473,10 +501,12 @@ namespace Elixr2.Api.Services.Seeding
                                        .HasRange(0)
                                        .HasCost(8, 0, 0)
                                        .HasDamage("1d10")
-                                       .MarkTwoHanded(true)
-                                       .HasReach()
+                                       .WithDefaultWeaponCharacteristic(twoHanded)
                                        .UseAttackAbility(WeaponUseAbility.Strength)
                                        .UseDamageAbility(WeaponUseAbility.Strength)
+                                       .WithDefaultWeaponCharacteristic(piercing)
+                                       .WithDefaultWeaponCharacteristic(slashing)
+                                       .WithDefaultWeaponCharacteristic(reaching)
                                        .Build());
         }
         private void AddArmor()
@@ -860,55 +890,55 @@ namespace Elixr2.Api.Services.Seeding
         {
             var builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Rake")
-                                                       .HasSpecificPower(14)
+                                                       .HasSpecificCombatPower(14)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\rake.md")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Tripping")
-                                                        .HasSpecificPower(5)
+                                                        .HasSpecificCombatPower(5)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\tripping.md")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Cooldown, 1d4")
-                                                        .HasSpecificPower(-4)
+                                                        .HasSpecificCombatPower(-4)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\cooldown.md", "1d4")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Conic, 15ft")
-                                                        .HasSpecificPower(11)
+                                                        .HasSpecificCombatPower(11)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\conic.md", "15ft")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Conic, 20ft")
-                                                        .HasSpecificPower(14)
+                                                        .HasSpecificCombatPower(14)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\conic.md", "20ft")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Conic, 30ft")
-                                                        .HasSpecificPower(20)
+                                                        .HasSpecificCombatPower(20)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\conic.md", "30ft")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Conic, 80ft")
-                                                        .HasSpecificPower(56)
+                                                        .HasSpecificCombatPower(56)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\conic.md", "20ft")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Non-Lethal")
-                                                        .HasSpecificPower(-1)
+                                                        .HasSpecificCombatPower(-1)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\non-lethal.md", "15ft")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Leech, 1d8")
-                                                        .HasSpecificPower(12)
+                                                        .HasSpecificCombatPower(12)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\leech.md", "1d8")
                                                         .Build());
 
@@ -917,19 +947,19 @@ namespace Elixr2.Api.Services.Seeding
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Splashing")
-                                                        .HasSpecificPower(5)
+                                                        .HasSpecificCombatPower(5)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\splashing.md")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Targets Acrobatics Defense")
-                                                        .HasSpecificPower(1)
+                                                        .HasSpecificCombatPower(1)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\targets-acrobatics-defense.md")
                                                         .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Causes Level Loss")
-                                                        .HasSpecificPower(12)
+                                                        .HasSpecificCombatPower(12)
                                                         .HasDescriptionFile(@"Content\Characteristics\Weapons\causes-level-loss.md")
                                                         .Build());
 
@@ -954,49 +984,49 @@ namespace Elixr2.Api.Services.Seeding
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Latch") // e.g. "Improved Grab"
-                                                       .HasSpecificPower(5)
+                                                       .HasSpecificCombatPower(5)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\latch.md")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 1d6 Str")
-                                                       .HasSpecificPower(6)
+                                                       .HasSpecificCombatPower(6)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "1d6", "Strength Score")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 1d4 Agility")
-                                                       .HasSpecificPower(4)
+                                                       .HasSpecificCombatPower(4)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "1d4", "Agility Score")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 2d6 Str")
-                                                       .HasSpecificPower(12)
+                                                       .HasSpecificCombatPower(12)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "2d6", "Strength Score")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 2d6 Agility")
-                                                       .HasSpecificPower(12)
+                                                       .HasSpecificCombatPower(12)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "2d6", "Agility Score")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Poison, 1d6 Energy")
-                                                       .HasSpecificPower(6)
+                                                       .HasSpecificCombatPower(6)
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\poison.md", "1d6", "Current Energy")
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Ignores Armor")
-                                                       .HasSpecificPower(10) // should maybe scale with Base Defense, or Defense.PowerRating?
+                                                       .HasSpecificCombatPower(10) // should maybe scale with Base Defense, or Defense.PowerRating?
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\ignores-armor.md", standardCampaignSetting.BaseDefense.ToString())
                                                        .Build());
 
             builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
             dbContext.WeaponCharacteristics.Add(builder.HasName("Constrict")
-                                                       .HasSpecificPower(8) // should maybe scale with Base Defense, or Defense.PowerRating?
+                                                       .HasSpecificCombatPower(8) // should maybe scale with Base Defense, or Defense.PowerRating?
                                                        .HasDescriptionFile(@"Content\Characteristics\Weapons\constrict.md", standardCampaignSetting.BaseDefense.ToString())
                                                        .Build());
 
@@ -1004,28 +1034,28 @@ namespace Elixr2.Api.Services.Seeding
             {
                 builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
                 dbContext.WeaponCharacteristics.Add(builder.HasName($"Weapon Training, {i}")
-                                                           .HasSpecificPower(i * 2)
+                                                           .HasSpecificCombatPower(i * 2)
                                                            .HasAttackBonusMod(i)
                                                            .HasDescriptionFile(@"Content\Characteristics\Weapons\weapon-training.md", i.ToString())
                                                            .Build());
 
                 builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
                 dbContext.WeaponCharacteristics.Add(builder.HasName($"Weapon Specialization, {i}")
-                                                           .HasSpecificPower(i)
+                                                           .HasSpecificCombatPower(i)
                                                            .HasDamageBonusMod(i)
                                                            .HasDescriptionFile(@"Content\Characteristics\Weapons\weapon-specialization.md", i.ToString())
                                                            .Build());
 
                 builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
                 dbContext.WeaponCharacteristics.Add(builder.HasName($"Clumsy Weapon, {i}")
-                                                           .HasSpecificPower(-i * 2)
+                                                           .HasSpecificCombatPower(-i * 2)
                                                            .HasAttackBonusMod(-i)
                                                            .HasDescriptionFile(@"Content\Characteristics\Weapons\clumsy-weapon.md", i.ToString())
                                                            .Build());
 
                 builder = new WeaponCharacteristicBuilder(standardCampaignSetting);
                 dbContext.WeaponCharacteristics.Add(builder.HasName($"Weak Weapon, {i}")
-                                                           .HasSpecificPower(-i)
+                                                           .HasSpecificCombatPower(-i)
                                                            .HasDamageBonusMod(-i)
                                                            .HasDescriptionFile(@"Content\Characteristics\Weapons\weak-weapon.md", i.ToString())
                                                            .Build());

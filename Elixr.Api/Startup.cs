@@ -24,11 +24,11 @@ namespace Elixr2
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(opts =>
+            services.AddMvc(opts => 
             {
-                opts.AddPolicy("AllowAll", policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+                 opts.Filters.Add(typeof(AuthenticationFilter));
+                 opts.Filters.Add(typeof(GlobalExceptionFilter));
             });
-            services.AddMvc(opts => opts.Filters.Add(typeof(GlobalExceptionFilter)));
             services.Configure<FormOptions>(fo =>
             {
                 fo.MultipartBodyLengthLimit = int.MaxValue;
@@ -50,10 +50,12 @@ namespace Elixr2
             services.AddScoped<GamerService>();
             services.AddScoped<ObjectStorageService>();
             services.AddScoped<StatsService>();
+            services.AddScoped<UserSession>();
             services.AddTransient<SeedService>();
 
             services.AddSingleton(s => new SettingsService(configuration["S3AccessKeyID"], configuration["S3SecretKey"], configuration["SecretHashingKey"], configuration["TheGameMasterPassword"]));
             services.AddSingleton<UtilityService>();
+            services.AddSingleton<TokenSigner>();
 
         }
 

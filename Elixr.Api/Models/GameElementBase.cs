@@ -9,6 +9,8 @@ namespace Elixr2.Api.Models
         public int AuthorId { get; set; }
         public Gamer Author { get; set; }
         
-        public abstract int Power { get; }
+        public abstract int CombatPower { get; }
+        public abstract int EnvironmentPower { get; }
+        public abstract int PresencePower { get; }
     }
 }

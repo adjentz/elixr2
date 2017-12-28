@@ -8,8 +8,8 @@ namespace Elixr2.Api.Services
 {
     public class WeaponsService : ServiceBase
     {
-        public WeaponsService(ElixrDbContext dbContext)
-        : base(dbContext)
+        public WeaponsService(ElixrDbContext dbContext, UserSession userSession)
+        : base(dbContext, userSession)
         { }
         public async Task<List<Weapon>> GetWeapons(string name = null)
         {
@@ -20,7 +20,7 @@ namespace Elixr2.Api.Services
                 weaponQuery = weaponQuery.Where(c => c.Name.ToLower().Contains(name.ToLower()));
             }
 
-            weaponQuery = weaponQuery.OrderBy(c => c.Name);
+            weaponQuery = weaponQuery.Include(w => w.DefaultCharacteristics).ThenInclude(dc => dc.Characteristic).OrderBy(c => c.Name);
             return await weaponQuery.ToListAsync();
         }
     }

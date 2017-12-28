@@ -8,9 +8,11 @@ namespace Elixr2.Api.Services
     public abstract class ServiceBase
     {
         private ElixrDbContext dbContext;
-        public ServiceBase(ElixrDbContext dbContext)
+        private readonly UserSession userSession;
+        public ServiceBase(ElixrDbContext dbContext, UserSession userSession)
         {
             this.dbContext = dbContext;
+            this.userSession = userSession;
         }
         protected IQueryable<T> Query<T>() where T : ModelBase
         {
@@ -50,5 +52,7 @@ namespace Elixr2.Api.Services
                 throw new ServiceException(message, ServiceException.ServiceExceptionCode.Validation);
             }
         }
+        protected int GamerId => userSession.GamerId;
+        protected string GamerName => userSession.GamerName;
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace Elixr2.Api.Models
 {
     public class StatMod : ModelBase
@@ -13,5 +15,6 @@ namespace Elixr2.Api.Models
         public int StatId { get; set; }
         public Stat Stat { get; set; }
         public int Modifier { get; set; }
+        public int Power => Stat.PowerRating  * (int)Math.Ceiling(Modifier / Stat.Ratio * 1.0);
     }
 }

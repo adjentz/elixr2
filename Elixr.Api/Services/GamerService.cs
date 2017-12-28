@@ -7,8 +7,8 @@ namespace Elixr2.Api.Services
     public class GamerService : ServiceBase
     {
         private readonly UtilityService utilityService;
-        public GamerService(UtilityService utilityService, ElixrDbContext dbContext)
-        : base(dbContext)
+        public GamerService(UtilityService utilityService, ElixrDbContext dbContext, UserSession userSession)
+        : base(dbContext, userSession)
         {
             this.utilityService = utilityService;
         }
@@ -24,7 +24,7 @@ namespace Elixr2.Api.Services
         {
             Require(gamerId, "Gamer ID is required");
 
-            return await Query<Gamer>().AnyAsync(g => g.GamerId.ToLower() == gamerId);
+            return await Query<Gamer>().AnyAsync(g => g.Username.ToLower() == gamerId);
         }
         public async Task<Gamer> AddGamer(string gamerId, string password, string email = null, string code = null)
         {
@@ -51,8 +51,9 @@ namespace Elixr2.Api.Services
             {
                 Code = code,
                 Email = email,
-                GamerId = gamerId,
-                SecurityHash = utilityService.HashString(password)
+                Username = gamerId,
+                SecurityHash = utilityService.HashString(password),
+                SignedUpAtUnixSecond = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds()
             };
 
             AddModel(gamer);
@@ -67,7 +68,7 @@ namespace Elixr2.Api.Services
             Require(password, "Password is required");
 
             gamerId = gamerId.ToLower();
-            return await Query<Gamer>().FirstOrDefaultAsync(g => (g.GamerId.ToLower() == gamerId || g.Email.ToLower() == gamerId) && g.SecurityHash == utilityService.HashString(password));
+            return await Query<Gamer>().FirstOrDefaultAsync(g => (g.Username.ToLower() == gamerId || g.Email.ToLower() == gamerId) && g.SecurityHash == utilityService.HashString(password));
         }
     }
 }

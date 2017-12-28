@@ -15,7 +15,6 @@ namespace Elixr2.Api.Services.Seeding.Builders
         public List<Template> Templates { get; set; }
         public List<WeaponCharacteristic> WeaponCharacteristics { get; set; }
         public List<SpellCharacteristic> SpellCharacteristics { get; set; }
-
     }
     class CreatureBuilder
     {
@@ -100,7 +99,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
                 Description = System.IO.File.Exists(descriptionOrPath) ? System.IO.File.ReadAllText(descriptionOrPath) : descriptionOrPath,
                 IsDelisted = true,
                 Name = name,
-                SpecifiedPowerAdjustment = powerAdjustment
+                SpecifiedCombatPower = powerAdjustment
             };
 
             return WithSpecialWeaponCharacteristic(weaponName, weaponCharacteristic);
@@ -115,7 +114,7 @@ namespace Elixr2.Api.Services.Seeding.Builders
             CharacteristicBuilder builder = new CharacteristicBuilder(context.Setting);
             var characteristic = builder.HasDescription(description)
                                         .HasName(name)
-                                        .HasSpecificPowerAdjustment(powerAdjustment)
+                                        .HasSpecificCombatPower(powerAdjustment)
                                         .OfType(type)
                                         .Build();
 
@@ -212,7 +211,11 @@ namespace Elixr2.Api.Services.Seeding.Builders
         }
         public CreatureBuilder WithTemplate(string templateName, string notes = null)
         {
-            var template = context.Templates.First(t => t.Name.ToLower() == templateName.ToLower());
+            var template = context.Templates.FirstOrDefault(t => t.Name.ToLower() == templateName.ToLower());
+            if(template == null)
+            {
+                ;
+            }
             creature.SelectedTemplates.Add(new SelectedTemplate
             {
                 SelectedAtMS = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
@@ -317,12 +320,33 @@ namespace Elixr2.Api.Services.Seeding.Builders
                     .HasDamage(damage)
                     .UseDamageAbility(damageAbility)
                     .UseAttackAbility(attackAbility)
-                    .HasRange(range)
-                    .HasReach(reach)
-                    .MarkBludgeoning(bludgeon)
-                    .MarkPiercing(pierce)
-                    .MarkSlashing(slash)
-                    .MarkIgnoresArmor(ignoresArmor);
+                    .HasRange(range);
+
+                    if(reach)
+                    {
+                        var reaching = context.WeaponCharacteristics.First(wc => wc.Name.ToLower() == "reaching");
+                        builder = builder.WithDefaultWeaponCharacteristic(reaching);
+                    }
+                    if(slash)
+                    {
+                        var slashing = context.WeaponCharacteristics.First(wc => wc.Name.ToLower() == "slashing");
+                        builder = builder.WithDefaultWeaponCharacteristic(slashing);
+                    }
+                    if(pierce)
+                    {
+                        var piercing = context.WeaponCharacteristics.First(wc => wc.Name.ToLower() == "piercing");
+                        builder = builder.WithDefaultWeaponCharacteristic(piercing);
+                    }
+                    if(bludgeon)
+                    {
+                        var bludgeoning = context.WeaponCharacteristics.First(wc => wc.Name.ToLower() == "bludgeoning");
+                        builder = builder.WithDefaultWeaponCharacteristic(bludgeoning);
+                    }
+                    if(ignoresArmor)
+                    {
+                        var ignoresArmorCharacteristic = context.WeaponCharacteristics.First(wc => wc.Name.ToLower() == "ignores armor");
+                        builder = builder.WithDefaultWeaponCharacteristic(ignoresArmorCharacteristic);
+                    }
 
             Weapon weapon = builder.Build();
             weapon.IsDelisted = true;

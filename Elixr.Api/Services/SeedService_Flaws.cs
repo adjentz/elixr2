@@ -22,7 +22,8 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Blind")
                     .HasDescriptionFile("Content\\Flaws\\blind.md")
-                    .HasSpecificPowerAdjustment(-8)
+                    .HasSpecificEnvironmentPower(-4)
+                    .HasSpecificCombatPower(-4)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -30,7 +31,7 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Deaf")
                     .HasDescriptionFile("Content\\Flaws\\deaf.md")
-                    .HasSpecificPowerAdjustment(-5)
+                    .HasSpecificEnvironmentPower(-5)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -38,7 +39,7 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Illiterate")
                     .HasDescriptionFile("Content\\Flaws\\illiterate.md")
-                    .HasSpecificPowerAdjustment(-1)
+                    .HasSpecificPresencePower(-1)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -46,7 +47,8 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Light Sensitivity")
                     .HasDescriptionFile("Content\\Flaws\\light-sensitivity.md")
-                    .HasSpecificPowerAdjustment(-2)
+                    .HasSpecificEnvironmentPower(-1)
+                    .HasSpecificCombatPower(-1)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -162,7 +164,8 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Gimped")
                     .HasDescription("Travelling 5ft has a Movement Speed cost of 30ft.\n\nNormally travelling has a 1:1 with its Movement Speed (e.g. moving 10ft costs 10ft)")
-                    .HasSpecificPowerAdjustment(-20)
+                    .HasSpecificCombatPower(-10)
+                    .HasSpecificEnvironmentPower(-10)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -170,7 +173,7 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Aversion")
                     .HasDescriptionFile(@"Content\Flaws\aversion.md")
-                    .HasSpecificPowerAdjustment(-6)
+                    .HasSpecificCombatPower(-6)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -178,7 +181,7 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Vulnerability, Material")
                     .HasDescription("A weapon coated in the specified material deals double damage against you.")
-                    .HasSpecificPowerAdjustment(-8)
+                    .HasSpecificCombatPower(-8)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -186,7 +189,8 @@ namespace Elixr2.Api.Services.Seeding
             flaw = builder.OfType(CharacteristicType.Flaw)
                     .HasName("Daylight Powerlessness")
                     .HasDescriptionFile(@"Content\Flaws\daylight-powerlessness.md")
-                    .HasSpecificPowerAdjustment(-16)
+                    .HasSpecificCombatPower(-8)
+                    .HasSpecificEnvironmentPower(-8)
                     .Build();
             dbContext.Characteristics.Add(flaw);
 
@@ -197,7 +201,7 @@ namespace Elixr2.Api.Services.Seeding
                 flaw = builder.OfType(CharacteristicType.Flaw)
                         .HasName($"Vulnerability, {type}")
                         .HasDescriptionFile("Content\\Flaws\\vulnerability-energy.md")
-                        .HasSpecificPowerAdjustment(-9)
+                        .HasSpecificCombatPower(-9)
                         .Build();
                 dbContext.Characteristics.Add(flaw);
             }

@@ -28,5 +28,10 @@ namespace Elixr2.Api.ViewModels
         public List<SelectedItemViewModel> SelectedItems { get; set; }
         public List<SelectedSpellViewModel> SelectedSpells { get; set; }
         public List<WealthAdjustmentViewModel> WealthAdjustments { get; set; }
+
+        public int CombatPower { get; set; }
+        public int EnvironmentPower { get; set; }
+        public int PresencePower { get; set; }
+        public int GearPower { get; set; }
     }
 }

@@ -5,6 +5,13 @@ namespace Elixr2.Api.Models
     public class CampaignSetting : ModelBase
     {
         public const string StandardCampaignSettingCode = "20170415191948";
+        public const int SpeedScalePer5ft = 5;
+        public const int DefenseScale = 3;
+        public const int EnergyScale = 3;
+        public const int AttackBonusScale = 4;
+        public const int DamageBonusScale = 4;
+        public const int AbilityScoreScale = 5;
+        public const int SkillScoreScale = 2;
 
         public string Code { get; set; }
         public string Name { get; set; }

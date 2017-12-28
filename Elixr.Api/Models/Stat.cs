@@ -19,6 +19,7 @@ namespace Elixr2.Api.Models
         public StatGroup Group { get; set; }
         public int MaxValue { get; set; }
         public string MaxValueFormula { get; set; }
+        public PowerType PowerType {get;set;}
         public int PowerRating { get; set; }
         public bool NonModdable { get; set; }
         public int Ratio { get; set; }

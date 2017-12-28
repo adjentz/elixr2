@@ -10,7 +10,7 @@
   </app-creature-description>
   <div class="flex-cols primary-abilities">
     <div class="flex-col creature-abilities-wrapper">
-      <app-creature-abilities [creature]="creature" [allAppliedStatMods]="allAppliedStatMods" [setting]="campaignSetting" (removeAppliedStatMods)="removeAppliedStatMods($event)"
+      <app-creature-abilities [creature]="creature" [allSelectedArmor]="creature.selectedArmor" [allAppliedStatMods]="allAppliedStatMods" [setting]="campaignSetting" (removeAppliedStatMods)="removeAppliedStatMods($event)"
         (applyStatMod)="applyStatMod($event)"></app-creature-abilities>
     </div>
     <div class="flex-col flex-rows other-stats-wrapper">
@@ -44,7 +44,7 @@
   </div>
   <div class="flex-cols">
     <div class="flex-col characteristics">
-      <app-creature-characteristics [level]="creature.level" [setting]="campaignSetting" [isCharacter]="creature.isCharacter" [selectedTemplates]="creature.selectedTemplates" [allAppliedStatMods]="allAppliedStatMods"
+      <app-creature-characteristics [countSpells]="creature.selectedSpells?.length || 0" [level]="creature.level" [setting]="campaignSetting" [isCharacter]="creature.isCharacter" [selectedTemplates]="creature.selectedTemplates" [allAppliedStatMods]="allAppliedStatMods"
         (characteristicSelected)="takeCharacteristic($event)" (characteristicRemoved)="characteristicRemoved($event)" [selectedCharacteristics]="creature.selectedCharacteristics"></app-creature-characteristics>
     </div>
     <div class="flex-col spells">

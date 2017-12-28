@@ -152,7 +152,7 @@ namespace Elixr2.Api.Services.Seeding
                                   .WithCharacteristic("Immunity, Mind-Affecting", "Mindless")
                                   .WithSpecialCharacteristic("No Metabolism", "Immunity to poision, sleep effects, stunning, and disease", 13)
                                   .WithCharacteristic("Vulnerability, Light")
-                                  .WithSpecialCharacteristic("Shadow Thrive", "Damage from shadow attacks increases the undead's Energy, as opposed to decreasing it like other types of damage.", vulnerabilityLight.SpecifiedPowerAdjustment.Value * -1)
+                                  //.WithSpecialCharacteristic("Shadow Thrive", "Damage from shadow attacks increases the undead's Energy, as opposed to decreasing it like other types of damage.", vulnerabilityLight.SpecifiedPowerAdjustment.Value * -1)
                                   .WithSpecialCharacteristic("Fleeting", "When reduced to 0 or less damage, the undead creature dies immediately, as opposed to being incapacitated.", -2, CharacteristicType.Flaw)
                                   .WithSpecialCharacteristic("Resurrection Differences", "The spell Resurrection can be used to bring an undead Creature back to life.\n\nThe time the undead creature spent reanimated counts against the rule regarding how long concentration is needed for the Resurrection spell.", -1, CharacteristicType.Flaw)
                                   .AsRace(false)
@@ -245,20 +245,6 @@ namespace Elixr2.Api.Services.Seeding
                                   .WithSpecialCharacteristic("No Focus", "Any Focus Score given in a creature with this template should be ignored.", -5, CharacteristicType.Flaw)
                                   .WithSpecialCharacteristic("Metabolism Differences", "An ooze does not need to sleep, but must eat and breath", 1)
                                   .AsRace(false)
-                                  .Build());
-
-            builder = new TemplateBuilder(standardCampaignSetting, characteristics, spells, spellCharacteristics);
-            dbContext.Templates.Add(builder.HasName("Bugbear")
-                                  .HasDescriptionFile("Content\\Templates\\bugbear.md")
-                                  .AsRace(true)
-                                  .WithMod("Racial Strength Score", 4)
-                                  .WithMod("Racial Agility Score", 2)
-                                  .WithMod("Racial Charm Score", -2)
-                                  .WithMod("Energy", -2)
-                                  .WithCharacteristic("Speak Language", "Goblin")
-                                  .WithCharacteristic("Darkvision")
-                                  .WithMod("Defense", 3, "Natural")
-                                  .WithMod("Stealth Misc.", 4)
                                   .Build());
         }
 

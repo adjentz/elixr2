@@ -9,8 +9,28 @@ namespace Elixr2.Api.Models
         public int DamageBonusMod { get; set; }
         public string ExtraDamage { get; set; }
 
-        public int? SpecifiedPowerAdjustment { get; set; }
+        public int? SpecifiedCombatPower { get; set; }
+        
+        public override int CombatPower
+        {
+            get
+            {
+                if(SpecifiedCombatPower.HasValue)
+                {
+                    return SpecifiedCombatPower.Value;
+                }
 
-        public override int Power => throw new NotImplementedException();
+                int power = 0;
+                if(!string.IsNullOrWhiteSpace(ExtraDamage))
+                {
+                    power += Dice.FromNotation(ExtraDamage).AverageRoll;
+                }
+                power += AttackBonusMod * CampaignSetting.AttackBonusScale;
+                power += DamageBonusMod * CampaignSetting.DamageBonusScale;
+                return power;
+            }
+        }
+        public override int PresencePower => 0;
+        public override int EnvironmentPower => 0;
     }
 }

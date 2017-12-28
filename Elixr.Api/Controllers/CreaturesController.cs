@@ -44,7 +44,7 @@ namespace Elixr2.Api.Controllers
             {
                 Description = creature.Description,
                 Name = creature.Name,
-                Power = creature.Power,
+                Power = creature.CombatPower + creature.PresencePower + creature.EnvironmentPower,
                 CreatureId = creature.Id
             };
         }

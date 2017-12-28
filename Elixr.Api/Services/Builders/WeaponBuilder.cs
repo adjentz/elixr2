@@ -5,10 +5,12 @@ namespace Elixr2.Api.Services.Seeding.Builders
     class WeaponBuilder
     {
         private readonly Weapon _weapon;
+        private readonly CampaignSetting setting;
         public WeaponBuilder(CampaignSetting setting)
         {
             _weapon = new Weapon();
             _weapon.CampaignSettingId = setting.Id;
+            this.setting = setting;
             HasAuthor(setting.AuthorId);
         }
 
@@ -61,39 +63,33 @@ namespace Elixr2.Api.Services.Seeding.Builders
             _weapon.Range = feet;
             return this;
         }
-        public WeaponBuilder HasReach(bool hasReach = true)
-        {
-            _weapon.HasReach = hasReach;
-            return this;
-        }
-        public WeaponBuilder MarkTwoHanded(bool twoHanded = true)
-        {
-            _weapon.IsTwoHanded = twoHanded;
-            return this;
-        }
-        public WeaponBuilder MarkPiercing(bool piercing = true)
-        {
-            _weapon.CanPierce = piercing;
-            return this;
-        }
-        public WeaponBuilder MarkSlashing(bool slashing = true)
-        {
-            _weapon.CanSlash = slashing;
-            return this;
-        }
-        public WeaponBuilder MarkBludgeoning(bool bludgeoning = true)
-        {
-            _weapon.CanBludgeon = bludgeoning;
-            return this;
-        }
-        public WeaponBuilder MarkIgnoresArmor(bool ignoresArmor = true)
-        {
-            _weapon.IgnoresArmor = ignoresArmor;
-            return this;
-        }
         public WeaponBuilder HasAuthor(int authorId)
         {
             _weapon.AuthorId = authorId;
+            return this;
+        }
+        public WeaponBuilder WithDefaultWeaponCharacteristic(string name, string description, int power)
+        {
+            var weaponCharacteristicBuilder = new WeaponCharacteristicBuilder(setting);
+            var characteristic = weaponCharacteristicBuilder.HasName(name)
+                                       .HasDescription(description)
+                                       .HasAuthor(_weapon.AuthorId)
+                                       .HasDescription(description)
+                                       .HasSpecificCombatPower(power)
+                                       .Build();
+
+            _weapon.DefaultCharacteristics.Add(new DefaultWeaponCharacteristic
+            {
+                Characteristic = characteristic,
+            });
+            return this;
+        }
+        public WeaponBuilder WithDefaultWeaponCharacteristic(WeaponCharacteristic characteristic)
+        {
+            _weapon.DefaultCharacteristics.Add(new DefaultWeaponCharacteristic
+            {
+                CharacteristicId = characteristic.Id
+            });
             return this;
         }
         public Weapon Build() => _weapon;
