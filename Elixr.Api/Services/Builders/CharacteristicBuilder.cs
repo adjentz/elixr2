@@ -1,6 +1,7 @@
 
 using Elixr2.Api.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Elixr2.Api.Services.Seeding.Builders
 {
@@ -79,6 +80,29 @@ namespace Elixr2.Api.Services.Seeding.Builders
             _characteristic.AuthorId = authorId;
             return this;
         }
+        public CharacteristicBuilder WithCondition(string description, int combatReduction, int envReduction, int presenceReduction)
+        {
+            CharacteristicCondition condition = new CharacteristicCondition
+            {
+                CombatPowerReduction = combatReduction,
+                Description = description,
+                EnvironmentPowerReduction = envReduction,
+                PresencePowerReduction = presenceReduction
+            };
+            _characteristic.Conditions.Add(condition);
+            return this;
+        }
+        public CharacteristicBuilder AsUpgradable(string description, int combatPowerIncrease = 0, int environmentPowerIncrease = 0, int presencePowerIncrease = 0, int maxTimesPerLevel = 1, List<StatMod> modsOnUpgrade = null)
+        {
+            _characteristic.UpgradeDescription = description;
+            _characteristic.AdditionalModsOnUpgrade = modsOnUpgrade;
+            _characteristic.UpgradeCombatPower = combatPowerIncrease;
+            _characteristic.UpgradePresenceCost = presencePowerIncrease;
+            _characteristic.UpgradeEnvironmentCost = environmentPowerIncrease;
+            _characteristic.CanBeUpgraded = true;
+        }
+        
+
         public Characteristic Build()
         {
             try

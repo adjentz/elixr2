@@ -28,6 +28,8 @@ namespace Elixr2.Api.Services
                 }).ToList(),
                 
             };
+            AddModel(newCharacteristic);
+            await SaveChangesAsync();
             return newCharacteristic;
         }
 

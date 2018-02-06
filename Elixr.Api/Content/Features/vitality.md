@@ -1,1 +1,1 @@
-Your Max Energy is increased by 3.
+Your Max Energy is increased by 1.

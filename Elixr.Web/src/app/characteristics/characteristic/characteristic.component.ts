@@ -21,8 +21,17 @@ export class CharacteristicComponent implements OnInit {
   get hasMods(): boolean {
     return this.characteristic.mods.length > 0;
   }
-  get power(): number {
-    return this.characteristic.combatPower + this.characteristic.presencePower + this.characteristic.environmentPower;
+  get totalPower(): number {
+    return this.combatPower + this.presencePower + this.environmentPower;
+  }
+  get combatPower(): number {
+    return this.characteristic.combatPower;
+  }
+  get environmentPower(): number {
+    return this.characteristic.environmentPower;
+  }
+  get presencePower(): number {
+    return this.characteristic.presencePower;
   }
 
   nameClicked(): void {

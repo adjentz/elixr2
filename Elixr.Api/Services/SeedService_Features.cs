@@ -25,22 +25,6 @@ namespace Elixr2.Api.Services.Seeding
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
-                    .HasName("Cat Like Vision")
-                    .HasDescriptionFile("Content\\Features\\cat-like-vision.md")
-                    .HasSpecificEnvironmentPower(2)
-                    .Build();
-            dbContext.Characteristics.Add(feature);
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            feature = builder.OfType(CharacteristicType.Feature)
-                    .HasName("Darkvision")
-                    .HasDescriptionFile("Content\\Features\\darkvision.md")
-                    .HasSpecificEnvironmentPower(3)
-                    .Build();
-            dbContext.Characteristics.Add(feature);
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Cohort")
                     .HasDescriptionFile("Content\\Features\\cohort.md")
                     .HasSpecificCombatPower(5)
@@ -49,57 +33,77 @@ namespace Elixr2.Api.Services.Seeding
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
-                    .HasName("Dodge")
-                    .HasDescriptionFile("Content\\Features\\dodge.md")
-                    .HasSpecificCombatPower(2)
+                    .HasName(Features.LowLightVision)
+                    .HasDescriptionFile("Content\\Features\\low-light-vision.md") // todo power scaling
+                    .HasSpecificEnvironmentPower(CampaignSetting.DetectionScalePer10Ft * 1)
+                    .WithCondition("A source of light must still exist", 0, 1, 0)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
-                    .HasName("Echolocation (20 ft)")
-                    .HasDescriptionFile("Content\\Features\\echolocation-20ft.md")
-                    .HasSpecificEnvironmentPower(5)
+                    .HasName("Darkvision") // todo: power scaling
+                    .HasDescriptionFile("Content\\Features\\darkvision.md")
+                    .HasSpecificEnvironmentPower(CampaignSetting.DetectionScalePer10Ft * 5)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
-            for (int i = 1; i <= 5; i++)
-            {
-                builder = new CharacteristicBuilder(standardCampaignSetting);
-                feature = builder.OfType(CharacteristicType.Feature)
-                        .HasName($"Fast Healing, {i}")
-                        .HasDescriptionFile("Content\\Features\\fast-healing.md")
-                        .HasSpecificCombatPower(i * 6)
-                        .Build();
-                dbContext.Characteristics.Add(feature);
-            }
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            feature = builder.OfType(CharacteristicType.Feature)
+                    .HasName("Dodge")
+                    .HasDescriptionFile("Content\\Features\\dodge.md")
+                    .HasSpecificCombatPower(CampaignSetting.DefenseScale)
+                    .WithCondition("Must specify subject", -1, 0, 0)
+                    .WithCondition("Any time you lose your Agility Bonus to your Defense (such as being caught unaware), this effect is also lost.")
+                    .AsUpgradable("Each time this Feature is upgraded, an additional subject may be selected", 1)
+                    .Build();
+            dbContext.Characteristics.Add(feature);
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            feature = builder.OfType(CharacteristicType.Feature)
+                    .HasName("Echolocation")
+                    .HasDescriptionFile("Content\\Features\\echolocation.md")
+                    .HasSpecificEnvironmentPower(CampaignSetting.DetectionScalePer10Ft)
+                    .WithCondition("Doesn't reveal color", 0, 1, 0);
+                    .Build();
+            dbContext.Characteristics.Add(feature);
+
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            feature = builder.OfType(CharacteristicType.Feature)
+                    .HasName($"Fast Healing")
+                    .HasDescriptionFile("Content\\Features\\fast-healing.md")
+                    .HasSpecificCombatPower(CampaignSetting.EnergyScale * (int)CampaignSetting.RepeatingMultiplier.OncePerRound)
+                    .AsUpgradable("The creature this is applied to heals for an additional 1 point of Energy for every time this Feature is upgraded.", CampaignSetting.EnergyScale * (int)CampaignSetting.RepeatingMultiplier.OncePerRound)
+                    .Build();
+            dbContext.Characteristics.Add(feature);
 
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Fly")
                     .HasDescriptionFile("Content\\Features\\fly.md")
-                    .HasSpecificEnvironmentPower(20)
+                    .HasSpecificEnvironmentPower(CampaignSetting.FlyScalePer10ft)
+                    .AsUpgradable("The creature this applies to can fly an additional 10ft per turn", 0, CampaignSetting.FlyScalePer10ft)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
             string[] energyTypes = new string[] { "Fire", "Cold", "Light", "Shadow", "Electric", "Acid", "Sonic" };
-            int energyResistancePower = 9;
             foreach (var type in energyTypes)
             {
                 builder = new CharacteristicBuilder(standardCampaignSetting);
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Resistance, {type}")
                         .HasDescriptionFile("Content\\Features\\resistance-attack.md", type)
-                        .HasSpecificCombatPower(energyResistancePower)
+                        .HasSpecificCombatPower(CampaignSetting.ResistanceEnergy)
                         .Build();
                 dbContext.Characteristics.Add(feature);
+
 
                 builder = new CharacteristicBuilder(standardCampaignSetting);
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Immunity, {type}")
                         .HasDescriptionFile("Content\\Features\\immunity-attack.md", type)
-                        .HasSpecificCombatPower(energyResistancePower * 2)
+                        .HasSpecificCombatPower(CampaignSetting.ImmunityEnergy)
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
@@ -108,7 +112,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Energy")
                     .HasDescriptionFile("Content\\Features\\resistance-attack.md", string.Join(", ", energyTypes))
-                    .HasSpecificCombatPower(energyTypes.Length * energyResistancePower)
+                    .HasSpecificCombatPower(energyTypes.Length * CampaignSetting.ResistanceEnergy)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -116,7 +120,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Immunity, All Poison")
                     .HasDescriptionFile("Content\\Features\\immunity-all-poison.md")
-                    .HasSpecificCombatPower(9)
+                    .HasSpecificCombatPower(CampaignSetting.ImmunityAnyPoision)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -124,7 +128,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Immunity, Poison")
                     .HasDescriptionFile("Content\\Features\\immunity-poison.md")
-                    .HasSpecificCombatPower(6)
+                    .HasSpecificCombatPower(CampaignSetting.ImmunityPoision)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -132,7 +136,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Poison")
                     .HasDescriptionFile("Content\\Features\\resistance-poison.md")
-                    .HasSpecificCombatPower(3)
+                    .HasSpecificCombatPower(CampaignSetting.ResistancePoison)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -140,12 +144,18 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Mind-Affecting")
                     .HasDescriptionFile("Content\\Features\\resistance-mind-affecting.md")
-                    .HasSpecificCombatPower(8)
+                    .HasSpecificCombatPower(CampaignSetting.ResistanceMindAffecting)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
+            builder = new CharacteristicBuilder(standardCampaignSetting);
+            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
+                    .HasName("Immunity, Mind-Affecting")
+                    .HasDescriptionFile(@"Content\Features\immunity-mind-affecting.md")
+                    .HasSpecificCombatPower(CampaignSetting.ImmunityMindAffecting)
+                    .Build());
 
-            int physicalResistancePower = 10;
+
             string[] physicalTypes = new string[] { "Piercing", "Bludgeoning", "Slashing" };
             foreach (var type in physicalTypes)
             {
@@ -153,7 +163,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Resistance, {type}")
                         .HasDescriptionFile("Content\\Features\\resistance-attack.md", type)
-                        .HasSpecificCombatPower(physicalResistancePower)
+                        .HasSpecificCombatPower(CampaignSetting.ResistancePhysical)
                         .Build();
                 dbContext.Characteristics.Add(feature);
 
@@ -161,7 +171,7 @@ namespace Elixr2.Api.Services.Seeding
                 feature = builder.OfType(CharacteristicType.Feature)
                         .HasName($"Immunity, {type}")
                         .HasDescriptionFile("Content\\Features\\immunity-attack.md", type)
-                        .HasSpecificCombatPower(physicalResistancePower * 2)
+                        .HasSpecificCombatPower(CampaignSetting.ImmunityPhysical)
                         .Build();
                 dbContext.Characteristics.Add(feature);
             }
@@ -170,7 +180,7 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName($"Resistance, Physical")
                     .HasDescriptionFile("Content\\Features\\resistance-attack.md", "Bludgeoning, Piercing, or Slashing")
-                    .HasSpecificCombatPower(physicalResistancePower * physicalTypes.Length)
+                    .HasSpecificCombatPower(CampaignSetting.ResistancePhysical * physicalTypes.Length)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -178,49 +188,32 @@ namespace Elixr2.Api.Services.Seeding
             feature = builder.OfType(CharacteristicType.Feature)
                      .HasName("Learn Spell")
                      .HasDescriptionFile("Content\\Features\\learn-spell.md")
-                     .HasSpecificCombatPower(1)
+                     .HasSpecificCombatPower(CampaignSetting.LearnSpell)
                      .Build();
             dbContext.Characteristics.Add(feature);
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
-                    .HasName("Leech")
-                    .HasDescriptionFile("Content\\Features\\leech.md")
-                    .HasSpecificCombatPower(12)
-                    .Build();
-            dbContext.Characteristics.Add(feature);
-
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Speak Language")
                     .HasDescriptionFile("Content\\Features\\speak-language.md")
-                    .HasSpecificPresencePower(1)
+                    .HasSpecificPresencePower(CampaignSetting.SpeakLanguageScale)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Speed")
-                    .WithMod("Speed", 5)
+                    .WithMod("Speed", CampaignSetting.SpeedScalePer5ft)
                     .HasDescriptionFile("Content\\Features\\speed.md")
                     .Build();
             dbContext.Characteristics.Add(feature);
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             feature = builder.OfType(CharacteristicType.Feature)
-                    .HasName("Two Weapon Training")
-                    .HasDescriptionFile("Content\\Features\\two-weapon-training.md")
-                    .HasSpecificCombatPower(7)
-                    .Build();
-            dbContext.Characteristics.Add(feature);
-
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            feature = builder.OfType(CharacteristicType.Feature)
                     .HasName("Vitality")
                     .HasDescriptionFile("Content\\Features\\vitality.md")
-                    .WithMod("Energy", 3)
+                    .WithMod("Energy", CampaignSetting.EnergyScale)
+                    .AsUpgradable("Your Max Energy is increased an additional 1 point.", CampaignSetting.EnergyScale, 0, 0, 3)
                     .Build();
             dbContext.Characteristics.Add(feature);
 
@@ -238,25 +231,11 @@ namespace Elixr2.Api.Services.Seeding
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Tremorsense, 30ft")
-                    .HasDescriptionFile(@"Content\Features\tremorsense.md", 30)
-                    .HasSpecificEnvironmentPower(3)
+                    .HasName("Tremorsense")
+                    .HasDescriptionFile(@"Content\Features\tremorsense.md")
+                    .HasSpecificEnvironmentPower(CampaignSetting.DetectionScalePer10Ft)
+                    .AsUpgradable("Range is increased an additional 10ft")
                     .Build());
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Tremorsense, 60ft")
-                    .HasDescriptionFile(@"Content\Features\tremorsense.md", 60)
-                    .HasSpecificEnvironmentPower(6)
-                    .Build());
-
-            builder = new CharacteristicBuilder(standardCampaignSetting);
-            dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)
-                    .HasName("Immunity, Mind-Affecting")
-                    .HasDescriptionFile(@"Content\Features\immunity-mind-affecting.md")
-                    .HasSpecificCombatPower(13)
-                    .Build());
-
 
             builder = new CharacteristicBuilder(standardCampaignSetting);
             dbContext.Characteristics.Add(builder.OfType(CharacteristicType.Feature)

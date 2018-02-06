@@ -8,8 +8,8 @@ import { MarkdownService } from '../../services/markdown.service';
 })
 export class MarkdownEditorComponent implements OnInit {
 
-  private editing = false;
-  private _model = "";
+  editing = false;
+  _model = "";
   renderedModel = "";
 
   @ViewChild("editTextarea") descriptionTextarea: ElementRef;
@@ -30,6 +30,8 @@ export class MarkdownEditorComponent implements OnInit {
   constructor(private markdownService: MarkdownService) { }
 
   ngOnInit() {
+    let textBox: HTMLInputElement = this.descriptionTextarea.nativeElement;
+    textBox.focus();
   }
   renderedMarkdownClicked(): void {
     if (!this.canEdit) {

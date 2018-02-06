@@ -17,7 +17,7 @@ namespace Elixr2.Api.Controllers
             this.SpellsService = spellsService;
         }
         
-        [HttpPost("~/spells/search")]
+        [HttpPost("spells/search")]
         public async Task<List<SpellViewModel>> SearchSpells([FromBody]SearchSpellsInput input)
         {
             var spells = await SpellsService.GetSpells(input.Name);

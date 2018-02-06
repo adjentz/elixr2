@@ -72,9 +72,10 @@ export class ElixrService {
     return power;
   }
   getCharacteristicPower(characteristic: ICharacteristic): number {
-    if (characteristic.specifiedPowerAdjustment) {
-      return characteristic.specifiedPowerAdjustment;
-    }
+    // if (characteristic.specifiedPowerAdjustment) {
+    //   return characteristic.specifiedPowerAdjustment;
+    // }
+    // TODO: fix power calculation
     let power = 0;
     characteristic.mods.forEach(sm => power += this.getStatModPower(sm));
     return power;

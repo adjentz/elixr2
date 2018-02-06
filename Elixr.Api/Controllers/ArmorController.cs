@@ -17,7 +17,7 @@ namespace Elixr2.Api.Controllers
             this.armorService = armorService;
         }
         
-        [HttpPost("~/armor/search")]
+        [HttpPost("armor/search")]
         public async Task<List<ArmorViewModel>> SearchArmor([FromBody]SearchArmorInput input)
         {
             var armor = await armorService.GetArmor(input.Name);

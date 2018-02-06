@@ -17,7 +17,7 @@ namespace Elixr2.Api.Controllers
             this.ItemsService = itemsService;
         }
         
-        [HttpPost("~/items/search")]
+        [HttpPost("items/search")]
         public async Task<List<ItemViewModel>> SearchItems([FromBody]SearchItemsInput input)
         {
             var Items = await ItemsService.GetItems(input.Name);

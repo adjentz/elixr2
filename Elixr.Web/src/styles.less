@@ -93,6 +93,31 @@ span,i,a {
     float: right;
 }
 
+.sword-icon {
+    &.dark {
+        &:before {
+            filter: invert(100%);
+        }
+    }
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        background: url(/assets/images/sword-inverted.png);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-transform: rotate(30deg);
+        transform: rotate(30deg);
+    }
+}
 .center-text {
     text-align: center;
 }

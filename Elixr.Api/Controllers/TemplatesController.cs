@@ -17,7 +17,7 @@ namespace Elixr2.Api.Controllers
             this.templatesService = templatesService;
         }
         
-        [HttpPost("~/templates/search")]
+        [HttpPost("templates/search")]
         public async Task<List<TemplateViewModel>> SearchTemplates([FromBody]SearchTemplatesInput input)
         {
             var templates = await templatesService.GetTemplates(input.OnlyRaces, input.Name);

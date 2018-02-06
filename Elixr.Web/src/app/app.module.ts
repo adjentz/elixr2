@@ -146,7 +146,7 @@ import { UserSessionService } from 'app/services/user-session.service';
     WeaponsCharacteristicComponent,
     CharacteristicCreatorComponent,
     CharacteristicTypePipe,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

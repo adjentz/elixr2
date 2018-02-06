@@ -40,7 +40,7 @@ namespace Elixr2.Api.Models
             {
                 int power = SelectedSpells.Sum(ss => ss.Spell.CombatPower);
                 power += Mods.Where(asm => asm.StatMod.Stat.PowerType == PowerType.Combat).Sum(asm => asm.StatMod.Power);
-                power += SelectedCharacteristics.Sum(sc => sc.Characteristic.CombatPower);
+                power += SelectedCharacteristics.Sum(sc => sc.CombatPower);
                 power += SelectedTemplates.Sum(st => st.Template.CombatPower);
                 return power;
             }
@@ -51,7 +51,7 @@ namespace Elixr2.Api.Models
             {
                 int power = SelectedSpells.Sum(ss => ss.Spell.PresencePower);
                 power += Mods.Select(asm => asm.StatMod).Where(sm => sm.Stat.PowerType == PowerType.Presence).Sum(sm => sm.Power);
-                power += SelectedCharacteristics.Sum(sc => sc.Characteristic.PresencePower);
+                power += SelectedCharacteristics.Sum(sc => sc.PresencePower);
                 power += SelectedTemplates.Sum(st => st.Template.PresencePower);
                 return power;
             }
@@ -63,7 +63,7 @@ namespace Elixr2.Api.Models
             {
                 int power = SelectedSpells.Sum(ss => ss.Spell.EnvironmentPower);
                 power += Mods.Select(asm => asm.StatMod).Where(sm => sm.Stat.PowerType == PowerType.Environment).Sum(sm => sm.Power);
-                power += SelectedCharacteristics.Sum(sc => sc.Characteristic.EnvironmentPower);
+                power += SelectedCharacteristics.Sum(sc => sc.EnvironmentPower);
                 power += SelectedTemplates.Sum(st => st.Template.EnvironmentPower);
                 return power;
             }

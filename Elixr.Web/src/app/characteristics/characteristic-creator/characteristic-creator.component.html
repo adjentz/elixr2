@@ -43,15 +43,35 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="specify-power-container">
       <label>
-        <input type="radio" name="useSuggestedPowerRadio" [(ngModel)]="useSuggestedPower" [value]="true"> Use Suggested Power: {{ totalSuggestedPower }}
+        <input type="radio" name="useSuggestedCombatPowerRadio" [(ngModel)]="useSuggestedCombatPower" [value]="true"> Use Suggested Combat <i class="sword-icon dark"></i> Power: {{ suggestedCombatPower }}
       </label>
       <br>
       <label>
-        <input type="radio" name="useSuggestedPowerRadio" [(ngModel)]="useSuggestedPower" [value]="false"> Specify Power:
+        <input type="radio" name="useSuggestedCombatPowerRadio" [(ngModel)]="useSuggestedCombatPower" [value]="false"> Specify Combat Power:
       </label>
-      <input type="number" [(ngModel)]="specifiedPower">
+      <input type="number" [(ngModel)]="specifiedCombatPower">
+    </div>
+    <div class="specify-power-container">
+      <label>
+        <input type="radio" name="useSuggestedEnvironmentPowerRadio" [(ngModel)]="useSuggestedEnvironmentPower" [value]="true"> Use Suggested Environment <i class="fa fa-tree"></i> Power: {{ suggestedEnvironmentPower }}
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="useSuggestedEnvironmentPowerRadio" [(ngModel)]="useSuggestedEnvironmentPower" [value]="false"> Specify Environment Power:
+      </label>
+      <input type="number" [(ngModel)]="specifiedEnvironmentPower">
+    </div>
+    <div class="specify-power-container">
+      <label>
+        <input type="radio" name="useSuggestedPresencePowerRadio" [(ngModel)]="useSuggestedPresencePower" [value]="true"> Use Suggested Presence <i class="fa fa-handshake-o"></i> Power: {{ suggestedPresencePower }}
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="useSuggestedPresencePowerRadio" [(ngModel)]="useSuggestedPresencePower" [value]="false"> Specify Environment Power:
+      </label>
+      <input type="number" [(ngModel)]="specifiedPresencePower">
     </div>
     <strong>
       Characteristic Type
@@ -59,25 +79,27 @@
     <a *ngIf="!explainCharacteristicTypes" (click)="explainCharacteristicTypes = true">Which should I choose?</a>
     <a *ngIf="explainCharacteristicTypes" (click)="explainCharacteristicTypes = false">Hide</a>
     <p *ngIf="explainCharacteristicTypes">
-      A Feature is something that grants an out of the ordinary ability or power to a creature. 
-      <br>
-      A Flaw causes a Creature to have some reduction in power or ability. 
-      If a Characteristic causes a gain in some areas, and a reduction in others, favor using Flaw.
-      <br>
-      An Oath always requires a condition that the creature must adhere to keep its effects, but is otherwise similar to a Feature.
+      A Feature is something that grants an out of the ordinary ability or power to a creature.
+      <br> A Flaw causes a Creature to have some reduction in power or ability. If a Characteristic causes a gain in some areas,
+      and a reduction in others, favor using Flaw.
+      <br> An Oath always requires a condition that the creature must adhere to keep its effects, but is otherwise similar to
+      a Feature.
     </p>
     <div>
-        <select [(ngModel)]="selectedType">
-            <option *ngFor="let type of characteristicTypes" [value]="type">
-              {{ type | characteristicType }}
-            </option>
-          </select>
+      <select [(ngModel)]="selectedType">
+        <option *ngFor="let type of characteristicTypes" [value]="type">
+          {{ type | characteristicType }}
+        </option>
+      </select>
     </div>
     <p class="error">
       {{ error }}
     </p>
     <app-community-agreement (acceptedConditions)="updateAcceptedConditions($event)"></app-community-agreement>
-    <app-login></app-login>
+    <div *ngIf="!isLoggedIn">
+      You must be logged in to submit content.
+      <app-login></app-login>
+    </div>
     <button class="lxr-button" (click)="submit()">
       Submit
     </button>

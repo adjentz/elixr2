@@ -1,3 +1,1 @@
-You gain the ability to fly.
-
-Flying 10ft has a Speed cost of 5ft.
+You gain the ability to fly for 10ft/turn. While flying, the Speed Cost for traveling is halved. Meaning traveling 10ft through the air only costs 5ft.

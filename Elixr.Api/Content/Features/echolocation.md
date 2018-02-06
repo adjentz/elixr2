@@ -1,0 +1,1 @@
+You emit a sound outside the range of normal human hearing and which then tells you the position and shape of objects and creatures within 10ft of you + 10ft for every time this Characteristic has been upgraded.

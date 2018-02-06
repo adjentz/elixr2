@@ -11,7 +11,7 @@ namespace Elixr2.Api.Models
         public List<SelectedSpell> SelectedSpells { get; set; } = new List<SelectedSpell>();
         public bool IsRace { get; set; }
         // False if a creature must be born/created with this template.
-        public bool CanBeAcquired {get;set;}
+        public bool CanBeAcquired { get; set; }
 
         public override int CombatPower
         {
@@ -19,7 +19,7 @@ namespace Elixr2.Api.Models
             {
                 int power = SelectedSpells.Sum(ss => ss.Spell.CombatPower);
                 power += Mods.Where(sm => sm.Stat.PowerType == PowerType.Combat).Sum(sm => sm.Power);
-                power += AppliedCharacteristics.Sum(sc => sc.Characteristic.CombatPower);
+                power += AppliedCharacteristics.Sum(sc => sc.CombatPower);
                 return power;
             }
         }
@@ -29,7 +29,7 @@ namespace Elixr2.Api.Models
             {
                 int power = SelectedSpells.Sum(ss => ss.Spell.PresencePower);
                 power += Mods.Where(sm => sm.Stat.PowerType == PowerType.Presence).Sum(sm => sm.Power);
-                power += AppliedCharacteristics.Sum(sc => sc.Characteristic.PresencePower);
+                power += AppliedCharacteristics.Sum(sc => sc.PresencePower);
                 return power;
             }
         }
@@ -40,7 +40,7 @@ namespace Elixr2.Api.Models
             {
                 int power = SelectedSpells.Sum(ss => ss.Spell.EnvironmentPower);
                 power += Mods.Where(sm => sm.Stat.PowerType == PowerType.Environment).Sum(sm => sm.Power);
-                power += AppliedCharacteristics.Sum(sc => sc.Characteristic.EnvironmentPower);
+                power += AppliedCharacteristics.Sum(sc => sc.EnvironmentPower);
                 return power;
             }
         }

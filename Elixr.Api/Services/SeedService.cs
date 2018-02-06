@@ -127,7 +127,7 @@ namespace Elixr2.Api.Services.Seeding
             standardCampaignSetting.Stats.Add(agilityMisc);
 
             Skill acrobatics = new Skill("Acrobatics", 2);
-            acrobatics.PowerType = PowerType.Combat;
+            acrobatics.PowerType = PowerType.Environment;
             acrobatics.Description = "Acrobatics is the Skill to balance on a ledge, tumble between a giant's legs, dodge out of harm's way, and reduce fall damage.";
             acrobatics.SpeedCost = "Varies";
             acrobatics.OnFailure = "Varies";

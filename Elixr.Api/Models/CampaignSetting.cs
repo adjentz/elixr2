@@ -11,7 +11,28 @@ namespace Elixr2.Api.Models
         public const int AttackBonusScale = 4;
         public const int DamageBonusScale = 4;
         public const int AbilityScoreScale = 5;
-        public const int SkillScoreScale = 2;
+        public const int SkillRankScale = 1;
+        public const int DetectionScalePer10Ft = 3
+        public const int ResistanceEnergy = 6;
+        public static int ImmunityEnergy => ResistanceEnergy * 2;
+        public const int ResistancePoison = 6;
+        public const int ImmunityPoision = 9;
+        public const int ImmunityAnyPoision = 18;        
+        public const int ResistancePhysical = 10;
+        public const int ResistanceMindAffecting = 10;
+        public const int ImmunityMindAffecting => ResistanceMindAffecting * 2;
+        public const int LearnSpell = 1;
+        public const int SpeakLanguageScale = 1;
+        public static int ImmunityPhysical => ResistancePhysical * 2; 
+        public static int FlyScalePer10ft => SpeedScalePer5ft *  2 * 6;
+        
+        public enum RepeatingMultiplier
+        {
+            OnceEver = 1,
+            OncePerDay = 2,
+            OncePerEncounter = 3,
+            OncePerRound = 4
+        }
 
         public string Code { get; set; }
         public string Name { get; set; }

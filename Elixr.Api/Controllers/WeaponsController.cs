@@ -17,7 +17,7 @@ namespace Elixr2.Api.Controllers
             this.weaponsService = weaponsService;
         }
         
-        [HttpPost("~/weapons/search")]
+        [HttpPost("weapons/search")]
         public async Task<List<WeaponViewModel>> SearchWeapons([FromBody]SearchWeaponsInput input)
         {
             var weapons = await weaponsService.GetWeapons(input.Name);

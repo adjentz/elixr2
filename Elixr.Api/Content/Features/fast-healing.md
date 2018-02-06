@@ -1,1 +1,3 @@
-At the beginning of your turn, you regain a number of points of Energy specified in the name of this Characteristic. This works even when incapacitated, unless stated otherwise.
+At the beginning of your turn, you regain a 1 point of Energy.
+
+ This works even when incapacitated, unless stated otherwise.

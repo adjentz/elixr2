@@ -20,13 +20,13 @@ namespace Elixr2.Api.Controllers
             this.creaturesService = creaturesService;
             this.storageService = storageService;
         }
-        [HttpGet("~/creatures/{creatureId}")]
+        [HttpGet("creatures/{creatureId}")]
         public async Task<CreatureViewModel> GetCreature(int creatureId)
         {
             var creature = await this.creaturesService.GetCreatureById(creatureId);
             return creature.ToViewModel();
         }
-        [HttpPost("~/creatures/save-portrait")]
+        [HttpPost("creatures/save-portrait")]
         public async Task<string> SaveCreaturePortrait()
         {
             var file = Request.Form.Files.First();
@@ -48,14 +48,14 @@ namespace Elixr2.Api.Controllers
                 CreatureId = creature.Id
             };
         }
-        [HttpPost("~/creatures/search")]
+        [HttpPost("creatures/search")]
         public async Task<List<CreatureListingViewModel>> GetCreatures([FromBody]SearchCreaturesInput input)
         {
             var creatures = await creaturesService.GetCreatures();
             return creatures.Select(c => ToListingViewModel(c)).ToList();
         }
 
-        [HttpPost("~/creatures/save")]
+        [HttpPost("creatures/save")]
         public async Task<CreatureViewModel> SaveCreature([FromBody]UpdateCreatureInput input)
         {
             Creature creature = null;

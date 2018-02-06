@@ -15,11 +15,16 @@ export class CharacteristicCreatorComponent implements OnInit {
   statMods: IStatMod[];
   moddableStats: IStat[];
   loading = false;
-  useSuggestedPower = true;
+  useSuggestedCombatPower = true;
+  useSuggestedPresencePower = true;
+  useSuggestedEnvironmentPower = true;
   error = '';
   title = '';
   description = '';
-  specifiedPower = 0;
+  specifiedCombatPower = 0;
+  specifiedPresencePower = 0;
+  specifiedEnvironmentPower = 0;
+
   explainCharacteristicTypes = false;
   @Input() suggestedType: CharacteristicType;
   selectedType: CharacteristicType;
@@ -60,18 +65,18 @@ export class CharacteristicCreatorComponent implements OnInit {
     this.statMods.push(this.currentStatMod);
     this.resetCurrentStatMod();
   }
+  get isLoggedIn():boolean {
+    return false;
+  }
 
-  get totalSuggestedPower(): number {
-    if (this.loading) {
-      return 0;
-    }
-    let sum = 0;
-    let statMods = [...this.statMods];
-    if (this.currentStatMod.modifier !== 0) {
-      statMods.push(this.currentStatMod);
-    }
-    statMods.forEach(sm => sum += this.elixrService.getStatModPower(sm));
-    return sum;
+  get suggestedCombatPower(): number {
+    return 1337;
+  }
+  get suggestedPresencePower(): number {
+    return 1337;
+  }
+  get suggestedEnvironmentPower(): number {
+    return 1337;
   }
 
   async submit(): Promise<void> {
@@ -90,17 +95,22 @@ export class CharacteristicCreatorComponent implements OnInit {
 
     statMods.forEach(sm => sm.reason = `Characteristic: ${this.title}`);
 
-    // let characteristic: ICharacteristic = {
-    //   id: -1,
-    //   mods: statMods,
-    //   name: this.title,
-    //   specifiedPowerAdjustment: this.useSuggestedPower ? null : this.specifiedPower,
-    //   type: this.selectedType,
-    //   description: this.description,
-    //   authorId: -1,
-    //   campaignSettingId: -1
-    // };
-    // console.log(characteristic);
+    let characteristic: ICharacteristic = {
+      id: -1,
+      mods: statMods,
+      name: this.title,
+      specifiedCombatPower: this.useSuggestedCombatPower ? this.suggestedCombatPower : this.specifiedCombatPower,
+      specifiedPresencePower: this.useSuggestedPresencePower ? this.suggestedPresencePower : this.specifiedPresencePower,
+      specifiedEnvironmentPower: this.useSuggestedEnvironmentPower ? this.suggestedEnvironmentPower : this.specifiedEnvironmentPower,
+      type: this.selectedType,
+      description: this.description,
+      authorId: -1,
+      campaignSettingId: -1,
+      combatPower: null,
+      environmentPower: null,
+      presencePower: null
+    };
+    console.log(characteristic);
   }
   currentStatModChanged() {
     this.currentStatMod.modifier = 0;

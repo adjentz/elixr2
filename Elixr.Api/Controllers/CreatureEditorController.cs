@@ -19,7 +19,7 @@ namespace Elixr2.Api.Controllers
             this.settingsService = settingsService;
         }
 
-        [HttpGet("~/creature-editor/view-model")]
+        [HttpGet("creature-editor/view-model")]
         public async Task<CreatureEditorViewModel> GetViewModel()
         {
             var setting = await settingsService.GetCampaignSettingByCode(CampaignSetting.StandardCampaignSettingCode);
@@ -44,7 +44,7 @@ namespace Elixr2.Api.Controllers
             };
 
         }
-        [HttpGet("~/creature-editor/view-model/{creatureId}")]
+        [HttpGet("creature-editor/view-model/{creatureId}")]
         public async Task<CreatureEditorViewModel> GetViewModel(int creatureId)
         {
             var creature = await creaturesService.GetCreatureById(creatureId);
